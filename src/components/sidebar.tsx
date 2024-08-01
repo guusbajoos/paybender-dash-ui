@@ -6,6 +6,7 @@ import Nav from './nav'
 import { cn } from '@/lib/utils'
 import { sidelinks } from '@/data/sidelinks'
 import PaybenderLogo from '@/assets/images/paybender-logo.png'
+import { Separator } from './ui/separator'
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   isCollapsed: boolean
@@ -47,7 +48,7 @@ export default function Sidebar({
           sticky
           className='z-50 flex h-auto justify-between bg-[#EEF9FA] px-4 py-3 md:px-4'
         >
-          <div className={`flex items-center ${!isCollapsed ? 'gap-2' : ''}`}>
+          <div className={`${!isCollapsed ? 'gap-2' : ''}`}>
             <div
               className={`flex flex-col justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
@@ -58,6 +59,7 @@ export default function Sidebar({
                 height={70}
               />
             </div>
+            <Separator className='mt-4 h-[2px] bg-[#3CC1D1]' />
           </div>
 
           {/* Toggle Button in mobile */}
