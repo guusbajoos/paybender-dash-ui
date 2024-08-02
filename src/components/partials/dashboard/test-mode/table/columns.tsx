@@ -26,7 +26,7 @@ export const columns: ColumnDef<any>[] = [
     },
     cell: ({ row }) =>
       row.getValue('trx_date')
-        ? dayjs(row.getValue('trx_date')).format('MMM DD, YYYY, HH:mm A')
+        ? dayjs(row.getValue('trx_date')).format('MMM DD, YYYY, HH:mm:ss')
         : '-',
   },
   {
