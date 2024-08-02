@@ -1,4 +1,4 @@
-// import OrderStatusQRIS from './order-status-qris'
+import OrderStatusQRIS from './order-status-qris'
 // import OrderStatusEMoney from './order-status-emoney'
 // import OrderStatusVA from './order-status-va'
 // import OrderStatusPaid from './order-status-paid'
@@ -6,7 +6,7 @@
 const OrderStatus = () => {
   return (
     <>
-      {/* <OrderStatusQRIS /> */}
+      <OrderStatusQRIS />
       {/* <OrderStatusEMoney /> */}
       {/* <OrderStatusVA /> */}
       {/* <OrderStatusPaid /> */}

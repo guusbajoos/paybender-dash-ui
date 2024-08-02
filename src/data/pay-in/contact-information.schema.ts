@@ -49,3 +49,7 @@ export const contactInformationSchema = z.object({
     required_error: 'Please select an service',
   }),
 })
+
+export interface IStepperNextProps {
+  onNextStep?: () => void
+}

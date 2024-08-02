@@ -17,12 +17,15 @@ import {
   SelectItem,
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { contactInformationSchema } from '@/data/pay-in/contact-information.schema'
+import {
+  contactInformationSchema,
+  IStepperNextProps,
+} from '@/data/pay-in/contact-information.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
-const ContactInformationForm = () => {
+const ContactInformationForm = (props: IStepperNextProps) => {
   const form = useForm<z.infer<typeof contactInformationSchema>>({
     resolver: zodResolver(contactInformationSchema),
     defaultValues: {
@@ -249,7 +252,10 @@ const ContactInformationForm = () => {
               />
             </div>
           </div>
-          <Button className='w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
+          <Button
+            className='w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
+            onClick={() => props.onNextStep && props.onNextStep()}
+          >
             CONTINUE
           </Button>
         </form>

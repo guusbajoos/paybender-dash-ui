@@ -8,8 +8,9 @@ import PaymentEMoney from './payment-emoney'
 import PaymentVA from './payment-va'
 
 import { cn } from '@/lib/utils'
+import { IStepperNextProps } from '@/data/pay-in/contact-information.schema'
 
-const SelectPayment = () => {
+const SelectPayment = (props: IStepperNextProps) => {
   const [tabKey, setTabKey] = useState('qris')
 
   return (
@@ -23,7 +24,7 @@ const SelectPayment = () => {
         className='space-y-4'
         onValueChange={(v) => setTabKey(v)}
       >
-        <div className='w-full overflow-x-auto pb-2'>
+        <div className='w-full pb-2 overflow-x-auto'>
           <TabsList className='flex h-auto gap-x-2.5 bg-[#EEF9FA]'>
             <Button
               className={cn(
@@ -69,7 +70,10 @@ const SelectPayment = () => {
             <PaymentEMoney onPaymentMethodChange={() => {}} />
           )}
           {tabKey === 'va' && <PaymentVA onPaymentMethodChange={() => {}} />}
-          <Button className='mt-[1.125rem] w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
+          <Button
+            className='mt-[1.125rem] w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
+            onClick={() => props.onNextStep && props.onNextStep()}
+          >
             CONTINUE TO PAY
           </Button>
         </Card>
