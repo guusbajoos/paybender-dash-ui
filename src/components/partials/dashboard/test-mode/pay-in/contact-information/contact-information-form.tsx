@@ -155,9 +155,9 @@ const ContactInformationForm = (props: IStepperNextProps) => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='Jakarta'>Jakarta</SelectItem>
-                        <SelectItem value='Bogor'>Bogor</SelectItem>
-                        <SelectItem value='Depok'>Depok</SelectItem>
+                        <SelectItem value='Indonesia'>Indonesia</SelectItem>
+                        <SelectItem value='Australia'>Australia</SelectItem>
+                        <SelectItem value='Japan'>Japan</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

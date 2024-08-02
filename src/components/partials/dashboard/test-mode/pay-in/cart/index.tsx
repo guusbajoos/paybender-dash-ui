@@ -69,7 +69,7 @@ const CartReview = () => {
             <div className='flex justify-between'>
               <h3 className='text-lg font-normal text-[#121212]'>Subtotal</h3>
               <h3 className='text-lg font-normal text-[#121212]'>
-                IDR 300.000
+                IDR 250.000
               </h3>
             </div>
             <div className='flex justify-between'>
