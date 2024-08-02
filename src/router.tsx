@@ -14,9 +14,15 @@ const router = createBrowserRouter([
     errorElement: <GeneralError />,
     children: [
       {
-        index: true,
+        path: 'get-started',
         lazy: async () => ({
           Component: (await import('@/pages/dashboard')).default,
+        }),
+      },
+      {
+        path: 'get-started/test-mode',
+        lazy: async () => ({
+          Component: (await import('@/pages/dashboard/test-mode')).default,
         }),
       },
       {

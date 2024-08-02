@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 
 import DashboardImageElipse from '@/assets/images/dashboard-elipse.png'
@@ -11,8 +12,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/custom/button'
 
 export default function Dashboard() {
+  const navigate = useNavigate()
+
   return (
-    <Layout>
+    <Layout className='bg-[#EEF9FA]'>
       {/* ===== Top Heading ===== */}
       <Layout.Header className='shadow-sm'>
         <Timestamp
@@ -119,7 +122,10 @@ export default function Dashboard() {
                     <h3 className='text-sm font-medium text-[#777677]'>
                       You may try out dashboard in testmode
                     </h3>
-                    <Button className='w-full bg-[#3CC1D1] text-xs text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
+                    <Button
+                      className='w-full bg-[#3CC1D1] text-xs text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
+                      onClick={() => navigate('/get-started/test-mode')}
+                    >
                       Try
                     </Button>
                   </div>
