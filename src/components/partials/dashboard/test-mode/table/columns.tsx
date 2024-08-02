@@ -35,6 +35,12 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => row.getValue('trx_id') || '-',
   },
   {
+    accessorKey: 'merchant_refno',
+    header: () => 'Merchant Ref No',
+    cell: ({ row }) => row.getValue('merchant_refno') || '-',
+  },
+  /*
+  {
     accessorKey: 'trx_rc',
     header: () => 'RC',
     cell: ({ row }) => row.getValue('trx_rc') || '-',
@@ -44,24 +50,30 @@ export const columns: ColumnDef<any>[] = [
     header: () => 'Description',
     cell: ({ row }) => row.getValue('description') || '-',
   },
+  */
   {
     accessorKey: 'currency',
     header: () => 'Currency',
     cell: ({ row }) => row.getValue('currency') || '-',
   },
   {
+    accessorKey: 'method',
+    header: () => 'Payment Method',
+    cell: ({ row }) => row.getValue('method') || '-',
+  },
+  {
     accessorKey: 'gross_amount',
-    header: () => 'Gross Amount',
+    header: () => 'Transaction Amount',
     cell: ({ row }) => row.getValue('gross_amount') || '-',
   },
   {
     accessorKey: 'fees',
-    header: () => 'Fees',
+    header: () => 'Fee Amount',
     cell: ({ row }) => row.getValue('fees') || '-',
   },
   {
     accessorKey: 'net_amount',
-    header: () => 'Net',
+    header: () => 'Net Amount',
     cell: ({ row }) => row.getValue('net_amount') || '-',
   },
   /*
