@@ -100,6 +100,7 @@ const PaymentEMoney = (props: IPaymentEMoneyProps) => {
         </div>
       </div>
 
+      /*
       <Card className='border-none bg-[#EEF9FA] p-2.5 shadow-none'>
         <p className='text-lg font-normal text-[#5A5A5A]'>
           DANA is an e-wallet that offers a range of financial services,
@@ -107,6 +108,7 @@ const PaymentEMoney = (props: IPaymentEMoneyProps) => {
           financial inclusion to all Indonesians.
         </p>
       </Card>
+      */
     </div>
   )
 }

@@ -124,13 +124,24 @@ export default function TestMode() {
                       Summary
                     </h3>
                     <div className='flex flex-wrap gap-x-[6.125rem] gap-y-6'>
+
+                      <div className='flex items-center gap-x-2.5'>
+                        <img src={IconCheck} alt='Balance' className='size-6' />
+                        <div className='flex flex-col gap-y-1'>
+                          <span className='text-xs font-medium text-[#AEAEAE]'>
+                            Balance
+                          </span>
+                          <h3 className='text-sm font-medium text-black'>IDR 6.974.000,00</h3>
+                        </div>
+                      </div>
+
                       <div className='flex items-center gap-x-2.5'>
                         <img src={IconCheck} alt='Paid' className='size-6' />
                         <div className='flex flex-col gap-y-1'>
                           <span className='text-xs font-medium text-[#AEAEAE]'>
                             Paid
                           </span>
-                          <h3 className='text-sm font-medium text-black'>23</h3>
+                          <h3 className='text-sm font-medium text-black'>3</h3>
                         </div>
                       </div>
                       <div className='flex items-center gap-x-2.5'>
@@ -143,7 +154,7 @@ export default function TestMode() {
                           <span className='text-xs font-medium text-[#AEAEAE]'>
                             Unpaid
                           </span>
-                          <h3 className='text-sm font-medium text-black'>0</h3>
+                          <h3 className='text-sm font-medium text-black'>1</h3>
                         </div>
                       </div>
                       <div className='flex items-center gap-x-2.5'>
@@ -152,7 +163,7 @@ export default function TestMode() {
                           <span className='text-xs font-medium text-[#AEAEAE]'>
                             Failed
                           </span>
-                          <h3 className='text-sm font-medium text-black'>7</h3>
+                          <h3 className='text-sm font-medium text-black'>1</h3>
                         </div>
                       </div>
                     </div>

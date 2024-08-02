@@ -64,11 +64,13 @@ export const columns: ColumnDef<any>[] = [
     header: () => 'Net',
     cell: ({ row }) => row.getValue('net_amount') || '-',
   },
+  /*
   {
     accessorKey: 'last_balance',
     header: () => 'Ending Balance',
     cell: ({ row }) => row.getValue('last_balance') || '-',
   },
+  */
   {
     accessorKey: 'status',
     header: () => 'Status',
@@ -85,6 +87,11 @@ export const columns: ColumnDef<any>[] = [
               Processing
             </span>
           )}
+          {row.getValue('status') === 'processing' && (
+            <span className='rounded-sm bg-[#DB8479]/30 px-2.5 py-1.5 text-xs font-medium text-[#DB2A14]'>
+              Processing
+            </span>
+        )}
         </>
       )
     },

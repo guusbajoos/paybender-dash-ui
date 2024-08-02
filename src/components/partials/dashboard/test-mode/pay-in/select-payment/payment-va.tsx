@@ -37,10 +37,13 @@ const PaymentVA = (props: IPaymentVAProps) => {
   return (
     <div className='flex flex-col gap-y-[1.125rem]'>
       <h4 className='text-lg font-normal text-[#5A5A5A]'>
-        E-money payment channels offer convenient and secure ways for customers
-        to make digital payments using electronic money stored in mobile wallets
-        or accounts. Explore the e-money payment channels below to learn more
-        about their features and integration options.
+        A Virtual Account is a digital payment method through an account that is
+        created virtually for each customer. To make payments, customers will be
+        referred to their own Virtual Accounts. A Virtual Account consists of a
+        unique customer ID number. It means that there will be no Virtual Account
+        number that is exactly the same. So, each transaction can be identified
+        automatically for different customers. When the transaction is complete,
+        they do not need to send a transfer receipt anymore.
       </h4>
 
       <div className=''>
