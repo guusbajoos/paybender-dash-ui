@@ -127,7 +127,7 @@ export default function TestMode() {
                       <img src={IconCheck} alt='Paid' className='size-6' />
                       <div className='flex flex-col gap-y-1'>
                         <span className='text-xs font-medium text-[#AEAEAE]'>
-                          Paid
+                          Success
                         </span>
                         <h3 className='text-sm font-medium text-black'>23</h3>
                       </div>
@@ -136,7 +136,7 @@ export default function TestMode() {
                       <img src={IconRefresh} alt='Unpaid' className='size-6' />
                       <div className='flex flex-col gap-y-1'>
                         <span className='text-xs font-medium text-[#AEAEAE]'>
-                          Unpaid
+                          Processing
                         </span>
                         <h3 className='text-sm font-medium text-black'>0</h3>
                       </div>
@@ -154,16 +154,39 @@ export default function TestMode() {
                 </div>
               )}
               {tabKey === 'pay-out' && (
-                <div className='flex flex-wrap items-center justify-between gap-y-6'>
+                <div className='flex flex-col gap-y-4'>
                   <h3 className='text-lg font-medium text-[#121212]'>
                     Summary
                   </h3>
-                  <h4 className='text-lg font-medium text-[#121212]'>
-                    IDR2.000.000
-                  </h4>
-                  <Button className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'>
-                    WITHDRAW
-                  </Button>
+                  <div className='flex flex-wrap gap-x-[6.125rem] gap-y-6'>
+                    <div className='flex items-center gap-x-2.5'>
+                      <img src={IconCheck} alt='Paid' className='size-6' />
+                      <div className='flex flex-col gap-y-1'>
+                        <span className='text-xs font-medium text-[#AEAEAE]'>
+                          Success
+                        </span>
+                        <h3 className='text-sm font-medium text-black'>23</h3>
+                      </div>
+                    </div>
+                    <div className='flex items-center gap-x-2.5'>
+                      <img src={IconRefresh} alt='Unpaid' className='size-6' />
+                      <div className='flex flex-col gap-y-1'>
+                        <span className='text-xs font-medium text-[#AEAEAE]'>
+                          Processing
+                        </span>
+                        <h3 className='text-sm font-medium text-black'>0</h3>
+                      </div>
+                    </div>
+                    <div className='flex items-center gap-x-2.5'>
+                      <img src={IconTimes} alt='Failed' className='size-6' />
+                      <div className='flex flex-col gap-y-1'>
+                        <span className='text-xs font-medium text-[#AEAEAE]'>
+                          Failed
+                        </span>
+                        <h3 className='text-sm font-medium text-black'>7</h3>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </CardContent>
