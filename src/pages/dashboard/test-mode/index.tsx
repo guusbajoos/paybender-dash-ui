@@ -11,7 +11,7 @@ import { UserNav } from '@/components/user-nav'
 import Timestamp from '@/components/timestamp'
 import { Link, useNavigate } from 'react-router-dom'
 import { Breadcrumb, BreadcrumbItem } from '@/components/custom/breadcrumb'
-import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs'
+import { Tabs, TabsList } from '@/components/ui/tabs'
 import { Button } from '@/components/custom/button'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
@@ -100,80 +100,74 @@ export default function TestMode() {
               </Button>
             </TabsList>
           </div>
-          <TabsContent value={tabKey} className='space-y-4'>
-            <Card>
-              <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-7'>
-                <img
-                  src={PaybenderLogo}
-                  alt='Paybender Logo'
-                  className='w-[150px] object-cover'
-                />
-                {tabKey === 'pay-in' && (
-                  <Button
-                    className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'
-                    onClick={() => navigate('/get-started/test-mode/pay-in')}
-                  >
-                    TRY PAY IN
-                  </Button>
-                )}
-              </CardHeader>
-              <CardContent>
-                {tabKey === 'pay-in' && (
-                  <div className='flex flex-col gap-y-4'>
-                    <h3 className='text-lg font-medium text-[#121212]'>
-                      Summary
-                    </h3>
-                    <div className='flex flex-wrap gap-x-[6.125rem] gap-y-6'>
-                      <div className='flex items-center gap-x-2.5'>
-                        <img src={IconCheck} alt='Paid' className='size-6' />
-                        <div className='flex flex-col gap-y-1'>
-                          <span className='text-xs font-medium text-[#AEAEAE]'>
-                            Paid
-                          </span>
-                          <h3 className='text-sm font-medium text-black'>23</h3>
-                        </div>
+          <Card>
+            <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-7'>
+              <img
+                src={PaybenderLogo}
+                alt='Paybender Logo'
+                className='w-[150px] object-cover'
+              />
+              {tabKey === 'pay-in' && (
+                <Button
+                  className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'
+                  onClick={() => navigate('/get-started/test-mode/pay-in')}
+                >
+                  TRY PAY IN
+                </Button>
+              )}
+            </CardHeader>
+            <CardContent>
+              {tabKey === 'pay-in' && (
+                <div className='flex flex-col gap-y-4'>
+                  <h3 className='text-lg font-medium text-[#121212]'>
+                    Summary
+                  </h3>
+                  <div className='flex flex-wrap gap-x-[6.125rem] gap-y-6'>
+                    <div className='flex items-center gap-x-2.5'>
+                      <img src={IconCheck} alt='Paid' className='size-6' />
+                      <div className='flex flex-col gap-y-1'>
+                        <span className='text-xs font-medium text-[#AEAEAE]'>
+                          Paid
+                        </span>
+                        <h3 className='text-sm font-medium text-black'>23</h3>
                       </div>
-                      <div className='flex items-center gap-x-2.5'>
-                        <img
-                          src={IconRefresh}
-                          alt='Unpaid'
-                          className='size-6'
-                        />
-                        <div className='flex flex-col gap-y-1'>
-                          <span className='text-xs font-medium text-[#AEAEAE]'>
-                            Unpaid
-                          </span>
-                          <h3 className='text-sm font-medium text-black'>0</h3>
-                        </div>
+                    </div>
+                    <div className='flex items-center gap-x-2.5'>
+                      <img src={IconRefresh} alt='Unpaid' className='size-6' />
+                      <div className='flex flex-col gap-y-1'>
+                        <span className='text-xs font-medium text-[#AEAEAE]'>
+                          Unpaid
+                        </span>
+                        <h3 className='text-sm font-medium text-black'>0</h3>
                       </div>
-                      <div className='flex items-center gap-x-2.5'>
-                        <img src={IconTimes} alt='Failed' className='size-6' />
-                        <div className='flex flex-col gap-y-1'>
-                          <span className='text-xs font-medium text-[#AEAEAE]'>
-                            Failed
-                          </span>
-                          <h3 className='text-sm font-medium text-black'>7</h3>
-                        </div>
+                    </div>
+                    <div className='flex items-center gap-x-2.5'>
+                      <img src={IconTimes} alt='Failed' className='size-6' />
+                      <div className='flex flex-col gap-y-1'>
+                        <span className='text-xs font-medium text-[#AEAEAE]'>
+                          Failed
+                        </span>
+                        <h3 className='text-sm font-medium text-black'>7</h3>
                       </div>
                     </div>
                   </div>
-                )}
-                {tabKey === 'pay-out' && (
-                  <div className='flex flex-wrap items-center justify-between gap-y-6'>
-                    <h3 className='text-lg font-medium text-[#121212]'>
-                      Summary
-                    </h3>
-                    <h4 className='text-lg font-medium text-[#121212]'>
-                      IDR2.000.000
-                    </h4>
-                    <Button className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'>
-                      WITHDRAW
-                    </Button>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                </div>
+              )}
+              {tabKey === 'pay-out' && (
+                <div className='flex flex-wrap items-center justify-between gap-y-6'>
+                  <h3 className='text-lg font-medium text-[#121212]'>
+                    Summary
+                  </h3>
+                  <h4 className='text-lg font-medium text-[#121212]'>
+                    IDR2.000.000
+                  </h4>
+                  <Button className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'>
+                    WITHDRAW
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </Tabs>
         <div className='mt-[93px]'>
           <h2 className='text-lg font-medium text-black'>Transactions</h2>

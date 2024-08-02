@@ -7,8 +7,11 @@ import { UserNav } from '@/components/user-nav'
 import Timestamp from '@/components/timestamp'
 import { Link } from 'react-router-dom'
 import CartReview from '@/components/partials/dashboard/test-mode/pay-in/cart'
-// import ContactInformation from '@/components/partials/dashboard/test-mode/pay-in/contact-information'
-import SelectPayment from '@/components/partials/dashboard/test-mode/pay-in/select-payment'
+import ContactInformation from '@/components/partials/dashboard/test-mode/pay-in/contact-information'
+// import SelectPayment from '@/components/partials/dashboard/test-mode/pay-in/select-payment'
+// import OrderStatus from '@/components/partials/dashboard/test-mode/pay-in/order-status'
+
+// import OrderStatusPaid from '@/components/partials/dashboard/test-mode/pay-in/order-status/order-status-paid'
 
 export default function PayIn() {
   return (
@@ -19,7 +22,7 @@ export default function PayIn() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='ml-auto flex items-center space-x-4'>
+        <div className='flex items-center ml-auto space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
@@ -42,8 +45,9 @@ export default function PayIn() {
             <CartReview />
           </div>
           <div className='w-1/2'>
-            {/* <ContactInformation /> */}
-            <SelectPayment />
+            <ContactInformation />
+            {/* <SelectPayment /> */}
+            {/* <OrderStatus /> */}
           </div>
         </div>
       </Layout.Body>

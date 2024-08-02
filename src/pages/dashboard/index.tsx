@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 
 import DashboardImageElipse from '@/assets/images/dashboard-elipse.png'
 import IconSync from '@/assets/images/icon-sync.png'
-import IconAdsClick from '@/assets/images/icon-ads-click.png'
+// import IconAdsClick from '@/assets/images/icon-ads-click.png'
 
 import { Layout } from '@/components/custom/layout'
 import { UserNav } from '@/components/user-nav'
@@ -22,7 +22,7 @@ export default function Dashboard() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='flex items-center ml-auto space-x-4'>
+        <div className='ml-auto flex items-center space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
@@ -45,7 +45,7 @@ export default function Dashboard() {
               className='absolute -inset-y-20 -right-36 z-0 size-[265px] rounded-full object-cover'
             />
             <div className='w-full max-w-[560px]'>
-              <CardHeader className='flex flex-row items-center justify-between pb-2 space-y-0'>
+              <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                 <CardTitle className='text-lg font-bold text-[#3A3C40]'>
                   Welcome!
                 </CardTitle>
@@ -63,7 +63,7 @@ export default function Dashboard() {
         <div className='flex w-full items-start gap-[30px]'>
           <div className='w-1/2'>
             <div className='grid grid-cols-1 gap-[30px] lg:grid-cols-2'>
-              <Card>
+              {/* <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
                   <CardTitle>
                     <h2 className='text-lg font-medium text-[#3A3C40]'>
@@ -82,8 +82,8 @@ export default function Dashboard() {
                     </Button>
                   </div>
                 </CardContent>
-              </Card>
-              <Card>
+              </Card> */}
+              {/* <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
                   <CardTitle>
                     <h2 className='text-lg font-medium text-[#3A3C40]'>
@@ -104,7 +104,7 @@ export default function Dashboard() {
                     </Button>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
                   <CardTitle>
@@ -131,7 +131,7 @@ export default function Dashboard() {
                   </div>
                 </CardContent>
               </Card>
-              <Card>
+              {/* <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
                   <CardTitle>
                     <h2 className='text-lg font-medium text-[#3A3C40]'>
@@ -153,12 +153,12 @@ export default function Dashboard() {
                     </Button>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
           <div className='w-1/2'>
             <div className='grid grid-cols-1 gap-[30px] lg:grid-cols-2'>
-              <Card className='w-full h-auto'>
+              {/* <Card className='w-full h-auto'>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
                   <CardTitle>
                     <img
@@ -176,8 +176,8 @@ export default function Dashboard() {
                     <p className='text-lg text-[#3A3C40]'>0/10</p>
                   </div>
                 </CardContent>
-              </Card>
-              <Card className='w-full h-auto'>
+              </Card> */}
+              {/* <Card className='w-full h-auto'>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
                   <CardTitle>
                     <img
@@ -195,12 +195,12 @@ export default function Dashboard() {
                     <p className='text-lg text-[#3A3C40]'>0/10</p>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
         </div>
 
-        <div className='mt-10'>
+        {/* <div className='mt-10'>
           <h1 className='mb-10 text-2xl font-medium text-black'>
             DOCUMENTATION
           </h1>
@@ -245,7 +245,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </Layout.Body>
     </Layout>
   )
