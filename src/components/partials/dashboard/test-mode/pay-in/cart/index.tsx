@@ -36,7 +36,7 @@ const CartReview = ({ currentStep }: { currentStep: number }) => {
                 className='object-cover size-full'
               />
             </div>
-            <h3>Basic T-Shirt</h3>
+            <h3>Basic T-Shirt - Grey</h3>
             <div className='flex flex-col gap-y-3'>
               <h3 className='text-xs font-medium text-black/30'>Quantity</h3>
               <Input
@@ -57,7 +57,7 @@ const CartReview = ({ currentStep }: { currentStep: number }) => {
                 className='object-cover size-full'
               />
             </div>
-            <h3>Basic T-Shirt</h3>
+            <h3>Basic T-Shirt - Black</h3>
             <div className='flex flex-col gap-y-3'>
               <h3 className='text-xs font-medium text-black/30'>Quantity</h3>
               <Input
@@ -94,12 +94,12 @@ const CartReview = ({ currentStep }: { currentStep: number }) => {
               </h3>
               <h3 className='text-lg font-normal text-[#121212]'>IDR 27.500</h3>
             </div>
-            <div className='flex justify-between'>
-              <h3 className='text-lg font-normal text-[#121212]'>
-                Shipping Free
-              </h3>
-              <h3 className='text-lg font-normal text-[#121212]'>IDR 0</h3>
-            </div>
+{/*             <div className='flex justify-between'> */}
+{/*               <h3 className='text-lg font-normal text-[#121212]'> */}
+{/*                 Shipping Free */}
+{/*               </h3> */}
+{/*               <h3 className='text-lg font-normal text-[#121212]'>IDR 0</h3> */}
+{/*             </div> */}
             <Separator className='mb-7 mt-2.5 text-[#E0E0E0]' />
             <div className='flex justify-between'>
               <h3 className='text-lg font-normal text-[#121212]'>Subtotal</h3>

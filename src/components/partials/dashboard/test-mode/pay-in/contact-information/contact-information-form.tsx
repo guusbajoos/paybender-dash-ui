@@ -208,7 +208,7 @@ const ContactInformationForm = (props: IStepperNextProps) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
-                      Delivery Method
+                      Courier
                     </FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl className='font-normal text-[#777677]'>
@@ -217,9 +217,9 @@ const ContactInformationForm = (props: IStepperNextProps) => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='Method 1'>Method 1</SelectItem>
-                        <SelectItem value='Method 2'>Method 2</SelectItem>
-                        <SelectItem value='Method 3'>Method 3</SelectItem>
+                        <SelectItem value='JNE'>JNE</SelectItem>
+                        <SelectItem value='DHL'>DHL</SelectItem>
+                        <SelectItem value='GoSend'>GoSend</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -241,9 +241,9 @@ const ContactInformationForm = (props: IStepperNextProps) => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='Service 1'>Service 1</SelectItem>
-                        <SelectItem value='Service 2'>Service 2</SelectItem>
-                        <SelectItem value='Service 3'>Service 3</SelectItem>
+                        <SelectItem value='REG'>Reguler</SelectItem>
+                        <SelectItem value='ODS'>One Day Service</SelectItem>
+                        <SelectItem value='INSTANT'>Instant Courier</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

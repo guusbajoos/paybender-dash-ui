@@ -71,7 +71,7 @@ export const columnsPayout: ColumnDef<any>[] = [
   },
   {
     accessorKey: 'net_amount',
-    header: () => 'Net Amount',
+    header: () => 'Total Amount',
     cell: ({ row }) => row.getValue('net_amount') || '-',
   },
   {

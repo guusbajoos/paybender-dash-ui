@@ -22,12 +22,12 @@ const OrderStatusQRIS = () => {
         </div>
         <div className='flex items-center justify-between'>
           <span className='text-lg font-normal text-[#121212]'>Date Paid</span>
-          <span className='text-lg font-normal text-[#121212]'>12/07/2024</span>
+          <span className='text-lg font-normal text-[#121212]'>02/08/2024 11:23:00 PM</span>
         </div>
         <div className='flex items-center justify-between'>
           <span className='text-lg font-normal text-[#121212]'>Payment</span>
           <span className='text-lg font-normal text-[#121212]'>
-            Virtual Account
+            BCA Virtual Account
           </span>
         </div>
       </div>

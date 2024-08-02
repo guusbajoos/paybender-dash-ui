@@ -68,12 +68,12 @@ export const columnsPayin: ColumnDef<any>[] = [
   },
   {
     accessorKey: 'fees',
-    header: () => 'Fee Amount',
+    header: () => 'Charged Amount',
     cell: ({ row }) => row.getValue('fees') || '-',
   },
   {
     accessorKey: 'net_amount',
-    header: () => 'Net Amount',
+    header: () => 'Settlement Amount',
     cell: ({ row }) => row.getValue('net_amount') || '-',
   },
   {

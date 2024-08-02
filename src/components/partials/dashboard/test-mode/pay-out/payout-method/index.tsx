@@ -53,7 +53,7 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
           <CardTitle className='text-2xl font-medium text-black'>
             Set Payout Method
           </CardTitle>
-          <IconX className='size-7' />
+{/*           <IconX className='size-7' /> */}
         </div>
       </CardHeader>
       <CardContent>
@@ -66,7 +66,7 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
-                      Amount
+                      Transaction Amount
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
                       <Input placeholder='0' {...field} type='number' />
@@ -81,7 +81,7 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
-                      Withdraw Method Channel
+                      Channel Method
                     </FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl className='font-normal text-[#777677]'>
@@ -90,9 +90,8 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='WMC 1'>WMC 1</SelectItem>
-                        <SelectItem value='WMC 2'>WMC 2</SelectItem>
-                        <SelectItem value='WMC 3'>WMC 3</SelectItem>
+                        <SelectItem value='Bank Transfer'>Bank Transfer</SelectItem>
+                        <SelectItem value='e-Wallet'>e-Wallet</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -114,9 +113,14 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='Bank 1'>Bank 1</SelectItem>
-                        <SelectItem value='Bank 2'>Bank 2</SelectItem>
-                        <SelectItem value='Bank 3'>Bank 3</SelectItem>
+                        <SelectItem value='BCA'>Bank BCA Transfer</SelectItem>
+                        <SelectItem value='BRI'>Bank BRI Transfer</SelectItem>
+                        <SelectItem value='Mandiri'>Bank Mandiri Transfer</SelectItem>
+                        <SelectItem value='Danamon'>Bank Danamon Transfer</SelectItem>
+                        <SelectItem value='Maybank'>Bank Maybank Transfer</SelectItem>
+                        <SelectItem value='GoPay'>GoPay Wallet</SelectItem>
+                        <SelectItem value='Dana'>Dana Wallet</SelectItem>
+                        <SelectItem value='OVO'>OVO Wallet</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -129,40 +133,40 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
-                      A/C Holder Name
+                      Receiver Account Name
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='xxx' {...field} />
+                      <Input placeholder='Input Receiver Account Name' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name='branch_name'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className='font-normal text-[#777677]'>
-                      Branch Name
-                    </FormLabel>
-                    <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='xxx' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+{/*               <FormField */}
+{/*                 control={form.control} */}
+{/*                 name='branch_name' */}
+{/*                 render={({ field }) => ( */}
+{/*                   <FormItem> */}
+{/*                     <FormLabel className='font-normal text-[#777677]'> */}
+{/*                       Branch Name */}
+{/*                     </FormLabel> */}
+{/*                     <FormControl className='font-normal text-[#777677]'> */}
+{/*                       <Input placeholder='xxx' {...field} /> */}
+{/*                     </FormControl> */}
+{/*                     <FormMessage /> */}
+{/*                   </FormItem> */}
+{/*                 )} */}
+{/*               /> */}
               <FormField
                 control={form.control}
                 name='account_number'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
-                      Account Number
+                      Receiver Account Number
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='xxx' {...field} />
+                      <Input placeholder='Input Receiver Account Number' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

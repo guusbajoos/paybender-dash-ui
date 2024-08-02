@@ -84,7 +84,7 @@ export default function TestMode() {
               Withdrawal Success
             </AlertTitle>
             <AlertDescription className='text-[#546E7A]'>
-              Funds successfully withdrawn to your Bank BCA 71298928902471.
+              Funds successfully withdrawn to receiver account.
             </AlertDescription>
           </Alert>
         ) : (
@@ -163,7 +163,7 @@ export default function TestMode() {
                       <span className='text-xs font-medium text-[#AEAEAE]'>
                         Success
                       </span>
-                      <h3 className='text-sm font-medium text-black'>23</h3>
+                      <h3 className='text-sm font-medium text-black'>3</h3>
                     </div>
                   </div>
                   <div className='flex items-center gap-x-2.5'>
@@ -172,7 +172,7 @@ export default function TestMode() {
                       <span className='text-xs font-medium text-[#AEAEAE]'>
                         Processing
                       </span>
-                      <h3 className='text-sm font-medium text-black'>0</h3>
+                      <h3 className='text-sm font-medium text-black'>1</h3>
                     </div>
                   </div>
                   <div className='flex items-center gap-x-2.5'>
@@ -181,7 +181,7 @@ export default function TestMode() {
                       <span className='text-xs font-medium text-[#AEAEAE]'>
                         Failed
                       </span>
-                      <h3 className='text-sm font-medium text-black'>7</h3>
+                      <h3 className='text-sm font-medium text-black'>1</h3>
                     </div>
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export default function TestMode() {
                       navigate('/get-started/test-mode/pay-out')
                   }}
                 >
-                  {tabKey === 'pay-in' ? 'TRY PAY IN' : 'WITHDRAW'}
+                  {tabKey === 'pay-in' ? 'TRY PAYMENT' : 'TRY WITHDRAW'}
                 </Button>
               </div>
             </CardContent>
@@ -257,15 +257,7 @@ export default function TestMode() {
                             Transaction Created:
                           </h4>
                           <span className='text-lg font-medium text-[#464646]'>
-                            18/10/2023 22:29:00
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-center gap-x-4'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Transaction Created:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            18/10/2023 22:29:00
+                            1 August 2024, 22:47:00
                           </span>
                         </div>
                       </div>
@@ -275,7 +267,7 @@ export default function TestMode() {
                             Payout ID:
                           </h4>
                           <span className='text-lg font-medium text-[#464646]'>
-                            xxx-xxxx-xxx-xx
+                            030624414531D0005
                           </span>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -283,7 +275,7 @@ export default function TestMode() {
                             Payin Channel:
                           </h4>
                           <span className='text-lg font-medium text-[#464646]'>
-                            Wallet
+                            Bank BCA Transfer
                           </span>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -291,7 +283,7 @@ export default function TestMode() {
                             Email Address:
                           </h4>
                           <span className='text-lg font-medium text-[#464646]'>
-                            jbape@email.com
+                            michael.jackson@gmail.com
                           </span>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -299,7 +291,7 @@ export default function TestMode() {
                             User Name:
                           </h4>
                           <span className='text-lg font-medium text-[#464646]'>
-                            Johannes
+                            Michael Jackson
                           </span>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -307,7 +299,7 @@ export default function TestMode() {
                             Bank Account No:
                           </h4>
                           <span className='text-lg font-medium text-[#464646]'>
-                            xxx.xxxx.xxx.xx
+                            1112223333
                           </span>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -323,7 +315,7 @@ export default function TestMode() {
                             Amount:
                           </h4>
                           <span className='text-lg font-medium text-[#4B8400]'>
-                            5.000.000
+                            5.015.000
                           </span>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -331,7 +323,7 @@ export default function TestMode() {
                             Fee:
                           </h4>
                           <span className='text-lg font-medium text-[#4B8400]'>
-                            1% + 5.500
+                            15.000
                           </span>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -339,7 +331,7 @@ export default function TestMode() {
                             Money Receive:
                           </h4>
                           <span className='text-lg font-medium text-[#4B8400]'>
-                            5.250.000
+                            5.000.000
                           </span>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -358,43 +350,43 @@ export default function TestMode() {
                             -
                           </span>
                         </div>
+{/*                         <div className='flex items-center justify-between'> */}
+{/*                           <h4 className='text-lg font-medium text-[#464646]'> */}
+{/*                             Refund Status: */}
+{/*                           </h4> */}
+{/*                           <span className='text-lg font-medium text-[#464646]'> */}
+{/*                             - */}
+{/*                           </span> */}
+{/*                         </div> */}
+{/*                         <div className='flex items-center justify-between'> */}
+{/*                           <h4 className='text-lg font-medium text-[#464646]'> */}
+{/*                             Refund Trx ID: */}
+{/*                           </h4> */}
+{/*                           <span className='text-lg font-medium text-[#464646]'> */}
+{/*                             - */}
+{/*                           </span> */}
+{/*                         </div> */}
+{/*                         <div className='flex items-center justify-between'> */}
+{/*                           <h4 className='text-lg font-medium text-[#464646]'> */}
+{/*                             Refund Date: */}
+{/*                           </h4> */}
+{/*                           <span className='text-lg font-medium text-[#464646]'> */}
+{/*                             - */}
+{/*                           </span> */}
+{/*                         </div> */}
+{/*                         <div className='flex items-center justify-between'> */}
+{/*                           <h4 className='text-lg font-medium text-[#464646]'> */}
+{/*                             Trx Log: */}
+{/*                           </h4> */}
+{/*                           <span className='text-lg font-medium text-[#464646]'> */}
+{/*                             xxx-xxx-xx-xxx-xx */}
+{/*                           </span> */}
+{/*                         </div> */}
                         <div className='flex items-center justify-between'>
                           <h4 className='text-lg font-medium text-[#464646]'>
-                            Refund:
+                            Callback Status:
                           </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            No Refund issued yet
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Refund Trx ID:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            -
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Refund Date:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            -
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Trx Log:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            xxx-xxx-xx-xxx-xx
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Call Back:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
+                          <span className='rounded-md border border-[#4B8400] bg-[#C8F08F] p-1 text-sm font-normal text-[#4B8400]'>
                             Success
                           </span>
                         </div>
