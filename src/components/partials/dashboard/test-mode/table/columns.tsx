@@ -77,7 +77,7 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       return (
         <>
-          {row.getValue('status') === 'completed' && (
+          {row.getValue('status') === 'success' && (
             <span className='rounded-sm bg-[#00B69B]/30 px-2.5 py-1.5 text-xs font-medium text-[#00B69B]'>
               Completed
             </span>
@@ -87,11 +87,11 @@ export const columns: ColumnDef<any>[] = [
               Processing
             </span>
           )}
-          {row.getValue('status') === 'processing' && (
+          {row.getValue('status') === 'failed' && (
             <span className='rounded-sm bg-[#DB8479]/30 px-2.5 py-1.5 text-xs font-medium text-[#DB2A14]'>
-              Processing
+              Failed
             </span>
-        )}
+          )}
         </>
       )
     },
