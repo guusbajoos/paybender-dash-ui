@@ -9,9 +9,9 @@ import dayjs from 'dayjs'
 import { Layout } from '@/components/custom/layout'
 import { UserNav } from '@/components/user-nav'
 import Timestamp from '@/components/timestamp'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Breadcrumb, BreadcrumbItem } from '@/components/custom/breadcrumb'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
+import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs'
 import { Button } from '@/components/custom/button'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
@@ -23,6 +23,7 @@ import { Separator } from '@/components/ui/separator'
 import TablePagination from '@/components/custom/table-pagination'
 
 export default function TestMode() {
+  const navigate = useNavigate()
   const [tabKey, setTabKey] = useState('pay-in')
 
   const breadcrumbs = [
@@ -49,7 +50,7 @@ export default function TestMode() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='flex items-center ml-auto space-x-4'>
+        <div className='ml-auto flex items-center space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
@@ -71,34 +72,32 @@ export default function TestMode() {
           className='space-y-4'
           onValueChange={(v) => setTabKey(v)}
         >
-          <div className='pb-2 overflow-x-auto w-fit'>
-            <TabsList className='flex gap-x-2.5 bg-[#EEF9FA] p-1'>
-              <TabsTrigger value='pay-in' className='min-w-[140px]'>
-                <Button
-                  className={cn(
-                    'hover:bg-tranparent w-full bg-transparent text-[#959595] shadow-none focus:bg-transparent',
-                    {
-                      'bg-[#3CC1D1] text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90':
-                        tabKey === 'pay-in',
-                    }
-                  )}
-                >
-                  Pay In
-                </Button>
-              </TabsTrigger>
-              <TabsTrigger value='pay-out' className='min-w-[140px]'>
-                <Button
-                  className={cn(
-                    'hover:bg-tranparent w-full bg-transparent text-[#959595] shadow-none focus:bg-transparent',
-                    {
-                      'bg-[#3CC1D1] text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90':
-                        tabKey === 'pay-out',
-                    }
-                  )}
-                >
-                  Pay Out
-                </Button>
-              </TabsTrigger>
+          <div className='w-fit overflow-x-auto pb-2'>
+            <TabsList className='flex h-auto gap-x-2.5 bg-[#EEF9FA]'>
+              <Button
+                className={cn(
+                  'hover:bg-tranparent w-full min-w-[140px] bg-transparent text-[#959595] shadow-none focus:bg-transparent',
+                  {
+                    'bg-[#3CC1D1] text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90':
+                      tabKey === 'pay-in',
+                  }
+                )}
+                onClick={() => setTabKey('pay-in')}
+              >
+                Pay In
+              </Button>
+              <Button
+                className={cn(
+                  'hover:bg-tranparent w-full min-w-[140px] bg-transparent text-[#959595] shadow-none focus:bg-transparent',
+                  {
+                    'bg-[#3CC1D1] text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90':
+                      tabKey === 'pay-out',
+                  }
+                )}
+                onClick={() => setTabKey('pay-out')}
+              >
+                Pay Out
+              </Button>
             </TabsList>
           </div>
           <TabsContent value={tabKey} className='space-y-4'>
@@ -110,7 +109,10 @@ export default function TestMode() {
                   className='w-[150px] object-cover'
                 />
                 {tabKey === 'pay-in' && (
-                  <Button className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'>
+                  <Button
+                    className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'
+                    onClick={() => navigate('/get-started/test-mode/pay-in')}
+                  >
                     TRY PAY IN
                   </Button>
                 )}
