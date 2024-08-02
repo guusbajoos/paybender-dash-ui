@@ -60,7 +60,6 @@ const PaymentVA = (props: IPaymentVAProps) => {
                 alt='BCA'
                 className='h-auto w-[94px] object-contain'
               />
-              {/* 70CEDA */}
               <span
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',

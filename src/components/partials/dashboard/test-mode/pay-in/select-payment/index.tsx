@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsList } from '@/components/ui/tabs'
 import { Card } from '@/components/ui/card'
@@ -68,7 +68,7 @@ const SelectPayment = () => {
           {tabKey === 'wallet' && (
             <PaymentEMoney onPaymentMethodChange={() => {}} />
           )}
-          {tabKey === 'va' && <PaymentVA />}
+          {tabKey === 'va' && <PaymentVA onPaymentMethodChange={() => {}} />}
           <Button className='mt-[1.125rem] w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
             CONTINUE TO PAY
           </Button>
