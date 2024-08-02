@@ -1,26 +1,24 @@
-import { Layout } from '@/components/custom/layout'
-import { Button } from '@/components/custom/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { UserNav } from '@/components/user-nav'
-import { RecentSales } from './components/recent-sales'
-import { Overview } from './components/overview'
 import dayjs from 'dayjs'
+
+import DashboardImageElipse from '@/assets/images/dashboard-elipse.png'
+import IconSync from '@/assets/images/icon-sync.png'
+import IconAdsClick from '@/assets/images/icon-ads-click.png'
+
+import { Layout } from '@/components/custom/layout'
+import { UserNav } from '@/components/user-nav'
+import Timestamp from '@/components/timestamp'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/custom/button'
 
 export default function Dashboard() {
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
       <Layout.Header className='shadow-sm'>
-        <span className='text-sm font-medium'>
-          {dayjs().format('dddd, MMMM DD, YYYY')} | {dayjs().format('HH:mm A')}
-        </span>
+        <Timestamp
+          date={dayjs().format('dddd, MMMM DD, YYYY')}
+          time={dayjs().format('HH:mm A')}
+        />
         <div className='flex items-center ml-auto space-x-4'>
           <UserNav />
         </div>
@@ -28,176 +26,221 @@ export default function Dashboard() {
 
       {/* ===== Main ===== */}
       <Layout.Body>
-        <div className='flex items-center justify-between mb-2 space-y-2'>
-          <h1 className='text-2xl font-bold tracking-tight'>Dashboard</h1>
-          <div className='flex items-center space-x-2'>
-            <Button>Download</Button>
+        <div className='mb-10' id='welcome-card'>
+          <div className='mb-7 flex flex-col gap-y-2.5'>
+            <h1 className='text-[44px] font-bold text-black'>Home</h1>
+            <Timestamp
+              date={dayjs().format('dddd, MMMM DD, YYYY')}
+              time={dayjs().format('HH:mm A')}
+            />
+          </div>
+
+          <Card className='relative z-10 w-full max-w-[660px] overflow-hidden'>
+            <img
+              src={DashboardImageElipse}
+              alt='DashboardImageElipse'
+              className='absolute -inset-y-20 -right-36 z-0 size-[265px] rounded-full object-cover'
+            />
+            <div className='w-full max-w-[560px]'>
+              <CardHeader className='flex flex-row items-center justify-between pb-2 space-y-0'>
+                <CardTitle className='text-lg font-bold text-[#3A3C40]'>
+                  Welcome!
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className='text-sm font-medium text-[#777677]'>
+                  Welcome to PayBender! We’re excited for you to utilize our
+                  products!
+                </p>
+              </CardContent>
+            </div>
+          </Card>
+        </div>
+
+        <div className='flex w-full items-start gap-[30px]'>
+          <div className='w-1/2'>
+            <div className='grid grid-cols-1 gap-[30px] lg:grid-cols-2'>
+              <Card>
+                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
+                  <CardTitle>
+                    <h2 className='text-lg font-medium text-[#3A3C40]'>
+                      Set Up Payment Channel
+                    </h2>
+                    <p className='text-xs text-[#82868C]'>Set Up</p>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className='flex flex-col gap-y-[20px]'>
+                    <h3 className='text-sm font-medium text-[#777677]'>
+                      Set Up your payment channel
+                    </h3>
+                    <Button className='w-full bg-[#3CC1D1] text-xs text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
+                      Set Up
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
+                  <CardTitle>
+                    <h2 className='text-lg font-medium text-[#3A3C40]'>
+                      Set Up Account
+                    </h2>
+                    <p className='text-xs text-[#82868C]'>
+                      Set Up Your Account
+                    </p>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className='flex flex-col gap-y-[20px]'>
+                    <h3 className='text-sm font-medium text-[#777677]'>
+                      Set Up Account and Role Within Your Company
+                    </h3>
+                    <Button className='w-full bg-[#3CC1D1] text-xs text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
+                      Set Up
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
+                  <CardTitle>
+                    <div className='flex items-center gap-x-2.5'>
+                      <img src={IconSync} alt='Sync' className='size-7' />
+                      <h2 className='text-lg font-medium text-[#3A3C40]'>
+                        Test Mode Enable
+                      </h2>
+                    </div>
+                    <p className='text-xs text-[#82868C]'>Test Mode</p>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className='flex flex-col gap-y-[20px]'>
+                    <h3 className='text-sm font-medium text-[#777677]'>
+                      You may try out dashboard in testmode
+                    </h3>
+                    <Button className='w-full bg-[#3CC1D1] text-xs text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
+                      Try
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
+                  <CardTitle>
+                    <h2 className='text-lg font-medium text-[#3A3C40]'>
+                      Live Payment
+                    </h2>
+                    <p className='text-xs text-[#82868C]'>Test Mode</p>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className='flex flex-col gap-y-[20px]'>
+                    <h3 className='text-sm font-medium text-[#777677]'>
+                      Track Live Payment in Transaction Menu
+                    </h3>
+                    <Button
+                      className='w-full bg-transparent text-xs text-[#3CC1D1] hover:bg-transparent hover:text-[#3CC1D1]/90 focus:bg-transparent focus:text-[#3CC1D1]/90'
+                      variant='ghost'
+                    >
+                      Transaction Menu
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+          <div className='w-1/2'>
+            <div className='grid grid-cols-1 gap-[30px] lg:grid-cols-2'>
+              <Card className='w-full h-auto'>
+                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
+                  <CardTitle>
+                    <img
+                      src={IconAdsClick}
+                      alt='Ads Click'
+                      className='size-7'
+                    />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className='flex flex-col gap-y-2'>
+                    <h3 className='text-sm font-medium text-[#82868C]'>
+                      Hit Transaction Test
+                    </h3>
+                    <p className='text-lg text-[#3A3C40]'>0/10</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className='w-full h-auto'>
+                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
+                  <CardTitle>
+                    <img
+                      src={IconAdsClick}
+                      alt='Ads Click'
+                      className='size-7'
+                    />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className='flex flex-col gap-y-2'>
+                    <h3 className='text-sm font-medium text-[#82868C]'>
+                      Icon Report Test
+                    </h3>
+                    <p className='text-lg text-[#3A3C40]'>0/10</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
-        <Tabs
-          orientation='vertical'
-          defaultValue='overview'
-          className='space-y-4'
-        >
-          <div className='w-full pb-2 overflow-x-auto'>
-            <TabsList>
-              <TabsTrigger value='overview'>Overview</TabsTrigger>
-              <TabsTrigger value='analytics'>Analytics</TabsTrigger>
-              <TabsTrigger value='reports'>Reports</TabsTrigger>
-              <TabsTrigger value='notifications'>Notifications</TabsTrigger>
-            </TabsList>
+
+        <div className='mt-10'>
+          <h1 className='mb-10 text-2xl font-medium text-black'>
+            DOCUMENTATION
+          </h1>
+
+          <div className='flex items-center gap-[30px]'>
+            <div className='w-full lg:w-1/2'>
+              <div className='grid grid-cols-2 gap-[30px]'>
+                <Card className='w-full h-auto'>
+                  <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
+                    <CardTitle>
+                      <div className='flex items-center gap-x-2.5'>
+                        <img src={IconSync} alt='Sync' className='size-7' />
+                        <h2 className='text-lg font-medium text-[#3A3C40]'>
+                          Basic API Documentation
+                        </h2>
+                      </div>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Button className='w-full bg-[#3CC1D1] text-xs text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
+                      View
+                    </Button>
+                  </CardContent>
+                </Card>
+                <Card className='w-full h-auto'>
+                  <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-[18px]'>
+                    <CardTitle>
+                      <div className='flex items-center gap-x-2.5'>
+                        <img src={IconSync} alt='Sync' className='size-7' />
+                        <h2 className='text-lg font-medium text-[#3A3C40]'>
+                          Payment Page
+                        </h2>
+                      </div>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Button className='w-full bg-[#3CC1D1] text-xs text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
+                      View
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
-          <TabsContent value='overview' className='space-y-4'>
-            <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
-              <Card>
-                <CardHeader className='flex flex-row items-center justify-between pb-2 space-y-0'>
-                  <CardTitle className='text-sm font-medium'>
-                    Total Revenue
-                  </CardTitle>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='w-4 h-4 text-muted-foreground'
-                  >
-                    <path d='M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6' />
-                  </svg>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>$45,231.89</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +20.1% from last month
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className='flex flex-row items-center justify-between pb-2 space-y-0'>
-                  <CardTitle className='text-sm font-medium'>
-                    Subscriptions
-                  </CardTitle>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='w-4 h-4 text-muted-foreground'
-                  >
-                    <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' />
-                    <circle cx='9' cy='7' r='4' />
-                    <path d='M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' />
-                  </svg>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>+2350</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +180.1% from last month
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className='flex flex-row items-center justify-between pb-2 space-y-0'>
-                  <CardTitle className='text-sm font-medium'>Sales</CardTitle>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='w-4 h-4 text-muted-foreground'
-                  >
-                    <rect width='20' height='14' x='2' y='5' rx='2' />
-                    <path d='M2 10h20' />
-                  </svg>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>+12,234</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +19% from last month
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className='flex flex-row items-center justify-between pb-2 space-y-0'>
-                  <CardTitle className='text-sm font-medium'>
-                    Active Now
-                  </CardTitle>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='w-4 h-4 text-muted-foreground'
-                  >
-                    <path d='M22 12h-4l-3 9L9 3l-3 9H2' />
-                  </svg>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>+573</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +201 since last hour
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-            <div className='grid grid-cols-1 gap-4 lg:grid-cols-7'>
-              <Card className='col-span-1 lg:col-span-4'>
-                <CardHeader>
-                  <CardTitle>Overview</CardTitle>
-                </CardHeader>
-                <CardContent className='pl-2'>
-                  <Overview />
-                </CardContent>
-              </Card>
-              <Card className='col-span-1 lg:col-span-3'>
-                <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
-                  <CardDescription>
-                    You made 265 sales this month.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <RecentSales />
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-        </Tabs>
+        </div>
       </Layout.Body>
     </Layout>
   )
 }
-
-// const topNav = [
-//   {
-//     title: 'Overview',
-//     href: 'dashboard/overview',
-//     isActive: true,
-//   },
-//   {
-//     title: 'Customers',
-//     href: 'dashboard/customers',
-//     isActive: false,
-//   },
-//   {
-//     title: 'Products',
-//     href: 'dashboard/products',
-//     isActive: false,
-//   },
-//   {
-//     title: 'Settings',
-//     href: 'dashboard/settings',
-//     isActive: false,
-//   },
-// ]

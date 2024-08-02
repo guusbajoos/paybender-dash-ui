@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { IconMenu2, IconX } from '@tabler/icons-react'
-import { Layout } from './custom/layout'
-import { Button } from './custom/button'
-import Nav from './nav'
+import { Layout } from '@/components/custom/layout'
+import { Button } from '@/components/custom/button'
+import Nav from '@/components/nav'
 import { cn } from '@/lib/utils'
 import { sidelinks } from '@/data/sidelinks'
 import PaybenderLogo from '@/assets/images/paybender-logo.png'
-import { Separator } from './ui/separator'
+import { Separator } from '@/components/ui/separator'
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   isCollapsed: boolean
@@ -59,7 +59,7 @@ export default function Sidebar({
                 height={70}
               />
             </div>
-            <Separator className='mt-4 h-[2px] bg-[#3CC1D1]' />
+            <Separator className='mt-4 hidden h-[2px] bg-[#3CC1D1] md:block' />
           </div>
 
           {/* Toggle Button in mobile */}
