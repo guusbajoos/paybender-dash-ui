@@ -3,7 +3,7 @@ import ShopeePay from '@/assets/images/Shopee Pay.png'
 import LinkAja from '@/assets/images/LinkAja.png'
 import OVO from '@/assets/images/OVO.png'
 
-import { Card } from '@/components/ui/card'
+// import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
@@ -100,15 +100,13 @@ const PaymentEMoney = (props: IPaymentEMoneyProps) => {
         </div>
       </div>
 
-      /*
-      <Card className='border-none bg-[#EEF9FA] p-2.5 shadow-none'>
+      {/* <Card className='border-none bg-[#EEF9FA] p-2.5 shadow-none'>
         <p className='text-lg font-normal text-[#5A5A5A]'>
           DANA is an e-wallet that offers a range of financial services,
           including payments, transfers, and bill payments. It aims to provide
           financial inclusion to all Indonesians.
         </p>
-      </Card>
-      */
+      </Card> */}
     </div>
   )
 }
