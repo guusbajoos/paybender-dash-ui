@@ -1,4 +1,9 @@
-import { IconArrowLeft, IconCash, IconCircleCheck } from '@tabler/icons-react'
+import {
+  IconArrowLeft,
+  IconCash,
+  IconCircleCheck,
+  IconEye,
+} from '@tabler/icons-react'
 import PaybenderLogo from '@/assets/images/paybender-logo.png'
 import IconCheck from '@/assets/images/icon-check.png'
 import IconRefresh from '@/assets/images/icon-refresh.png'
@@ -15,7 +20,7 @@ import { Tabs, TabsList } from '@/components/ui/tabs'
 import { Button } from '@/components/custom/button'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { DataTable } from '@/components/partials/dashboard/test-mode/table/data-table'
 import { columnsPayin } from '@/data/pay-in/columns'
 import { columnsPayout } from '@/data/pay-out/columns'
@@ -24,11 +29,19 @@ import { transactionPayout } from '@/data/pay-out/transactions'
 import { Separator } from '@/components/ui/separator'
 import TablePagination from '@/components/custom/table-pagination'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
 export default function TestMode() {
   const navigate = useNavigate()
   const location = useLocation()
   const [tabKey, setTabKey] = useState(location.state?.testMode || 'pay-in')
+  const [isOpenDetailTrx, setIsOpenDetailTrx] = useState(false)
 
   const breadcrumbs = [
     { title: 'Home', href: '/' },
@@ -207,7 +220,29 @@ export default function TestMode() {
         <div className='mt-[93px]'>
           <h2 className='text-lg font-medium text-black'>Transactions</h2>
           <Separator className='my-6 text-[#C7C7C7]' />
-          <DataTable columns={columns} data={dataTrx} />
+          <DataTable
+            columns={
+              tabKey === 'pay-out'
+                ? [
+                    ...columns,
+                    {
+                      id: 'actions',
+                      header: 'Actions',
+                      cell: () => (
+                        <div className='flex items-center gap-x-2'>
+                          <IconEye
+                            size={24}
+                            className='cursor-pointer text-[#3CC1D1] hover:text-[#3CC1D1] focus:text-[#3CC1D1]'
+                            onClick={() => setIsOpenDetailTrx(true)}
+                          />
+                        </div>
+                      ),
+                    },
+                  ]
+                : columns
+            }
+            data={dataTrx}
+          />
           {dataTrx.length > 0 && (
             <div className='mt-4'>
               <TablePagination
@@ -219,6 +254,179 @@ export default function TestMode() {
             </div>
           )}
         </div>
+        <Dialog open={isOpenDetailTrx} onOpenChange={setIsOpenDetailTrx}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className='mb-6 text-[2rem] text-[#2A8F9B]'>
+                Transaction Detail
+              </DialogTitle>
+              <DialogDescription className='!mt-0'>
+                <Card className='border-none shadow-md'>
+                  <CardHeader>
+                    <div className='flex flex-col gap-y-6'>
+                      <CardTitle className='text-center text-2xl text-[#3CC1D1]'>
+                        Pay Out
+                      </CardTitle>
+                      <img
+                        src={PaybenderLogo}
+                        alt='Paybender Logo'
+                        className='mx-auto w-[150px] object-cover'
+                      />
+                      <div className='flex flex-col gap-y-2'>
+                        <div className='flex items-center justify-center gap-x-4'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Transaction Created:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            18/10/2023 22:29:00
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-center gap-x-4'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Transaction Created:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            18/10/2023 22:29:00
+                          </span>
+                        </div>
+                      </div>
+                      <div className='flex flex-col gap-y-2'>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Payout ID:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            xxx-xxxx-xxx-xx
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Payin Channel:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            Wallet
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Email Address:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            jbape@email.com
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            User Name:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            Johannes
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Bank Account No:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            xxx.xxxx.xxx.xx
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Currency:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            IDR
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Amount:
+                          </h4>
+                          <span className='text-lg font-medium text-[#4B8400]'>
+                            5.000.000
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Fee:
+                          </h4>
+                          <span className='text-lg font-medium text-[#4B8400]'>
+                            1% + 5.500
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Money Receive:
+                          </h4>
+                          <span className='text-lg font-medium text-[#4B8400]'>
+                            5.250.000
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Status:
+                          </h4>
+                          <span className='rounded-md border border-[#4B8400] bg-[#C8F08F] p-1 text-sm font-normal text-[#4B8400]'>
+                            Success, received by customer
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Reason:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            -
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Refund:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            No Refund issued yet
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Refund Trx ID:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            -
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Refund Date:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            -
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Trx Log:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            xxx-xxx-xx-xxx-xx
+                          </span>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <h4 className='text-lg font-medium text-[#464646]'>
+                            Call Back:
+                          </h4>
+                          <span className='text-lg font-medium text-[#464646]'>
+                            Success
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardHeader>
+                </Card>
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </Layout.Body>
     </Layout>
   )
