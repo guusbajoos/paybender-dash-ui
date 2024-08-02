@@ -31,8 +31,6 @@ export default function PayIn() {
     })
   }
 
-  console.log(currentStep, 'currentStep')
-
   const CHECKOUT_STEPS = [
     {
       name: 'Review Cart',
@@ -86,7 +84,7 @@ export default function PayIn() {
           })}
         >
           <div className='w-1/2'>
-            <CartReview />
+            <CartReview currentStep={currentStep} />
           </div>
           <div className='w-1/2'>
             <ActiveComponent />

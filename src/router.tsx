@@ -32,6 +32,13 @@ const router = createBrowserRouter([
             .default,
         }),
       },
+      {
+        path: 'get-started/test-mode/pay-out',
+        lazy: async () => ({
+          Component: (await import('@/pages/dashboard/test-mode/pay-out'))
+            .default,
+        }),
+      },
     ],
   },
 

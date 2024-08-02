@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 
-const CartReview = () => {
+const CartReview = ({ currentStep }: { currentStep: number }) => {
   return (
     <Card>
       <CardContent className='pt-6'>
@@ -33,13 +33,19 @@ const CartReview = () => {
               <img
                 src={ProductOne}
                 alt='Product 1'
-                className='size-full object-cover'
+                className='object-cover size-full'
               />
             </div>
             <h3>Basic T-Shirt</h3>
             <div className='flex flex-col gap-y-3'>
               <h3 className='text-xs font-medium text-black/30'>Quantity</h3>
-              <Input type='number' value='1' className='w-[111px]' />
+              <Input
+                type='number'
+                defaultValue={1}
+                min={1}
+                className='w-[111px]'
+                disabled={currentStep !== 1}
+              />
             </div>
             <h3>IDR 150.000</h3>
           </div>
@@ -48,13 +54,19 @@ const CartReview = () => {
               <img
                 src={ProductOne}
                 alt='Product 1'
-                className='size-full object-cover'
+                className='object-cover size-full'
               />
             </div>
             <h3>Basic T-Shirt</h3>
             <div className='flex flex-col gap-y-3'>
               <h3 className='text-xs font-medium text-black/30'>Quantity</h3>
-              <Input type='number' value='1' className='w-[111px]' />
+              <Input
+                type='number'
+                defaultValue={1}
+                min={1}
+                className='w-[111px]'
+                disabled={currentStep !== 1}
+              />
             </div>
             <h3>IDR 150.000</h3>
           </div>
