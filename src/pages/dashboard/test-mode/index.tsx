@@ -139,81 +139,64 @@ export default function TestMode() {
                 alt='Paybender Logo'
                 className='w-[150px] object-cover'
               />
-              {tabKey === 'pay-in' && (
-                <Button
-                  className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'
-                  onClick={() => navigate('/get-started/test-mode/pay-in')}
-                >
-                  TRY PAY IN
-                </Button>
-              )}
             </CardHeader>
             <CardContent>
-              {tabKey === 'pay-in' && (
-                <div className='flex flex-col gap-y-4'>
-                  <h3 className='text-lg font-medium text-[#121212]'>
-                    Summary
-                  </h3>
-                  <div className='flex flex-wrap gap-x-[6.125rem] gap-y-6'>
-                    <div className='flex items-center gap-x-2.5'>
-                      <div className='flex items-center justify-center rounded-full bg-black p-0.5'>
-                        <IconCash size={24} className='text-white' />
-                      </div>
-                      <div className='flex flex-col gap-y-1'>
-                        <span className='text-xs font-medium text-[#AEAEAE]'>
-                          Balance
-                        </span>
-                        <h3 className='text-sm font-medium text-black'>
-                          IDR 6.974.000,00
-                        </h3>
-                      </div>
+              <div className='flex flex-col gap-y-4'>
+                <h3 className='text-lg font-medium text-[#121212]'>Summary</h3>
+                <div className='flex flex-wrap gap-x-[6.125rem] gap-y-6'>
+                  <div className='flex items-center gap-x-2.5'>
+                    <div className='flex items-center justify-center rounded-full bg-black p-0.5'>
+                      <IconCash size={24} className='text-white' />
                     </div>
-                    <div className='flex items-center gap-x-2.5'>
-                      <img src={IconCheck} alt='Paid' className='size-6' />
-                      <div className='flex flex-col gap-y-1'>
-                        <span className='text-xs font-medium text-[#AEAEAE]'>
-                          Success
-                        </span>
-                        <h3 className='text-sm font-medium text-black'>23</h3>
-                      </div>
+                    <div className='flex flex-col gap-y-1'>
+                      <span className='text-xs font-medium text-[#AEAEAE]'>
+                        Balance
+                      </span>
+                      <h3 className='text-sm font-medium text-black'>
+                        IDR 6.974.000,00
+                      </h3>
                     </div>
-                    <div className='flex items-center gap-x-2.5'>
-                      <img src={IconRefresh} alt='Unpaid' className='size-6' />
-                      <div className='flex flex-col gap-y-1'>
-                        <span className='text-xs font-medium text-[#AEAEAE]'>
-                          Processing
-                        </span>
-                        <h3 className='text-sm font-medium text-black'>0</h3>
-                      </div>
+                  </div>
+                  <div className='flex items-center gap-x-2.5'>
+                    <img src={IconCheck} alt='Paid' className='size-6' />
+                    <div className='flex flex-col gap-y-1'>
+                      <span className='text-xs font-medium text-[#AEAEAE]'>
+                        Success
+                      </span>
+                      <h3 className='text-sm font-medium text-black'>23</h3>
                     </div>
-                    <div className='flex items-center gap-x-2.5'>
-                      <img src={IconTimes} alt='Failed' className='size-6' />
-                      <div className='flex flex-col gap-y-1'>
-                        <span className='text-xs font-medium text-[#AEAEAE]'>
-                          Failed
-                        </span>
-                        <h3 className='text-sm font-medium text-black'>7</h3>
-                      </div>
+                  </div>
+                  <div className='flex items-center gap-x-2.5'>
+                    <img src={IconRefresh} alt='Unpaid' className='size-6' />
+                    <div className='flex flex-col gap-y-1'>
+                      <span className='text-xs font-medium text-[#AEAEAE]'>
+                        Processing
+                      </span>
+                      <h3 className='text-sm font-medium text-black'>0</h3>
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-x-2.5'>
+                    <img src={IconTimes} alt='Failed' className='size-6' />
+                    <div className='flex flex-col gap-y-1'>
+                      <span className='text-xs font-medium text-[#AEAEAE]'>
+                        Failed
+                      </span>
+                      <h3 className='text-sm font-medium text-black'>7</h3>
                     </div>
                   </div>
                 </div>
-              )}
-              {tabKey === 'pay-out' && (
-                <div className='flex flex-col gap-y-4'>
-                  <h3 className='text-lg font-medium text-[#121212]'>
-                    Summary
-                  </h3>
-                  <h4 className='text-lg font-medium text-[#121212]'>
-                    IDR2.000.000
-                  </h4>
-                  <Button
-                    className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'
-                    onClick={() => navigate('/get-started/test-mode/pay-out')}
-                  >
-                    WITHDRAW
-                  </Button>
-                </div>
-              )}
+                <Button
+                  className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'
+                  onClick={() => {
+                    if (tabKey === 'pay-in')
+                      navigate('/get-started/test-mode/pay-in')
+                    if (tabKey === 'pay-out')
+                      navigate('/get-started/test-mode/pay-out')
+                  }}
+                >
+                  {tabKey === 'pay-in' ? 'TRY PAY IN' : 'WITHDRAW'}
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </Tabs>
@@ -221,26 +204,22 @@ export default function TestMode() {
           <h2 className='text-lg font-medium text-black'>Transactions</h2>
           <Separator className='my-6 text-[#C7C7C7]' />
           <DataTable
-            columns={
-              tabKey === 'pay-out'
-                ? [
-                    ...columns,
-                    {
-                      id: 'actions',
-                      header: 'Actions',
-                      cell: () => (
-                        <div className='flex items-center gap-x-2'>
-                          <IconEye
-                            size={24}
-                            className='cursor-pointer text-[#3CC1D1] hover:text-[#3CC1D1] focus:text-[#3CC1D1]'
-                            onClick={() => setIsOpenDetailTrx(true)}
-                          />
-                        </div>
-                      ),
-                    },
-                  ]
-                : columns
-            }
+            columns={[
+              ...columns,
+              {
+                id: 'actions',
+                header: 'Actions',
+                cell: () => (
+                  <div className='flex items-center gap-x-2'>
+                    <IconEye
+                      size={24}
+                      className='cursor-pointer text-[#3CC1D1] hover:text-[#3CC1D1] focus:text-[#3CC1D1]'
+                      onClick={() => setIsOpenDetailTrx(true)}
+                    />
+                  </div>
+                ),
+              },
+            ]}
             data={dataTrx}
           />
           {dataTrx.length > 0 && (

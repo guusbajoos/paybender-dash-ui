@@ -81,19 +81,19 @@ export const columnsPayout: ColumnDef<any>[] = [
       return (
         <>
           {row.getValue('status') === 'success' && (
-            <span className='rounded-sm bg-[#00B69B]/30 px-2.5 py-1.5 text-xs font-medium text-[#00B69B]'>
+            <div className='rounded-sm bg-[#00B69B]/30 px-2.5 py-1.5 text-center text-xs font-medium text-[#00B69B]'>
               Completed
-            </span>
+            </div>
           )}
           {row.getValue('status') === 'processing' && (
-            <span className='rounded-sm bg-[#EFC100]/30 px-2.5 py-1.5 text-xs font-medium text-[#EFC100]'>
+            <div className='rounded-sm bg-[#EFC100]/30 px-2.5 py-1.5 text-center text-xs font-medium text-[#EFC100]'>
               Processing
-            </span>
+            </div>
           )}
           {row.getValue('status') === 'failed' && (
-            <span className='rounded-sm bg-[#DB8479]/30 px-2.5 py-1.5 text-xs font-medium text-[#DB2A14]'>
+            <div className='rounded-sm bg-[#DB8479]/30 px-2.5 py-1.5 text-center text-xs font-medium text-[#DB2A14]'>
               Failed
-            </span>
+            </div>
           )}
         </>
       )
