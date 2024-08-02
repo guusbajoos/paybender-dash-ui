@@ -50,7 +50,7 @@ export default function TestMode() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='ml-auto flex items-center space-x-4'>
+        <div className='flex items-center ml-auto space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
@@ -72,7 +72,7 @@ export default function TestMode() {
           className='space-y-4'
           onValueChange={(v) => setTabKey(v)}
         >
-          <div className='w-fit overflow-x-auto pb-2'>
+          <div className='pb-2 overflow-x-auto w-fit'>
             <TabsList className='flex h-auto gap-x-2.5 bg-[#EEF9FA]'>
               <Button
                 className={cn(
