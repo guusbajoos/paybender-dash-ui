@@ -4,15 +4,17 @@ import { Card } from '@/components/ui/card'
 const PaymentQRIS = () => {
   return (
     <div className='flex flex-col gap-y-[1.125rem]'>
+      /*
       <h4 className='text-lg font-normal text-[#5A5A5A]'>
         QRIS (Quick Response Code Indonesian Standard) is a national standard
         for QR code payments in Indonesia. It enables merchants to accept
         payments from various e-wallets and banks using a single QR code.
       </h4>
+      */
 
       <img src={QRIS} alt='qris' className='size-full object-cover' />
 
-      <Card className='border-none bg-[#EEF9FA] p-2.5 text-center shadow-none'>
+      /* <Card className='border-none bg-[#EEF9FA] p-2.5 text-center shadow-none'>
         <p className='text-lg font-normal text-[#5A5A5A]'>
           Beware of fraudulent payment requests!
         </p>
@@ -31,7 +33,7 @@ const PaymentQRIS = () => {
         <p className='text-lg font-normal text-[#5A5A5A]'>
           Paybender is not responsible for any loss caused by this transactions.
         </p>
-      </Card>
+      </Card> */
     </div>
   )
 }

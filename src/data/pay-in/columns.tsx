@@ -52,14 +52,14 @@ export const columnsPayin: ColumnDef<any>[] = [
   },
   */
   {
-    accessorKey: 'currency',
-    header: () => 'Currency',
-    cell: ({ row }) => row.getValue('currency') || '-',
-  },
-  {
     accessorKey: 'method',
     header: () => 'Payment Method',
     cell: ({ row }) => row.getValue('method') || '-',
+  },
+  {
+    accessorKey: 'currency',
+    header: () => 'Currency',
+    cell: ({ row }) => row.getValue('currency') || '-',
   },
   {
     accessorKey: 'gross_amount',

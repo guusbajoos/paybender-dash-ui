@@ -36,7 +36,7 @@ const PaymentVA = (props: IPaymentVAProps) => {
 
   return (
     <div className='flex flex-col gap-y-[1.125rem]'>
-      <h4 className='text-lg font-normal text-[#5A5A5A]'>
+      /* <h4 className='text-lg font-normal text-[#5A5A5A]'>
         A Virtual Account is a digital payment method through an account that is
         created virtually for each customer. To make payments, customers will be
         referred to their own Virtual Accounts. A Virtual Account consists of a
@@ -44,7 +44,7 @@ const PaymentVA = (props: IPaymentVAProps) => {
         number that is exactly the same. So, each transaction can be identified
         automatically for different customers. When the transaction is complete,
         they do not need to send a transfer receipt anymore.
-      </h4>
+      </h4> */
 
       <div className=''>
         <h2 className='text-2xl font-medium text-black'>

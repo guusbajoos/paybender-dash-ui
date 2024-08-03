@@ -40,14 +40,14 @@ export const columnsPayout: ColumnDef<any>[] = [
     cell: ({ row }) => row.getValue('merchant_refno') || '-',
   },
   {
-    accessorKey: 'currency',
-    header: () => 'Currency',
-    cell: ({ row }) => row.getValue('currency') || '-',
-  },
-  {
     accessorKey: 'method',
     header: () => 'Channel Withdraw',
     cell: ({ row }) => row.getValue('method') || '-',
+  },
+  {
+    accessorKey: 'currency',
+    header: () => 'Currency',
+    cell: ({ row }) => row.getValue('currency') || '-',
   },
   {
     accessorKey: 'customer_acct_no',
