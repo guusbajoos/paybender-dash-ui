@@ -1,5 +1,3 @@
-import { IconX } from '@tabler/icons-react'
-
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -53,7 +51,7 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
           <CardTitle className='text-2xl font-medium text-black'>
             Set Payout Method
           </CardTitle>
-{/*           <IconX className='size-7' /> */}
+          {/*           <IconX className='size-7' /> */}
         </div>
       </CardHeader>
       <CardContent>
@@ -90,7 +88,9 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='Bank Transfer'>Bank Transfer</SelectItem>
+                        <SelectItem value='Bank Transfer'>
+                          Bank Transfer
+                        </SelectItem>
                         <SelectItem value='e-Wallet'>e-Wallet</SelectItem>
                       </SelectContent>
                     </Select>
@@ -115,9 +115,15 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                       <SelectContent>
                         <SelectItem value='BCA'>Bank BCA Transfer</SelectItem>
                         <SelectItem value='BRI'>Bank BRI Transfer</SelectItem>
-                        <SelectItem value='Mandiri'>Bank Mandiri Transfer</SelectItem>
-                        <SelectItem value='Danamon'>Bank Danamon Transfer</SelectItem>
-                        <SelectItem value='Maybank'>Bank Maybank Transfer</SelectItem>
+                        <SelectItem value='Mandiri'>
+                          Bank Mandiri Transfer
+                        </SelectItem>
+                        <SelectItem value='Danamon'>
+                          Bank Danamon Transfer
+                        </SelectItem>
+                        <SelectItem value='Maybank'>
+                          Bank Maybank Transfer
+                        </SelectItem>
                         <SelectItem value='GoPay'>GoPay Wallet</SelectItem>
                         <SelectItem value='Dana'>Dana Wallet</SelectItem>
                         <SelectItem value='OVO'>OVO Wallet</SelectItem>
@@ -136,27 +142,30 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                       Receiver Account Name
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='Input Receiver Account Name' {...field} />
+                      <Input
+                        placeholder='Input Receiver Account Name'
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-{/*               <FormField */}
-{/*                 control={form.control} */}
-{/*                 name='branch_name' */}
-{/*                 render={({ field }) => ( */}
-{/*                   <FormItem> */}
-{/*                     <FormLabel className='font-normal text-[#777677]'> */}
-{/*                       Branch Name */}
-{/*                     </FormLabel> */}
-{/*                     <FormControl className='font-normal text-[#777677]'> */}
-{/*                       <Input placeholder='xxx' {...field} /> */}
-{/*                     </FormControl> */}
-{/*                     <FormMessage /> */}
-{/*                   </FormItem> */}
-{/*                 )} */}
-{/*               /> */}
+              {/*               <FormField */}
+              {/*                 control={form.control} */}
+              {/*                 name='branch_name' */}
+              {/*                 render={({ field }) => ( */}
+              {/*                   <FormItem> */}
+              {/*                     <FormLabel className='font-normal text-[#777677]'> */}
+              {/*                       Branch Name */}
+              {/*                     </FormLabel> */}
+              {/*                     <FormControl className='font-normal text-[#777677]'> */}
+              {/*                       <Input placeholder='xxx' {...field} /> */}
+              {/*                     </FormControl> */}
+              {/*                     <FormMessage /> */}
+              {/*                   </FormItem> */}
+              {/*                 )} */}
+              {/*               /> */}
               <FormField
                 control={form.control}
                 name='account_number'
@@ -166,7 +175,10 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                       Receiver Account Number
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='Input Receiver Account Number' {...field} />
+                      <Input
+                        placeholder='Input Receiver Account Number'
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
