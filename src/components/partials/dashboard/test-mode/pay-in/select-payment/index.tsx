@@ -11,19 +11,17 @@ import PaymentVA from './payment-va'
 import { cn } from '@/lib/utils'
 import { IStepperNextProps } from '@/data/pay-in/contact-information.schema'
 import { IPaymentMethodChange } from '@/data/schemas'
+import useCheckout from '@/store/use-checkout'
 
 export type TSelectPaymentProps = IStepperNextProps<any> &
   IPaymentMethodChange & {
-    payment_type: string
     payment_method: string
   }
 
 const SelectPayment = (props: TSelectPaymentProps) => {
-  const [tabKey, setTabKey] = useState('qris')
+  const payment = useCheckout((state) => state.data.payment)
 
-  // const handleChoosePayment = (v: string) => {
-  //   props.onNextStep && props.onNextStep({ payment_type: v })
-  // }
+  const [tabKey, setTabKey] = useState(payment?.payment_type || 'QRIS')
 
   return (
     <div id='select-payment'>
@@ -32,7 +30,7 @@ const SelectPayment = (props: TSelectPaymentProps) => {
 
       <Tabs
         orientation='vertical'
-        defaultValue='qris'
+        defaultValue='QRIS'
         className='space-y-4'
         onValueChange={(v) => setTabKey(v)}
       >
@@ -43,10 +41,10 @@ const SelectPayment = (props: TSelectPaymentProps) => {
                 'hover:bg-tranparent w-full bg-transparent text-[#959595] shadow-none focus:bg-transparent',
                 {
                   'bg-[#3CC1D1] text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90':
-                    tabKey === 'qris',
+                    tabKey === 'QRIS',
                 }
               )}
-              onClick={() => setTabKey('qris')}
+              onClick={() => setTabKey('QRIS')}
             >
               QRIS
             </Button>
@@ -55,10 +53,10 @@ const SelectPayment = (props: TSelectPaymentProps) => {
                 'hover:bg-tranparent w-full bg-transparent text-[#959595] shadow-none focus:bg-transparent',
                 {
                   'bg-[#3CC1D1] text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90':
-                    tabKey === 'wallet',
+                    tabKey === 'E-Money',
                 }
               )}
-              onClick={() => setTabKey('wallet')}
+              onClick={() => setTabKey('E-Money')}
             >
               E-Money
             </Button>
@@ -67,28 +65,49 @@ const SelectPayment = (props: TSelectPaymentProps) => {
                 'hover:bg-tranparent w-full bg-transparent text-[#959595] shadow-none focus:bg-transparent',
                 {
                   'bg-[#3CC1D1] text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90':
-                    tabKey === 'va',
+                    tabKey === 'VA',
                 }
               )}
-              onClick={() => setTabKey('va')}
+              onClick={() => setTabKey('VA')}
             >
               Virtual Account
             </Button>
           </TabsList>
         </div>
         <Card className='p-6'>
-          {tabKey === 'qris' && <PaymentQRIS />}
-          {tabKey === 'wallet' && (
+          {tabKey === 'QRIS' && <PaymentQRIS />}
+          {tabKey === 'E-Money' && (
             <PaymentEMoney
-              onPaymentMethodChange={props.onPaymentMethodChange}
+              onPaymentMethodChange={(v) => {
+                props.onPaymentMethodChange && props.onPaymentMethodChange(v)
+              }}
             />
           )}
-          {tabKey === 'va' && (
-            <PaymentVA onPaymentMethodChange={props.onPaymentMethodChange} />
+          {tabKey === 'VA' && (
+            <PaymentVA
+              onPaymentMethodChange={(v) => {
+                props.onPaymentMethodChange && props.onPaymentMethodChange(v)
+              }}
+            />
           )}
           <Button
             className='mt-[1.125rem] w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
-            onClick={() => props.onNextStep && props.onNextStep({})}
+            onClick={() => {
+              if (tabKey === 'QRIS') {
+                props.onPaymentMethodChange &&
+                  props.onPaymentMethodChange({
+                    payment_type: 'QRIS',
+                    payment_method: 'QRIS',
+                  })
+              }
+
+              props.onNextStep &&
+                props.onNextStep({
+                  payment_type: tabKey,
+                  payment_method:
+                    tabKey === 'QRIS' ? 'QRIS' : props.payment_method,
+                })
+            }}
           >
             CONTINUE TO PAY
           </Button>

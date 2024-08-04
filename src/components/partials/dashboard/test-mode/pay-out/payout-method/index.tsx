@@ -32,9 +32,9 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
       amount: 0,
       withdraw_method: '',
       bank_name: '',
-      acc_holder_name: '',
-      branch_name: '',
-      account_number: '',
+      acc_holder_name: 'James Hetfield',
+      // branch_name: '',
+      account_number: '7915661000',
     },
     mode: 'onChange',
   })
@@ -145,7 +145,7 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                       <Input
                         placeholder='Input Receiver Account Name'
                         onChange={field.onChange}
-                        value='James Hetfield'
+                        value={field.value}
                         disabled
                       />
                     </FormControl>
@@ -180,7 +180,7 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                       <Input
                         placeholder='Input Receiver Account Number'
                         onChange={field.onChange}
-                        value='7915661000'
+                        value={field.value}
                         disabled
                       />
                     </FormControl>

@@ -15,6 +15,7 @@ import Stepper from '@/components/custom/stepper'
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
+import PaymemtReview from '@/components/partials/dashboard/test-mode/pay-in/payment-review'
 
 // import OrderStatusPaid from '@/components/partials/dashboard/test-mode/pay-in/order-status/order-status-paid'
 
@@ -68,26 +69,13 @@ export default function PayIn() {
           <SelectPayment
             onNextStep={() => {
               state?.setStep(CHECKOUT_STEPS.length)
-              // console.log(v, 'v')
             }}
-            onPaymentMethodChange={(v) =>
-              state.setPaymentData({ payment_method: v })
-            }
-            payment_method={state.data.payment?.payment_method || ''}
-            payment_type=''
+            onPaymentMethodChange={(v) => state.setPaymentData(v)}
+            payment_method={state.data.payment?.payment_method}
           />
         )
       case 3:
-        return (
-          // <SelectPayment
-          //   onNextStep={() => {
-          //     state?.setStep(CHECKOUT_STEPS.length)
-          //     // console.log(v, 'v')
-          //   }}
-          //   onPaymentMethodChange={() => {}}
-          // />
-          <></>
-        )
+        return <PaymemtReview />
       case 4:
         return <OrderStatus countdown={countdown} />
       default:
@@ -129,6 +117,7 @@ export default function PayIn() {
         <Link
           to='/get-started/test-mode'
           className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
+          onClick={() => state.removeState()}
         >
           <IconArrowLeft />
           Back

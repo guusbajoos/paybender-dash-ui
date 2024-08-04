@@ -1,4 +1,4 @@
-import QRIS from '@/assets/images/paybender-qris.png'
+// import QRIS from '@/assets/images/paybender-qris.png'
 // import { Card } from '@/components/ui/card'
 
 const PaymentQRIS = () => {
@@ -10,7 +10,7 @@ const PaymentQRIS = () => {
         payments from various e-wallets and banks using a single QR code.
       </h4> */}
 
-      <img src={QRIS} alt='qris' className='size-full object-cover' />
+      {/* <img src={QRIS} alt='qris' className='object-cover size-full' /> */}
 
       {/* <Card className='border-none bg-[#EEF9FA] p-2.5 text-center shadow-none'>
         <p className='text-lg font-normal text-[#5A5A5A]'>

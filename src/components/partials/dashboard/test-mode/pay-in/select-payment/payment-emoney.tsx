@@ -5,19 +5,37 @@ import OVO from '@/assets/images/OVO.png'
 
 // import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { IPaymentMethodChange, TPaymentMethod } from '@/data/schemas'
+import {
+  IPaymentMethodChange,
+  TPaymentMethod,
+  TPaymentType,
+} from '@/data/schemas'
 import { cn } from '@/lib/utils'
+import useCheckout from '@/store/use-checkout'
 import { useState } from 'react'
 
 const PaymentEMoney = (props: IPaymentMethodChange) => {
-  const [paymentMethod, setPaymentMethod] = useState<
-    TPaymentMethod | undefined
-  >(undefined)
+  const payment = useCheckout((state) => state.data.payment)
 
-  const handleChangePayment = (method: TPaymentMethod) => {
-    setPaymentMethod(method)
+  const [paymentMethod, setPaymentMethod] = useState<{
+    payment_type: TPaymentType | undefined
+    payment_method: TPaymentMethod | undefined
+  }>({
+    payment_type: undefined,
+    payment_method: payment.payment_method || undefined,
+  })
 
-    props.onPaymentMethodChange && props.onPaymentMethodChange(method)
+  const handleChangePayment = ({
+    payment_type,
+    payment_method,
+  }: {
+    payment_type: TPaymentType
+    payment_method: TPaymentMethod
+  }) => {
+    setPaymentMethod({ payment_type, payment_method })
+
+    props.onPaymentMethodChange &&
+      props.onPaymentMethodChange({ payment_type, payment_method })
   }
 
   return (
@@ -38,10 +56,15 @@ const PaymentEMoney = (props: IPaymentMethodChange) => {
             className={cn(
               'size-[128px] rounded-lg border-2 border-black/10 p-4',
               {
-                'border-[#70CEDA]': paymentMethod === 'DANA',
+                'border-[#70CEDA]': paymentMethod.payment_method === 'DANA',
               }
             )}
-            onClick={() => handleChangePayment('DANA')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'E-Money',
+                payment_method: 'DANA',
+              })
+            }
           >
             <img
               src={DANA}
@@ -53,7 +76,7 @@ const PaymentEMoney = (props: IPaymentMethodChange) => {
             className={cn(
               'size-[128px] rounded-lg border-2 border-black/10 p-4',
               {
-                'border-[#70CEDA]': paymentMethod === 'ShopeePay',
+                'border-[#70CEDA]': paymentMethod.payment_method === 'ShopeePay',
               }
             )}
             onClick={() => handleChangePayment('ShopeePay')}
@@ -68,10 +91,15 @@ const PaymentEMoney = (props: IPaymentMethodChange) => {
             className={cn(
               'size-[128px] rounded-lg border-2 border-black/10 p-4',
               {
-                'border-[#70CEDA]': paymentMethod === 'LinkAja',
+                'border-[#70CEDA]': paymentMethod.payment_method === 'LinkAja',
               }
             )}
-            onClick={() => handleChangePayment('LinkAja')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'E-Money',
+                payment_method: 'LinkAja',
+              })
+            }
           >
             <img
               src={LinkAja}
@@ -83,10 +111,15 @@ const PaymentEMoney = (props: IPaymentMethodChange) => {
             className={cn(
               'size-[128px] rounded-lg border-2 border-black/10 p-4',
               {
-                'border-[#70CEDA]': paymentMethod === 'OVO',
+                'border-[#70CEDA]': paymentMethod.payment_method === 'OVO',
               }
             )}
-            onClick={() => handleChangePayment('OVO')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'E-Money',
+                payment_method: 'OVO',
+              })
+            }
           >
             <img
               src={OVO}

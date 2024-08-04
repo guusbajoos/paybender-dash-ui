@@ -8,19 +8,31 @@ import Permata from '@/assets/images/Permata.png'
 
 import { Separator } from '@/components/ui/separator'
 import { useState } from 'react'
-import { IconChevronRight } from '@tabler/icons-react'
+// import { IconChevronRight } from '@tabler/icons-react'
 import { cn } from '@/lib/utils'
-import { IPaymentMethodChange, TPaymentMethod } from '@/data/schemas'
+import {
+  IPaymentMethodChange,
+  TPaymentMethod,
+  TPaymentType,
+} from '@/data/schemas'
 
 const PaymentVA = (props: IPaymentMethodChange) => {
-  const [paymentMethod, setPaymentMethod] = useState<
-    TPaymentMethod | undefined
-  >(undefined)
+  const [paymentMethod, setPaymentMethod] = useState<{
+    payment_type: TPaymentType | undefined
+    payment_method: TPaymentMethod | undefined
+  }>({ payment_type: undefined, payment_method: undefined })
 
-  const handleChangePayment = (method: TPaymentMethod) => {
-    setPaymentMethod(method)
+  const handleChangePayment = ({
+    payment_type,
+    payment_method,
+  }: {
+    payment_type: TPaymentType
+    payment_method: TPaymentMethod
+  }) => {
+    setPaymentMethod({ payment_type, payment_method })
 
-    props.onPaymentMethodChange && props.onPaymentMethodChange(method)
+    props.onPaymentMethodChange &&
+      props.onPaymentMethodChange({ payment_type, payment_method })
   }
 
   return (
@@ -44,7 +56,12 @@ const PaymentVA = (props: IPaymentMethodChange) => {
         <div className='flex flex-col gap-y-[1.125rem]'>
           <div
             className='flex cursor-pointer items-center justify-between px-2 py-[1.125rem]'
-            onClick={() => handleChangePayment('BCA')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'VA',
+                payment_method: 'BCA',
+              })
+            }
           >
             <div className='flex items-center gap-x-4'>
               <img
@@ -56,18 +73,23 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod === 'BCA',
+                    'text-[#70CEDA]': paymentMethod.payment_method === 'BCA',
                   }
                 )}
               >
                 BCA Virtual Account
               </span>
             </div>
-            <IconChevronRight className='text-[#959595]' />
+            {/* <IconChevronRight className='text-[#959595]' /> */}
           </div>
           <div
             className='flex cursor-pointer items-center justify-between px-2 py-[1.125rem]'
-            onClick={() => handleChangePayment('MANDIRI')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'VA',
+                payment_method: 'MANDIRI',
+              })
+            }
           >
             <div className='flex items-center gap-x-4'>
               <img
@@ -79,18 +101,24 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod === 'MANDIRI',
+                    'text-[#70CEDA]':
+                      paymentMethod.payment_method === 'MANDIRI',
                   }
                 )}
               >
                 Mandiri Virtual Account
               </span>
             </div>
-            <IconChevronRight className='text-[#959595]' />
+            {/* <IconChevronRight className='text-[#959595]' /> */}
           </div>
           <div
             className='flex cursor-pointer items-center justify-between px-2 py-[1.125rem]'
-            onClick={() => handleChangePayment('BRI')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'VA',
+                payment_method: 'BRI',
+              })
+            }
           >
             <div className='flex items-center gap-x-4'>
               <img
@@ -102,18 +130,23 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod === 'BRI',
+                    'text-[#70CEDA]': paymentMethod.payment_method === 'BRI',
                   }
                 )}
               >
                 BRIVA
               </span>
             </div>
-            <IconChevronRight className='text-[#959595]' />
+            {/* <IconChevronRight className='text-[#959595]' /> */}
           </div>
           <div
             className='flex cursor-pointer items-center justify-between px-2 py-[1.125rem]'
-            onClick={() => handleChangePayment('BNI')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'VA',
+                payment_method: 'BNI',
+              })
+            }
           >
             <div className='flex items-center gap-x-4'>
               <img
@@ -125,18 +158,23 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod === 'BNI',
+                    'text-[#70CEDA]': paymentMethod.payment_method === 'BNI',
                   }
                 )}
               >
                 BNI Virtual Account
               </span>
             </div>
-            <IconChevronRight className='text-[#959595]' />
+            {/* <IconChevronRight className='text-[#959595]' /> */}
           </div>
           <div
             className='flex cursor-pointer items-center justify-between px-2 py-[1.125rem]'
-            onClick={() => handleChangePayment('BSI')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'VA',
+                payment_method: 'BSI',
+              })
+            }
           >
             <div className='flex items-center gap-x-4'>
               <img
@@ -148,18 +186,23 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod === 'BSI',
+                    'text-[#70CEDA]': paymentMethod.payment_method === 'BSI',
                   }
                 )}
               >
                 BSI Virtual Account
               </span>
             </div>
-            <IconChevronRight className='text-[#959595]' />
+            {/* <IconChevronRight className='text-[#959595]' /> */}
           </div>
           <div
             className='flex cursor-pointer items-center justify-between px-2 py-[1.125rem]'
-            onClick={() => handleChangePayment('CIMBNiaga')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'VA',
+                payment_method: 'CIMBNiaga',
+              })
+            }
           >
             <div className='flex items-center gap-x-4'>
               <img
@@ -171,18 +214,24 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod === 'CIMBNiaga',
+                    'text-[#70CEDA]':
+                      paymentMethod.payment_method === 'CIMBNiaga',
                   }
                 )}
               >
                 CIMB Virtual Account
               </span>
             </div>
-            <IconChevronRight className='text-[#959595]' />
+            {/* <IconChevronRight className='text-[#959595]' /> */}
           </div>
           <div
             className='flex cursor-pointer items-center justify-between px-2 py-[1.125rem]'
-            onClick={() => handleChangePayment('Permata')}
+            onClick={() =>
+              handleChangePayment({
+                payment_type: 'VA',
+                payment_method: 'Permata',
+              })
+            }
           >
             <div className='flex items-center gap-x-4'>
               <img
@@ -194,14 +243,15 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod === 'Permata',
+                    'text-[#70CEDA]':
+                      paymentMethod.payment_method === 'Permata',
                   }
                 )}
               >
                 Permata Virtual Account
               </span>
             </div>
-            <IconChevronRight className='text-[#959595]' />
+            {/* <IconChevronRight className='text-[#959595]' /> */}
           </div>
         </div>
       </div>

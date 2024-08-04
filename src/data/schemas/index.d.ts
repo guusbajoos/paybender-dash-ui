@@ -1,3 +1,4 @@
+export type TPaymentType = 'QRIS' | 'E-Money' | 'VA'
 export type TEMoney = 'DANA' | 'LinkAja' | 'OVO'
 export type TVirtualAccount =
   | 'BCA'
@@ -11,5 +12,8 @@ export type TVirtualAccount =
 export type TPaymentMethod = TEMoney | TVirtualAccount
 
 export interface IPaymentMethodChange {
-  onPaymentMethodChange: (method: TPaymentMethod) => void
+  onPaymentMethodChange: ({
+    payment_type: TPaymentType,
+    payment_method: TPaymentMethod,
+  }) => void
 }

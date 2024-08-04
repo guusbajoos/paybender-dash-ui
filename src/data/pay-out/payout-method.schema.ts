@@ -9,12 +9,14 @@ export const payoutMethodSchema = z.object({
   bank_name: z.string({ message: 'Please select a bank' }),
   acc_holder_name: z
     .string()
-    .min(3, 'Account Holder Name must be at least 3 characters'),
-  branch_name: z.string().min(3, 'Branch Name must be at least 3 characters'),
+    .min(3, 'Account Holder Name must be at least 3 characters')
+    .optional(),
+  // branch_name: z.string().min(3, 'Branch Name must be at least 3 characters'),
   account_number: z
     .string()
     .min(10, 'Account Number must be at least 10 digits')
-    .max(20, 'Account Number has exceeds 20 digits'),
+    .max(20, 'Account Number has exceeds 20 digits')
+    .optional(),
 })
 
 export interface IStepperNextProps {
