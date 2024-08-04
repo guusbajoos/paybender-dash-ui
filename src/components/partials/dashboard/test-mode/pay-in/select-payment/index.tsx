@@ -21,9 +21,9 @@ export type TSelectPaymentProps = IStepperNextProps<any> &
 const SelectPayment = (props: TSelectPaymentProps) => {
   const [tabKey, setTabKey] = useState('qris')
 
-  const handleChoosePayment = (v: string) => {
-    props.onNextStep && props.onNextStep({ payment_type: v })
-  }
+  // const handleChoosePayment = (v: string) => {
+  //   props.onNextStep && props.onNextStep({ payment_type: v })
+  // }
 
   return (
     <div id='select-payment'>
