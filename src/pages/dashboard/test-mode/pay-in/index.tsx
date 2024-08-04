@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { IconArrowLeft } from '@tabler/icons-react'
 
 import dayjs from 'dayjs'
@@ -13,46 +14,89 @@ import OrderStatus from '@/components/partials/dashboard/test-mode/pay-in/order-
 import Stepper from '@/components/custom/stepper'
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
+import useCheckout from '@/store/use-checkout'
 
 // import OrderStatusPaid from '@/components/partials/dashboard/test-mode/pay-in/order-status/order-status-paid'
 
 export default function PayIn() {
   const navigate = useNavigate()
 
-  const [currentStep, setCurrentStep] = useState(1)
-  const [isComplete, setIsComplete] = useState(false)
-  const [countdown, setCountdown] = useState(5)
+  const state = useCheckout((state) => state)
 
-  const handleNext = () => {
-    setCurrentStep((prevStep) => {
-      if (prevStep === CHECKOUT_STEPS.length) {
-        setIsComplete(true)
-        return prevStep
-      } else {
-        return prevStep + 1
-      }
-    })
-  }
+  const [countdown, setCountdown] = useState(5)
 
   const CHECKOUT_STEPS = [
     {
+      step: 1,
       name: 'Review Cart',
-      Component: () => <ContactInformation onNextStep={handleNext} />,
     },
     {
+      step: 2,
       name: 'Select Payment',
-      Component: () => <SelectPayment onNextStep={handleNext} />,
     },
     {
+      step: 3,
+      name: 'Payment Review',
+    },
+    {
+      step: 4,
       name: 'Order Status',
-      Component: () => <OrderStatus countdown={countdown} />,
     },
   ]
 
-  const ActiveComponent = CHECKOUT_STEPS[currentStep - 1].Component
+  const findCheckoutComp = CHECKOUT_STEPS?.find(
+    (c) => c.step === state?.data?.step
+  )
+
+  const ActiveComponetn = () => {
+    switch (findCheckoutComp?.step) {
+      case 1:
+        return (
+          <ContactInformation
+            onNextStep={(v) => {
+              state?.setStep(CHECKOUT_STEPS.length)
+              state?.setCartData({
+                amount: 250000,
+                feeAmount: 22500,
+              })
+              state?.setShippingData(v)
+            }}
+          />
+        )
+      case 2:
+        return (
+          <SelectPayment
+            onNextStep={() => {
+              state?.setStep(CHECKOUT_STEPS.length)
+              // console.log(v, 'v')
+            }}
+            onPaymentMethodChange={(v) =>
+              state.setPaymentData({ payment_method: v })
+            }
+            payment_method={state.data.payment?.payment_method || ''}
+            payment_type=''
+          />
+        )
+      case 3:
+        return (
+          // <SelectPayment
+          //   onNextStep={() => {
+          //     state?.setStep(CHECKOUT_STEPS.length)
+          //     // console.log(v, 'v')
+          //   }}
+          //   onPaymentMethodChange={() => {}}
+          // />
+          <></>
+        )
+      case 4:
+        return <OrderStatus countdown={countdown} />
+      default:
+        return <></>
+    }
+  }
 
   useEffect(() => {
-    if (currentStep === 3) {
+    if (state?.data?.step === CHECKOUT_STEPS.length) {
       if (countdown !== 0) {
         const interval = setInterval(() => {
           setCountdown((prevCountdown) => prevCountdown - 1)
@@ -65,9 +109,8 @@ export default function PayIn() {
         navigate('/get-started/test-mode')
       }
     }
-  }, [currentStep, countdown, navigate])
+  }, [state?.data?.step, countdown, navigate])
 
-  // Display countdown value in the JSX
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
@@ -94,21 +137,19 @@ export default function PayIn() {
           <h2 className='text-lg font-medium text-black'>Pay In Demo</h2>
           <Stepper
             stepsConfig={CHECKOUT_STEPS}
-            currentStep={currentStep}
-            isComplete={isComplete}
+            currentStep={state?.data?.step}
+            isComplete={state?.data?.isComplete}
           />
         </div>
         <div
           className={cn('flex flex-col gap-5 lg:flex-row', {
-            'items-center': currentStep === 3,
+            'items-center': state?.data?.step === CHECKOUT_STEPS.length,
           })}
         >
           <div className='w-full lg:w-1/2'>
-            <CartReview currentStep={currentStep} />
+            <CartReview currentStep={state?.data?.step} />
           </div>
-          <div className='w-full lg:w-1/2'>
-            <ActiveComponent />
-          </div>
+          <div className='w-full lg:w-1/2'>{ActiveComponetn()}</div>
         </div>
       </Layout.Body>
     </Layout>

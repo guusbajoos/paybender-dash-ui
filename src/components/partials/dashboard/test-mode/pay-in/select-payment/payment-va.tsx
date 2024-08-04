@@ -10,25 +10,14 @@ import { Separator } from '@/components/ui/separator'
 import { useState } from 'react'
 import { IconChevronRight } from '@tabler/icons-react'
 import { cn } from '@/lib/utils'
+import { IPaymentMethodChange, TPaymentMethod } from '@/data/schemas'
 
-export type PaymentMethod =
-  | 'BCA'
-  | 'MANDIRI'
-  | 'BRI'
-  | 'BNI'
-  | 'BSI'
-  | 'CIMBNiaga'
-  | 'Permata'
-  | undefined
+const PaymentVA = (props: IPaymentMethodChange) => {
+  const [paymentMethod, setPaymentMethod] = useState<
+    TPaymentMethod | undefined
+  >(undefined)
 
-interface IPaymentVAProps {
-  onPaymentMethodChange: (method: PaymentMethod) => void
-}
-
-const PaymentVA = (props: IPaymentVAProps) => {
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(undefined)
-
-  const handleChangePayment = (method: PaymentMethod) => {
+  const handleChangePayment = (method: TPaymentMethod) => {
     setPaymentMethod(method)
 
     props.onPaymentMethodChange && props.onPaymentMethodChange(method)

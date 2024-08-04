@@ -25,7 +25,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
-const ContactInformationForm = (props: IStepperNextProps) => {
+const ContactInformationForm = (
+  props: IStepperNextProps<z.infer<typeof contactInformationSchema>>
+) => {
   const form = useForm<z.infer<typeof contactInformationSchema>>({
     resolver: zodResolver(contactInformationSchema),
     defaultValues: {
@@ -44,7 +46,15 @@ const ContactInformationForm = (props: IStepperNextProps) => {
   })
 
   const onSubmit = (val: z.infer<typeof contactInformationSchema>) => {
-    console.log(val)
+    const payload = {
+      ...val,
+      shipping_method: 'Bender Express',
+      shipping_service: 'Same Day Service',
+    }
+
+    if (Object.keys(form.formState.errors).length === 0) {
+      props.onNextStep && props.onNextStep(payload)
+    }
   }
 
   return (
@@ -166,7 +176,7 @@ const ContactInformationForm = (props: IStepperNextProps) => {
               />
               <FormField
                 control={form.control}
-                name='email'
+                name='shipping_email'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
@@ -181,7 +191,7 @@ const ContactInformationForm = (props: IStepperNextProps) => {
               />
               <FormField
                 control={form.control}
-                name='phone_number'
+                name='shipping_phone'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
@@ -270,7 +280,8 @@ const ContactInformationForm = (props: IStepperNextProps) => {
           </div>
           <Button
             className='w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
-            onClick={() => props.onNextStep && props.onNextStep()}
+            type='submit'
+            // onClick={() => props.onNextStep && props.onNextStep()}
           >
             CONTINUE
           </Button>

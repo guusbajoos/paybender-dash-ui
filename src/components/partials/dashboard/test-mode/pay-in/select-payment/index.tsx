@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsList } from '@/components/ui/tabs'
@@ -9,9 +10,20 @@ import PaymentVA from './payment-va'
 
 import { cn } from '@/lib/utils'
 import { IStepperNextProps } from '@/data/pay-in/contact-information.schema'
+import { IPaymentMethodChange } from '@/data/schemas'
 
-const SelectPayment = (props: IStepperNextProps) => {
+export type TSelectPaymentProps = IStepperNextProps<any> &
+  IPaymentMethodChange & {
+    payment_type: string
+    payment_method: string
+  }
+
+const SelectPayment = (props: TSelectPaymentProps) => {
   const [tabKey, setTabKey] = useState('qris')
+
+  const handleChoosePayment = (v: string) => {
+    props.onNextStep && props.onNextStep({ payment_type: v })
+  }
 
   return (
     <div id='select-payment'>
@@ -24,7 +36,7 @@ const SelectPayment = (props: IStepperNextProps) => {
         className='space-y-4'
         onValueChange={(v) => setTabKey(v)}
       >
-        <div className='w-full pb-2 overflow-x-auto'>
+        <div className='w-full overflow-x-auto pb-2'>
           <TabsList className='flex h-auto gap-x-2.5 bg-[#EEF9FA]'>
             <Button
               className={cn(
@@ -67,12 +79,16 @@ const SelectPayment = (props: IStepperNextProps) => {
         <Card className='p-6'>
           {tabKey === 'qris' && <PaymentQRIS />}
           {tabKey === 'wallet' && (
-            <PaymentEMoney onPaymentMethodChange={() => {}} />
+            <PaymentEMoney
+              onPaymentMethodChange={props.onPaymentMethodChange}
+            />
           )}
-          {tabKey === 'va' && <PaymentVA onPaymentMethodChange={() => {}} />}
+          {tabKey === 'va' && (
+            <PaymentVA onPaymentMethodChange={props.onPaymentMethodChange} />
+          )}
           <Button
             className='mt-[1.125rem] w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
-            onClick={() => props.onNextStep && props.onNextStep()}
+            onClick={() => props.onNextStep && props.onNextStep({})}
           >
             CONTINUE TO PAY
           </Button>

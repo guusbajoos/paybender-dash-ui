@@ -50,6 +50,6 @@ export const contactInformationSchema = z.object({
   }),
 })
 
-export interface IStepperNextProps {
-  onNextStep?: () => void
+export interface IStepperNextProps<T> {
+  onNextStep?: (data: T) => void
 }

@@ -70,7 +70,7 @@ export default function TestMode() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='flex items-center ml-auto space-x-4'>
+        <div className='ml-auto flex items-center space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
@@ -79,7 +79,7 @@ export default function TestMode() {
       <Layout.Body>
         {location.state?.testMode === 'pay-out' ? (
           <Alert variant='success' className='mb-10'>
-            <IconCircleCheck className='w-4 h-4' />
+            <IconCircleCheck className='h-4 w-4' />
             <AlertTitle className='text-[#263238]'>
               Withdrawal Success
             </AlertTitle>
@@ -104,7 +104,7 @@ export default function TestMode() {
           className='space-y-4'
           onValueChange={(v) => setTabKey(v)}
         >
-          <div className='pb-2 overflow-x-auto w-fit'>
+          <div className='w-fit overflow-x-auto pb-2'>
             <TabsList className='flex h-auto gap-x-2.5 bg-[#EEF9FA]'>
               <Button
                 className={cn(
@@ -244,7 +244,7 @@ export default function TestMode() {
                   <CardHeader>
                     <div className='flex flex-col gap-y-6'>
                       <CardTitle className='text-center text-2xl text-[#3CC1D1]'>
-                        Pay Out
+                        {tabKey === 'pay-in' ? 'Pay In' : 'Pay Out'}
                       </CardTitle>
                       <img
                         src={PaybenderLogo}
@@ -350,38 +350,6 @@ export default function TestMode() {
                             -
                           </span>
                         </div>
-{/*                         <div className='flex items-center justify-between'> */}
-{/*                           <h4 className='text-lg font-medium text-[#464646]'> */}
-{/*                             Refund Status: */}
-{/*                           </h4> */}
-{/*                           <span className='text-lg font-medium text-[#464646]'> */}
-{/*                             - */}
-{/*                           </span> */}
-{/*                         </div> */}
-{/*                         <div className='flex items-center justify-between'> */}
-{/*                           <h4 className='text-lg font-medium text-[#464646]'> */}
-{/*                             Refund Trx ID: */}
-{/*                           </h4> */}
-{/*                           <span className='text-lg font-medium text-[#464646]'> */}
-{/*                             - */}
-{/*                           </span> */}
-{/*                         </div> */}
-{/*                         <div className='flex items-center justify-between'> */}
-{/*                           <h4 className='text-lg font-medium text-[#464646]'> */}
-{/*                             Refund Date: */}
-{/*                           </h4> */}
-{/*                           <span className='text-lg font-medium text-[#464646]'> */}
-{/*                             - */}
-{/*                           </span> */}
-{/*                         </div> */}
-{/*                         <div className='flex items-center justify-between'> */}
-{/*                           <h4 className='text-lg font-medium text-[#464646]'> */}
-{/*                             Trx Log: */}
-{/*                           </h4> */}
-{/*                           <span className='text-lg font-medium text-[#464646]'> */}
-{/*                             xxx-xxx-xx-xxx-xx */}
-{/*                           </span> */}
-{/*                         </div> */}
                         <div className='flex items-center justify-between'>
                           <h4 className='text-lg font-medium text-[#464646]'>
                             Callback Status:

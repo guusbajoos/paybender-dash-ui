@@ -5,19 +5,16 @@ import OVO from '@/assets/images/OVO.png'
 
 // import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { IPaymentMethodChange, TPaymentMethod } from '@/data/schemas'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 
-export type PaymentMethod = 'DANA' | 'ShopeePay' | 'LinkAja' | 'OVO' | undefined
+const PaymentEMoney = (props: IPaymentMethodChange) => {
+  const [paymentMethod, setPaymentMethod] = useState<
+    TPaymentMethod | undefined
+  >(undefined)
 
-interface IPaymentEMoneyProps {
-  onPaymentMethodChange: (method: PaymentMethod) => void
-}
-
-const PaymentEMoney = (props: IPaymentEMoneyProps) => {
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(undefined)
-
-  const handleChangePayment = (method: PaymentMethod) => {
+  const handleChangePayment = (method: TPaymentMethod) => {
     setPaymentMethod(method)
 
     props.onPaymentMethodChange && props.onPaymentMethodChange(method)
