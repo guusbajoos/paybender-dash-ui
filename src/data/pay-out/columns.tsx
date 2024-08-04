@@ -2,7 +2,7 @@
 import { ColumnDef } from '@tanstack/react-table'
 
 import { Button } from '@/components/custom/button'
-import { IconArrowsUpDown } from '@tabler/icons-react'
+import { CaretSortIcon } from '@radix-ui/react-icons'
 import dayjs from 'dayjs'
 
 export const columnsPayout: ColumnDef<any>[] = [
@@ -18,9 +18,10 @@ export const columnsPayout: ColumnDef<any>[] = [
         <Button
           variant='ghost'
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          className='px-0'
         >
           Transaction Date
-          <IconArrowsUpDown className='w-4 h-4 ml-2' />
+          <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       )
     },
@@ -31,17 +32,50 @@ export const columnsPayout: ColumnDef<any>[] = [
   },
   {
     accessorKey: 'trx_id',
-    header: () => 'Transaction ID',
+    header: ({ column }: { column: any }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          className='px-0'
+        >
+          Transaction ID
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      )
+    },
     cell: ({ row }) => row.getValue('trx_id') || '-',
   },
   {
     accessorKey: 'merchant_refno',
-    header: () => 'Merchant Ref No',
+    header: ({ column }: { column: any }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          className='px-0'
+        >
+          Merchant Ref No
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      )
+    },
     cell: ({ row }) => row.getValue('merchant_refno') || '-',
   },
   {
     accessorKey: 'method',
-    header: () => 'Channel Withdraw',
+    header: ({ column }: { column: any }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          className='px-0'
+        >
+          Channel Withdraw
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      )
+    },
     cell: ({ row }) => row.getValue('method') || '-',
   },
   {
@@ -51,12 +85,34 @@ export const columnsPayout: ColumnDef<any>[] = [
   },
   {
     accessorKey: 'customer_acct_no',
-    header: () => 'Receiver Acct No',
+    header: ({ column }: { column: any }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          className='px-0'
+        >
+          Receiver Acct No
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      )
+    },
     cell: ({ row }) => row.getValue('customer_acct_no') || '-',
   },
   {
     accessorKey: 'customer_acct_name',
-    header: () => 'Receiver Acct Name',
+    header: ({ column }: { column: any }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          className='px-0'
+        >
+          Receiver Acct Name
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      )
+    },
     cell: ({ row }) => row.getValue('customer_acct_name') || '-',
   },
   {

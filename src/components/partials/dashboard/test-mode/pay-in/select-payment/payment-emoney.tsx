@@ -1,5 +1,5 @@
 import DANA from '@/assets/images/DANA.png'
-import ShopeePay from '@/assets/images/Shopee Pay.png'
+// import ShopeePay from '@/assets/images/Shopee Pay.png'
 import LinkAja from '@/assets/images/LinkAja.png'
 import OVO from '@/assets/images/OVO.png'
 
@@ -25,18 +25,18 @@ const PaymentEMoney = (props: IPaymentEMoneyProps) => {
 
   return (
     <div className='flex flex-col gap-y-[1.125rem]'>
-      /* <h4 className='text-lg font-normal text-[#5A5A5A]'>
+      {/* <h4 className='text-lg font-normal text-[#5A5A5A]'>
         E-money payment channels offer convenient and secure ways for customers
         to make digital payments using electronic money stored in mobile wallets
         or accounts. Explore the e-money payment channels below to learn more
         about their features and integration options.
-      </h4> */
+      </h4>  */}
 
       <div className=''>
         <h2 className='text-2xl font-medium text-black'>Select e-Money</h2>
         <Separator className='my-4' />
 
-        <div className='flex flex-wrap items-center justify-between'>
+        <div className='flex flex-wrap items-center justify-evenly'>
           <div
             className={cn(
               'size-[128px] rounded-lg border-2 border-black/10 p-4',
@@ -52,7 +52,7 @@ const PaymentEMoney = (props: IPaymentEMoneyProps) => {
               className='h-full w-[94px] object-contain'
             />
           </div>
-          <div
+          {/* <div
             className={cn(
               'size-[128px] rounded-lg border-2 border-black/10 p-4',
               {
@@ -66,7 +66,7 @@ const PaymentEMoney = (props: IPaymentEMoneyProps) => {
               alt='ShopeePay'
               className='h-full w-[94px] object-contain'
             />
-          </div>
+          </div> */}
           <div
             className={cn(
               'size-[128px] rounded-lg border-2 border-black/10 p-4',

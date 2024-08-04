@@ -20,7 +20,7 @@ interface TopNavProps extends React.HTMLAttributes<HTMLElement> {
 export function TopNav({ className, links, ...props }: TopNavProps) {
   return (
     <>
-      <div className='md:hidden'>
+      <div className='lg:hidden'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button size='icon' variant='outline'>
@@ -44,7 +44,7 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
 
       <nav
         className={cn(
-          'hidden items-center space-x-4 md:flex lg:space-x-6',
+          'hidden items-center space-x-4 lg:flex lg:space-x-6',
           className
         )}
         {...props}

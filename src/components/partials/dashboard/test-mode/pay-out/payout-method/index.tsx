@@ -144,7 +144,9 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                     <FormControl className='font-normal text-[#777677]'>
                       <Input
                         placeholder='Input Receiver Account Name'
-                        {...field}
+                        onChange={field.onChange}
+                        value='James Hetfield'
+                        disabled
                       />
                     </FormControl>
                     <FormMessage />
@@ -177,7 +179,9 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                     <FormControl className='font-normal text-[#777677]'>
                       <Input
                         placeholder='Input Receiver Account Number'
-                        {...field}
+                        onChange={field.onChange}
+                        value='7915661000'
+                        disabled
                       />
                     </FormControl>
                     <FormMessage />

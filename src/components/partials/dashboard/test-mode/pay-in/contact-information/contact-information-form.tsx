@@ -210,10 +210,18 @@ const ContactInformationForm = (props: IStepperNextProps) => {
                     <FormLabel className='font-normal text-[#777677]'>
                       Courier
                     </FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <FormControl className='font-normal text-[#777677]'>
+                      <Input
+                        placeholder='courier'
+                        disabled
+                        onChange={field.onChange}
+                        value='Bender Express'
+                      />
+                    </FormControl>
+                    {/* <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl className='font-normal text-[#777677]'>
                         <SelectTrigger>
-                          <SelectValue placeholder='Select a delivery method' />
+                          <SelectValue placeholder='Select a courier' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -221,7 +229,7 @@ const ContactInformationForm = (props: IStepperNextProps) => {
                         <SelectItem value='DHL'>DHL</SelectItem>
                         <SelectItem value='GoSend'>GoSend</SelectItem>
                       </SelectContent>
-                    </Select>
+                    </Select> */}
                     <FormMessage />
                   </FormItem>
                 )}
@@ -234,7 +242,15 @@ const ContactInformationForm = (props: IStepperNextProps) => {
                     <FormLabel className='font-normal text-[#777677]'>
                       Service
                     </FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <FormControl className='font-normal text-[#777677]'>
+                      <Input
+                        placeholder='service'
+                        disabled
+                        onChange={field.onChange}
+                        value='Same Day Service'
+                      />
+                    </FormControl>
+                    {/* <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl className='font-normal text-[#777677]'>
                         <SelectTrigger>
                           <SelectValue placeholder='Select a service' />
@@ -245,7 +261,7 @@ const ContactInformationForm = (props: IStepperNextProps) => {
                         <SelectItem value='ODS'>One Day Service</SelectItem>
                         <SelectItem value='INSTANT'>Instant Courier</SelectItem>
                       </SelectContent>
-                    </Select>
+                    </Select> */}
                     <FormMessage />
                   </FormItem>
                 )}

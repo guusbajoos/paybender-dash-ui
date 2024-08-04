@@ -1,14 +1,14 @@
-import OrderStatusQRIS from './order-status-qris'
+// import OrderStatusQRIS from './order-status-qris'
 // import OrderStatusEMoney from './order-status-emoney'
-// import OrderStatusVA from './order-status-va'
+import OrderStatusVA from './order-status-va'
 // import OrderStatusPaid from './order-status-paid'
 
-const OrderStatus = () => {
+const OrderStatus = ({ countdown }: { countdown: number }) => {
   return (
     <>
-      <OrderStatusQRIS />
-      {/* <OrderStatusEMoney /> */}
-      {/* <OrderStatusVA /> */}
+      {/* <OrderStatusQRIS countdown={countdown} /> */}
+      {/* <OrderStatusEMoney countdown={countdown} /> */}
+      <OrderStatusVA countdown={countdown} />
       {/* <OrderStatusPaid /> */}
     </>
   )
