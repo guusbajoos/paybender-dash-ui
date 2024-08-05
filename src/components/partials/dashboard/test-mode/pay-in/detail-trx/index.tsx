@@ -99,18 +99,11 @@ const DetailTrxPayin = ({ data }: { data: any }) => {
       </div>
       <div className='flex items-center justify-between'>
         <h4 className='text-lg font-medium text-[#464646]'>Callback Status:</h4>
-        <span
-          className={cn('rounded-md border p-1 text-sm font-normal', {
-            'border-[#4B8400] bg-[#C8F08F] text-[#4B8400]':
-              data?.callback_status === 1,
-            'border-[#FF0000] bg-[#FFD6D6] text-[#FF0000]':
-              data?.callback_status === 0,
-          })}
-        >
+        <span className='p-1 text-sm font-normal'>
           {data?.callback_status === 1
-            ? 'Success'
+            ? 'Yes'
             : data?.callback_status === 0
-              ? 'Failed'
+              ? 'No'
               : 'N/A'}
         </span>
       </div>
