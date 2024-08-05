@@ -16,32 +16,34 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select'
+import { IStepperNextProps } from '@/data/pay-in/contact-information.schema'
 import { payoutMethodSchema } from '@/data/pay-out/payout-method.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
-interface IPayoutMethodProps {
-  onDirect?: () => void
-}
-
-const PayoutMethod = (props: IPayoutMethodProps) => {
+const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
   const form = useForm<z.infer<typeof payoutMethodSchema>>({
     resolver: zodResolver(payoutMethodSchema),
     defaultValues: {
+      channel: '',
       amount: 0,
-      withdraw_method: '',
-      bank_name: '',
-      acc_holder_name: 'James Hetfield',
-      // branch_name: '',
-      account_number: '7915661000',
+      customerName: 'James Hetfield',
+      customerPhone: '08112003003',
     },
     mode: 'onChange',
   })
 
   const onSubmit = (val: z.infer<typeof payoutMethodSchema>) => {
-    console.log(val)
-    props.onDirect && props.onDirect()
+    const payload = {
+      ...val,
+      feeAmount: 22500,
+      customerEmail: 'james.hetfield@gmail.com',
+    }
+
+    if (Object.keys(form.formState.errors).length === 0) {
+      props.onNextStep && props.onNextStep(payload as T)
+    }
   }
 
   return (
@@ -51,7 +53,6 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
           <CardTitle className='text-2xl font-medium text-black'>
             Set Payout Method
           </CardTitle>
-          {/*           <IconX className='size-7' /> */}
         </div>
       </CardHeader>
       <CardContent>
@@ -75,7 +76,7 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
               />
               <FormField
                 control={form.control}
-                name='withdraw_method'
+                name='channel'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
@@ -100,42 +101,7 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
               />
               <FormField
                 control={form.control}
-                name='bank_name'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className='font-normal text-[#777677]'>
-                      Bank Name
-                    </FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl className='font-normal text-[#777677]'>
-                        <SelectTrigger>
-                          <SelectValue placeholder='Select a bank' />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value='BCA'>Bank BCA Transfer</SelectItem>
-                        <SelectItem value='BRI'>Bank BRI Transfer</SelectItem>
-                        <SelectItem value='Mandiri'>
-                          Bank Mandiri Transfer
-                        </SelectItem>
-                        <SelectItem value='Danamon'>
-                          Bank Danamon Transfer
-                        </SelectItem>
-                        <SelectItem value='Maybank'>
-                          Bank Maybank Transfer
-                        </SelectItem>
-                        <SelectItem value='GoPay'>GoPay Wallet</SelectItem>
-                        <SelectItem value='Dana'>Dana Wallet</SelectItem>
-                        <SelectItem value='OVO'>OVO Wallet</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='acc_holder_name'
+                name='customerName'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
@@ -153,24 +119,9 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                   </FormItem>
                 )}
               />
-              {/*               <FormField */}
-              {/*                 control={form.control} */}
-              {/*                 name='branch_name' */}
-              {/*                 render={({ field }) => ( */}
-              {/*                   <FormItem> */}
-              {/*                     <FormLabel className='font-normal text-[#777677]'> */}
-              {/*                       Branch Name */}
-              {/*                     </FormLabel> */}
-              {/*                     <FormControl className='font-normal text-[#777677]'> */}
-              {/*                       <Input placeholder='xxx' {...field} /> */}
-              {/*                     </FormControl> */}
-              {/*                     <FormMessage /> */}
-              {/*                   </FormItem> */}
-              {/*                 )} */}
-              {/*               /> */}
               <FormField
                 control={form.control}
-                name='account_number'
+                name='customerPhone'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
@@ -189,22 +140,18 @@ const PayoutMethod = (props: IPayoutMethodProps) => {
                 )}
               />
             </div>
-            <Button className='w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'>
-              CONTINUE
+            <Button
+              className='w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
+              type='submit'
+              disabled={props.isLoading}
+            >
+              {props.isLoading ? 'Processing' : 'CONTINUE'}
             </Button>
           </form>
         </Form>
       </CardContent>
     </Card>
   )
-}
-{
-  /* <Button
-  className='w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
-  onClick={() => props.onNextStep && props.onNextStep()}
->
-  CONTINUE
-</Button> */
 }
 
 export default PayoutMethod

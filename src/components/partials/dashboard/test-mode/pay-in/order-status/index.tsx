@@ -3,11 +3,12 @@ import { Separator } from '@/components/ui/separator'
 import { currencyFormatter } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
 import dayjs from 'dayjs'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const OrderStatus = ({ countdown }: { countdown: number }) => {
   const navigate = useNavigate()
   const state = useCheckout((state) => state)
+  const location = useLocation()
 
   if (countdown === 0) {
     state.removeState()
@@ -17,7 +18,9 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
   return (
     <Card className='p-6'>
       <h2 className='text-lg font-medium text-center text-black lg:text-2xl'>
-        Thank You for Your Order
+        {location.state?.status === 'completed'
+          ? 'Thank You for Your Order!'
+          : 'Your Order is Fail'}
       </h2>
       <Separator className='my-4 text-[#C7C7C7]' />
       <p className='mb-4 text-center text-base text-[#5A5A5A] lg:text-lg'>
@@ -34,18 +37,20 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
               : '-'}
           </span>
         </div>
-        <div className='flex items-center justify-between'>
-          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            Date Paid
-          </span>
-          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            {state.data?.payment?.payment_date
-              ? dayjs(state.data?.payment?.payment_date).format(
-                  'dddd, MMMM DD, YYYY A'
-                )
-              : ''}
-          </span>
-        </div>
+        {location.state?.status === 'completed' && (
+          <div className='flex items-center justify-between'>
+            <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+              Date Paid
+            </span>
+            <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+              {state.data?.payment?.payment_date
+                ? dayjs(state.data?.payment?.payment_date).format(
+                    'dddd, MMMM DD, YYYY A'
+                  )
+                : ''}
+            </span>
+          </div>
+        )}
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             Payment

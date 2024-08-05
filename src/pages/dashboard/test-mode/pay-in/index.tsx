@@ -56,9 +56,15 @@ export default function PayIn() {
     if (
       remainingTime > 0 &&
       state?.data?.payment?.payment_type === 'VA' &&
-      ['BCA', 'MANDIRI', 'BRI', 'BNI', 'BSI', 'CIMBNiaga', 'Permata'].includes(
-        state.data?.payment?.payment_method
-      )
+      [
+        'BCA Virtual Account',
+        'Mandiri Virtual Account',
+        'BRI Virtual Account',
+        'BNI Virtual Account',
+        'BSI Virtual Account',
+        'CIMBNiaga Virtual Account',
+        'Permata Virtual Account',
+      ].includes(state.data?.payment?.payment_method)
     ) {
       const timerId = setTimeout(
         () => setRemainingTime(remainingTime - 1),
@@ -166,6 +172,11 @@ export default function PayIn() {
               }).then(() => {
                 state?.setStep(CHECKOUT_STEPS.length)
                 state.setPaymentData({ payment_date: new Date() })
+                navigate('/get-started/test-mode/pay-in', {
+                  state: {
+                    status: v,
+                  },
+                })
               }),
             ]}
             isLoading={step2Loading}
