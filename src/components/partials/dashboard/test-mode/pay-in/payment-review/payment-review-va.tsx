@@ -139,7 +139,7 @@ const PaymentReviewVA = ({
       <div className='mt-4 flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            {state.data.payment?.payment_method} Virtual Account
+            {state.data.payment?.payment_method}
           </span>
           {generateImagePaymentMethod(state.data.payment?.payment_method)}
         </div>
