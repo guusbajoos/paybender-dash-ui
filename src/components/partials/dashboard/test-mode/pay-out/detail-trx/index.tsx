@@ -1,4 +1,5 @@
 import { cn, currencyFormatter } from '@/lib/utils'
+import dayjs from 'dayjs'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const DetailTrxPayout = ({ data }: { data: any }) => {
@@ -9,13 +10,19 @@ const DetailTrxPayout = ({ data }: { data: any }) => {
           <h4 className='text-lg font-medium text-[#464646]'>
             Transaction Paid:
           </h4>
-          <span className='text-lg font-medium text-[#464646]'>Paid</span>
+          <span className='text-lg font-medium text-[#464646]'>
+            {data?.paid_datetime
+              ? dayjs(data?.paid_datetime).format(
+                  'dddd, MMMM DD, YYYY HH:mm:ss'
+                )
+              : '-'}
+          </span>
         </div>
       )}
       <div className='flex items-center justify-between'>
         <h4 className='text-lg font-medium text-[#464646]'>Transaction ID:</h4>
         <span className='text-lg font-medium text-[#464646]'>
-          {data?.transaction_id || 'N/A'}
+          {data?.transaction_id || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
@@ -23,7 +30,7 @@ const DetailTrxPayout = ({ data }: { data: any }) => {
           Channel Withdraw:
         </h4>
         <span className='text-lg font-medium text-[#464646]'>
-          {data?.channel || 'N/A'}
+          {data?.channel || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
@@ -31,7 +38,7 @@ const DetailTrxPayout = ({ data }: { data: any }) => {
           Receiver Account Name:
         </h4>
         <span className='text-lg font-medium text-[#464646]'>
-          {data?.customer_name || 'N/A'}
+          {data?.customer_name || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
@@ -39,13 +46,13 @@ const DetailTrxPayout = ({ data }: { data: any }) => {
           Receiver Account Number:
         </h4>
         <span className='text-lg font-medium text-[#464646]'>
-          {data?.customer_phone || 'N/A'}
+          {data?.customer_phone || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
         <h4 className='text-lg font-medium text-[#464646]'>Currency:</h4>
         <span className='text-lg font-medium text-[#464646]'>
-          {data?.currency || 'N/A'}
+          {data?.currency || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
@@ -55,7 +62,7 @@ const DetailTrxPayout = ({ data }: { data: any }) => {
         <span className='text-lg font-medium text-[#4B8400]'>
           {data?.net_amount
             ? currencyFormatter(Number(data?.net_amount), data?.currency)
-            : 'N/A'}
+            : '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
@@ -63,7 +70,7 @@ const DetailTrxPayout = ({ data }: { data: any }) => {
         <span className='text-lg font-medium text-[#4B8400]'>
           {data?.fee_amount
             ? currencyFormatter(Number(data?.fee_amount), data?.currency)
-            : 'N/A'}
+            : '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
@@ -71,7 +78,7 @@ const DetailTrxPayout = ({ data }: { data: any }) => {
         <span className='text-lg font-medium text-[#4B8400]'>
           {data?.gross_amount
             ? currencyFormatter(Number(data?.gross_amount), data?.currency)
-            : 'N/A'}
+            : '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
@@ -86,23 +93,30 @@ const DetailTrxPayout = ({ data }: { data: any }) => {
               data?.status === 'failed',
           })}
         >
-          {data?.status || 'N/A'}
+          {data?.status || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
         <h4 className='text-lg font-medium text-[#464646]'>Remarks:</h4>
         <span className='text-lg font-medium text-[#464646]'>
-          {data?.remarks || 'N/A'}
+          {data?.remarks || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
         <h4 className='text-lg font-medium text-[#464646]'>Callback Status:</h4>
-        <span className='p-1 text-sm font-normal border rounded-md'>
+        <span
+          className={cn('rounded-md border p-1 text-sm font-normal', {
+            'border-[#4B8400] bg-[#C8F08F] text-[#4B8400]':
+              data?.callback_status === 1,
+            'border-[#FF0000] bg-[#FFD6D6] text-[#FF0000]':
+              data?.callback_status === 0,
+          })}
+        >
           {data?.callback_status === 1
             ? 'Yes'
             : data?.callback_status === 0
               ? 'No'
-              : 'N/A'}
+              : '-'}
         </span>
       </div>
     </div>

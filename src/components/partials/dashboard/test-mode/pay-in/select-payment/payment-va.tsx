@@ -59,7 +59,7 @@ const PaymentVA = (props: IPaymentMethodChange) => {
             onClick={() =>
               handleChangePayment({
                 payment_type: 'VA',
-                payment_method: 'BCA',
+                payment_method: 'BCA Virtual Account',
               })
             }
           >
@@ -73,7 +73,8 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod.payment_method === 'BCA',
+                    'text-[#70CEDA]':
+                      paymentMethod.payment_method === 'BCA Virtual Account',
                   }
                 )}
               >
@@ -87,7 +88,7 @@ const PaymentVA = (props: IPaymentMethodChange) => {
             onClick={() =>
               handleChangePayment({
                 payment_type: 'VA',
-                payment_method: 'MANDIRI',
+                payment_method: 'Mandiri Virtual Account',
               })
             }
           >
@@ -102,7 +103,8 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
                     'text-[#70CEDA]':
-                      paymentMethod.payment_method === 'MANDIRI',
+                      paymentMethod.payment_method ===
+                      'Mandiri Virtual Account',
                   }
                 )}
               >
@@ -116,7 +118,7 @@ const PaymentVA = (props: IPaymentMethodChange) => {
             onClick={() =>
               handleChangePayment({
                 payment_type: 'VA',
-                payment_method: 'BRI',
+                payment_method: 'BRI Virtual Account',
               })
             }
           >
@@ -130,7 +132,8 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod.payment_method === 'BRI',
+                    'text-[#70CEDA]':
+                      paymentMethod.payment_method === 'BRI Virtual Account',
                   }
                 )}
               >
@@ -144,7 +147,7 @@ const PaymentVA = (props: IPaymentMethodChange) => {
             onClick={() =>
               handleChangePayment({
                 payment_type: 'VA',
-                payment_method: 'BNI',
+                payment_method: 'BNI Virtual Account',
               })
             }
           >
@@ -158,7 +161,8 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod.payment_method === 'BNI',
+                    'text-[#70CEDA]':
+                      paymentMethod.payment_method === 'BNI Virtual Account',
                   }
                 )}
               >
@@ -172,7 +176,7 @@ const PaymentVA = (props: IPaymentMethodChange) => {
             onClick={() =>
               handleChangePayment({
                 payment_type: 'VA',
-                payment_method: 'BSI',
+                payment_method: 'BSI Virtual Account',
               })
             }
           >
@@ -186,7 +190,8 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                 className={cn(
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
-                    'text-[#70CEDA]': paymentMethod.payment_method === 'BSI',
+                    'text-[#70CEDA]':
+                      paymentMethod.payment_method === 'BSI Virtual Account',
                   }
                 )}
               >
@@ -200,7 +205,7 @@ const PaymentVA = (props: IPaymentMethodChange) => {
             onClick={() =>
               handleChangePayment({
                 payment_type: 'VA',
-                payment_method: 'CIMBNiaga',
+                payment_method: 'CIMBNiaga Virtual Account',
               })
             }
           >
@@ -215,7 +220,8 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
                     'text-[#70CEDA]':
-                      paymentMethod.payment_method === 'CIMBNiaga',
+                      paymentMethod.payment_method ===
+                      'CIMBNiaga Virtual Account',
                   }
                 )}
               >
@@ -229,7 +235,7 @@ const PaymentVA = (props: IPaymentMethodChange) => {
             onClick={() =>
               handleChangePayment({
                 payment_type: 'VA',
-                payment_method: 'Permata',
+                payment_method: 'Permata Virtual Account',
               })
             }
           >
@@ -244,7 +250,8 @@ const PaymentVA = (props: IPaymentMethodChange) => {
                   'cursor-pointer text-2xl font-medium text-[#959595]',
                   {
                     'text-[#70CEDA]':
-                      paymentMethod.payment_method === 'Permata',
+                      paymentMethod.payment_method ===
+                      'Permata Virtual Account',
                   }
                 )}
               >

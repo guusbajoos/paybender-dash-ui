@@ -31,7 +31,7 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {state.data?.cart?.amount
               ? currencyFormatter(state.data?.cart?.amount, 'IDR')
-              : 'N/A'}
+              : '-'}
           </span>
         </div>
         <div className='flex items-center justify-between'>
@@ -51,7 +51,7 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
             Payment
           </span>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            {state.data?.payment?.payment_method || 'N/A'}
+            {state.data?.payment?.payment_method || '-'}
           </span>
         </div>
       </div>
