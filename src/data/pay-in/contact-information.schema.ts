@@ -51,5 +51,6 @@ export const contactInformationSchema = z.object({
 })
 
 export interface IStepperNextProps<T> {
-  onNextStep?: (data: T) => void
+  onNextStep?: (data?: T) => void
+  isLoading?: boolean
 }

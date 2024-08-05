@@ -281,7 +281,6 @@ const ContactInformationForm = (
           <Button
             className='w-full bg-[#3CC1D1] text-center text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
             type='submit'
-            // onClick={() => props.onNextStep && props.onNextStep()}
           >
             CONTINUE
           </Button>

@@ -24,7 +24,7 @@ const OrderStatusVA = ({ countdown }: { countdown: number }) => {
 
   return (
     <Card className='p-6'>
-      <h2 className='text-center text-lg font-medium text-black lg:text-2xl'>
+      <h2 className='text-lg font-medium text-center text-black lg:text-2xl'>
         Finish the Payment Before
       </h2>
       <Separator className='my-4 text-[#C7C7C7]' />

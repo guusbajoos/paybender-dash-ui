@@ -32,7 +32,9 @@ const useCheckout = create<ICheckoutState>()(
       setShippingData: (item) =>
         set((state) => ({ data: { ...state.data, shipping: item } })),
       setPaymentData: (item) =>
-        set((state) => ({ data: { ...state.data, payment: item } })),
+        set((state) => ({
+          data: { ...state.data, payment: { ...state.data.payment, ...item } },
+        })),
       setStep: (step: number) =>
         set((state) => {
           if (state.data.step === step) {

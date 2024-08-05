@@ -34,7 +34,7 @@ const SelectPayment = (props: TSelectPaymentProps) => {
         className='space-y-4'
         onValueChange={(v) => setTabKey(v)}
       >
-        <div className='w-full overflow-x-auto pb-2'>
+        <div className='w-full pb-2 overflow-x-auto'>
           <TabsList className='flex h-auto gap-x-2.5 bg-[#EEF9FA]'>
             <Button
               className={cn(
@@ -108,8 +108,9 @@ const SelectPayment = (props: TSelectPaymentProps) => {
                     tabKey === 'QRIS' ? 'QRIS' : props.payment_method,
                 })
             }}
+            disabled={props.isLoading}
           >
-            CONTINUE TO PAY
+            {props.isLoading ? 'Submitting' : 'CONTINUE TO PAY'}
           </Button>
         </Card>
       </Tabs>

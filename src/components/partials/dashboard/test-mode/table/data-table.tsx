@@ -18,11 +18,13 @@ import {
 } from '@/components/ui/table'
 
 interface DataTableProps<TData, TValue> {
+  isLoading: boolean
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }
 
 export function DataTable<TData, TValue>({
+  isLoading,
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -62,7 +64,16 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {isLoading ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className='h-24 text-center'
+                >
+                  Loading...
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}

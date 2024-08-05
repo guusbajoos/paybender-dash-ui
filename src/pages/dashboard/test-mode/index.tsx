@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   IconArrowLeft,
   IconCash,
@@ -18,14 +19,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Breadcrumb, BreadcrumbItem } from '@/components/custom/breadcrumb'
 import { Tabs, TabsList } from '@/components/ui/tabs'
 import { Button } from '@/components/custom/button'
-import { cn } from '@/lib/utils'
+import { cn, currencyFormatter } from '@/lib/utils'
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { DataTable } from '@/components/partials/dashboard/test-mode/table/data-table'
 import { columnsPayin } from '@/data/pay-in/columns'
 import { columnsPayout } from '@/data/pay-out/columns'
-import { transactionPayin } from '@/data/pay-in/transactions'
-import { transactionPayout } from '@/data/pay-out/transactions'
 import { Separator } from '@/components/ui/separator'
 import TablePagination from '@/components/custom/table-pagination'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -36,12 +35,39 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import useGetList from '@/hooks/use-get-data'
+import DetailTrxPayin from '@/components/partials/dashboard/test-mode/pay-in/detail-trx'
+import DetailTrxPayout from '@/components/partials/dashboard/test-mode/pay-out/detail-trx'
 
 export default function TestMode() {
   const navigate = useNavigate()
   const location = useLocation()
   const [tabKey, setTabKey] = useState(location.state?.testMode || 'pay-in')
   const [isOpenDetailTrx, setIsOpenDetailTrx] = useState(false)
+  const [params, setParams] = useState<{
+    page: number
+    limit: number
+    total_data: number
+    total_page: number
+  }>({
+    page: 1,
+    limit: 10,
+    total_data: 0,
+    total_page: 0,
+  })
+  const [dataTrx, setDataTrx] = useState([])
+  const [dataSummary, setDataSummary] = useState<{
+    balance: string
+    countCompleted: number
+    countFailed: number
+    countProcessing: number
+  }>({
+    balance: '',
+    countCompleted: 0,
+    countFailed: 0,
+    countProcessing: 0,
+  })
+  const [trxDetail, setTrxDetail] = useState<any>({})
 
   const breadcrumbs = [
     { title: 'Home', href: '/' },
@@ -59,8 +85,24 @@ export default function TestMode() {
     </BreadcrumbItem>
   ))
 
+  const { isLoading, handleParamsChange } = useGetList(
+    `${import.meta.env.VITE_APP_API_URL}/paybender-demo-get/${tabKey === 'pay-in' ? 'payin' : 'payout'}`,
+    {
+      initialParams: {
+        page: 1,
+        limit: 10,
+      },
+      token: '',
+      onSuccess: (data) => {
+        setDataTrx(data.data)
+        setDataSummary(data.summary)
+        setParams(data.meta)
+      },
+      onError: (err) => console.log({ err }),
+    }
+  )
+
   const columns = tabKey === 'pay-in' ? columnsPayin : columnsPayout
-  const dataTrx = tabKey === 'pay-in' ? transactionPayin : transactionPayout
 
   return (
     <Layout className='bg-[#FAFAFB]'>
@@ -70,7 +112,7 @@ export default function TestMode() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='ml-auto flex items-center space-x-4'>
+        <div className='flex items-center ml-auto space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
@@ -79,7 +121,7 @@ export default function TestMode() {
       <Layout.Body>
         {location.state?.testMode === 'pay-out' ? (
           <Alert variant='success' className='mb-10'>
-            <IconCircleCheck className='h-4 w-4' />
+            <IconCircleCheck className='w-4 h-4' />
             <AlertTitle className='text-[#263238]'>
               Withdrawal Success
             </AlertTitle>
@@ -102,9 +144,8 @@ export default function TestMode() {
           orientation='vertical'
           defaultValue='pay-in'
           className='space-y-4'
-          onValueChange={(v) => setTabKey(v)}
         >
-          <div className='w-fit overflow-x-auto pb-2'>
+          <div className='pb-2 overflow-x-auto w-fit'>
             <TabsList className='flex h-auto gap-x-2.5 bg-[#EEF9FA]'>
               <Button
                 className={cn(
@@ -114,7 +155,11 @@ export default function TestMode() {
                       tabKey === 'pay-in',
                   }
                 )}
-                onClick={() => setTabKey('pay-in')}
+                onClick={() => {
+                  setTabKey('pay-in')
+                  setParams((prev) => ({ ...prev, page: 1 }))
+                  handleParamsChange({ page: 1, limit: 10 })
+                }}
               >
                 Pay In
               </Button>
@@ -126,7 +171,11 @@ export default function TestMode() {
                       tabKey === 'pay-out',
                   }
                 )}
-                onClick={() => setTabKey('pay-out')}
+                onClick={() => {
+                  setTabKey('pay-out')
+                  setParams((prev) => ({ ...prev, page: 1 }))
+                  handleParamsChange({ page: 1, limit: 10 })
+                }}
               >
                 Pay Out
               </Button>
@@ -153,7 +202,7 @@ export default function TestMode() {
                         Balance
                       </span>
                       <h3 className='text-sm font-medium text-black'>
-                        IDR 6.974.000,00
+                        {currencyFormatter(Number(dataSummary?.balance), 'IDR')}
                       </h3>
                     </div>
                   </div>
@@ -163,7 +212,9 @@ export default function TestMode() {
                       <span className='text-xs font-medium text-[#AEAEAE]'>
                         Success
                       </span>
-                      <h3 className='text-sm font-medium text-black'>3</h3>
+                      <h3 className='text-sm font-medium text-black'>
+                        {dataSummary.countCompleted}
+                      </h3>
                     </div>
                   </div>
                   <div className='flex items-center gap-x-2.5'>
@@ -172,7 +223,9 @@ export default function TestMode() {
                       <span className='text-xs font-medium text-[#AEAEAE]'>
                         Processing
                       </span>
-                      <h3 className='text-sm font-medium text-black'>1</h3>
+                      <h3 className='text-sm font-medium text-black'>
+                        {dataSummary.countProcessing}
+                      </h3>
                     </div>
                   </div>
                   <div className='flex items-center gap-x-2.5'>
@@ -181,7 +234,9 @@ export default function TestMode() {
                       <span className='text-xs font-medium text-[#AEAEAE]'>
                         Failed
                       </span>
-                      <h3 className='text-sm font-medium text-black'>1</h3>
+                      <h3 className='text-sm font-medium text-black'>
+                        {dataSummary.countFailed}
+                      </h3>
                     </div>
                   </div>
                 </div>
@@ -204,17 +259,21 @@ export default function TestMode() {
           <h2 className='text-lg font-medium text-black'>Transactions</h2>
           <Separator className='my-6 text-[#C7C7C7]' />
           <DataTable
+            isLoading={isLoading}
             columns={[
               ...columns,
               {
                 id: 'actions',
                 header: 'Actions',
-                cell: () => (
+                cell: ({ row }) => (
                   <div className='flex items-center gap-x-2'>
                     <IconEye
                       size={24}
                       className='cursor-pointer text-[#3CC1D1] hover:text-[#3CC1D1] focus:text-[#3CC1D1]'
-                      onClick={() => setIsOpenDetailTrx(true)}
+                      onClick={() => {
+                        setIsOpenDetailTrx(true)
+                        setTrxDetail(row.original)
+                      }}
                     />
                   </div>
                 ),
@@ -225,15 +284,26 @@ export default function TestMode() {
           {dataTrx.length > 0 && (
             <div className='mt-4'>
               <TablePagination
-                count={dataTrx.length}
-                current_page={1}
-                onPageChange={() => {}}
-                page_size={10}
+                count={params.total_data}
+                current_page={params.page}
+                onPageChange={(v) =>
+                  handleParamsChange({
+                    page: v,
+                    limit: 10,
+                  })
+                }
+                page_size={params.limit}
               />
             </div>
           )}
         </div>
-        <Dialog open={isOpenDetailTrx} onOpenChange={setIsOpenDetailTrx}>
+        <Dialog
+          open={isOpenDetailTrx}
+          onOpenChange={(v) => {
+            setIsOpenDetailTrx(v)
+            setTrxDetail({})
+          }}
+        >
           <DialogContent>
             <DialogHeader>
               <DialogTitle className='mb-6 text-[2rem] text-[#2A8F9B]'>
@@ -242,125 +312,33 @@ export default function TestMode() {
               <DialogDescription className='!mt-0'>
                 <Card className='border-none shadow-md'>
                   <CardHeader>
-                    <div className='flex flex-col gap-y-6'>
-                      <CardTitle className='text-center text-2xl text-[#3CC1D1]'>
-                        {tabKey === 'pay-in' ? 'Pay In' : 'Pay Out'}
-                      </CardTitle>
+                    <CardTitle className='flex flex-col gap-y-6 text-center text-2xl text-[#3CC1D1]'>
+                      {tabKey === 'pay-in' ? 'Pay In' : 'Pay Out'}
                       <img
                         src={PaybenderLogo}
                         alt='Paybender Logo'
                         className='mx-auto w-[150px] object-cover'
                       />
-                      <div className='flex flex-col gap-y-2'>
-                        <div className='flex items-center justify-center gap-x-4'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Transaction Created:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            1 August 2024, 22:47:00
-                          </span>
-                        </div>
-                      </div>
-                      <div className='flex flex-col gap-y-2'>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Payout ID:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            030624414531D0005
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Payin Channel:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            Bank BCA Transfer
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Email Address:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            michael.jackson@gmail.com
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            User Name:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            Michael Jackson
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Bank Account No:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            1112223333
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Currency:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            IDR
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Amount:
-                          </h4>
-                          <span className='text-lg font-medium text-[#4B8400]'>
-                            5.015.000
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Fee:
-                          </h4>
-                          <span className='text-lg font-medium text-[#4B8400]'>
-                            15.000
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Money Receive:
-                          </h4>
-                          <span className='text-lg font-medium text-[#4B8400]'>
-                            5.000.000
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Status:
-                          </h4>
-                          <span className='rounded-md border border-[#4B8400] bg-[#C8F08F] p-1 text-sm font-normal text-[#4B8400]'>
-                            Success, received by customer
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Reason:
-                          </h4>
-                          <span className='text-lg font-medium text-[#464646]'>
-                            -
-                          </span>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <h4 className='text-lg font-medium text-[#464646]'>
-                            Callback Status:
-                          </h4>
-                          <span className='rounded-md border border-[#4B8400] bg-[#C8F08F] p-1 text-sm font-normal text-[#4B8400]'>
-                            Success
-                          </span>
-                        </div>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className='flex flex-col mb-6 gap-y-2'>
+                      <div className='flex flex-col items-center justify-center gap-x-4'>
+                        <h4 className='text-lg font-medium text-[#464646]'>
+                          Transaction Created:
+                        </h4>
+                        <span className='text-lg font-medium text-[#464646]'>
+                          {dayjs(trxDetail?.trx_datetime).format(
+                            'dddd, MMMM DD, YYYY HH:mm:ss'
+                          )}
+                        </span>
                       </div>
                     </div>
-                  </CardHeader>
+                    {tabKey === 'pay-in' && <DetailTrxPayin data={trxDetail} />}
+                    {tabKey === 'pay-out' && (
+                      <DetailTrxPayout data={trxDetail} />
+                    )}
+                  </CardContent>
                 </Card>
               </DialogDescription>
             </DialogHeader>

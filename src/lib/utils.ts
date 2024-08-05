@@ -16,6 +16,7 @@ export function currencyFormatter(
     Intl.NumberFormat(locales, {
       style: 'currency',
       currency,
+      currencyDisplay: currency === 'IDR' ? 'code' : 'symbol',
       maximumSignificantDigits: Math.trunc(Math.abs(currencyValue)).toFixed()
         .length,
     }).format(currencyValue)

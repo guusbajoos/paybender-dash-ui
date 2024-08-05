@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
 import PaymemtReview from '@/components/partials/dashboard/test-mode/pay-in/payment-review'
+import usePostData from '@/hooks/use-post-data'
 
 // import OrderStatusPaid from '@/components/partials/dashboard/test-mode/pay-in/order-status/order-status-paid'
 
@@ -24,7 +25,54 @@ export default function PayIn() {
 
   const state = useCheckout((state) => state)
 
+  const generateSecondsByPaymentType = (paymentType: string) => {
+    if (paymentType === 'VA') {
+      return 3600 // 10 minutes
+    }
+    if (paymentType === 'QRIS') {
+      return 600 // 10 minutes
+    }
+    return 600
+  }
+
   const [countdown, setCountdown] = useState(5)
+
+  const [remainingTime, setRemainingTime] = useState(
+    generateSecondsByPaymentType(state.data.payment?.payment_type)
+  )
+
+  useEffect(() => {
+    if (
+      remainingTime > 0 &&
+      state?.data?.payment?.payment_type === 'QRIS' &&
+      state?.data?.payment?.payment_method === 'QRIS'
+    ) {
+      const timerId = setTimeout(
+        () => setRemainingTime(remainingTime - 1),
+        1000
+      )
+      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
+    }
+    if (
+      remainingTime > 0 &&
+      state?.data?.payment?.payment_type === 'VA' &&
+      ['BCA', 'MANDIRI', 'BRI', 'BNI', 'BSI', 'CIMBNiaga', 'Permata'].includes(
+        state.data?.payment?.payment_method
+      )
+    ) {
+      const timerId = setTimeout(
+        () => setRemainingTime(remainingTime - 1),
+        1000
+      )
+      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
+    }
+  }, [remainingTime, state.data?.payment])
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+  }
 
   const CHECKOUT_STEPS = [
     {
@@ -49,6 +97,23 @@ export default function PayIn() {
     (c) => c.step === state?.data?.step
   )
 
+  const { isLoading: step1Loading, postData: postDataPayin } = usePostData(
+    `${import.meta.env.VITE_APP_API_URL}/paybender-demo-insert/payin`,
+    {
+      token: '',
+      onSuccess: () => {},
+      onError: (err) => console.log({ err }),
+    }
+  )
+
+  const { isLoading: step2Loading, postData: updateDataPayin } = usePostData(
+    `${import.meta.env.VITE_APP_API_URL}/paybender-demo-update/payin`,
+    {
+      token: '',
+      onError: (err) => console.log({ err }),
+    }
+  )
+
   const ActiveComponetn = () => {
     switch (findCheckoutComp?.step) {
       case 1:
@@ -67,15 +132,45 @@ export default function PayIn() {
       case 2:
         return (
           <SelectPayment
-            onNextStep={() => {
-              state?.setStep(CHECKOUT_STEPS.length)
+            onNextStep={(v) => {
+              postDataPayin({
+                channel: v.payment_method,
+                amount: state.data.cart?.amount,
+                feeAmount: state.data.cart?.feeAmount,
+                customerName: `${state.data.shipping?.first_name} ${state.data.shipping?.last_name}`,
+                customerEmail: state.data.shipping?.email,
+                customerPhone: state.data.shipping?.phone_number,
+                shippingCourier: state.data.shipping?.shipping_method,
+                shippingService: state.data.shipping?.shipping_service,
+              }).then((res) => {
+                state.setPaymentData({
+                  transactionId: (res as unknown as { transactionId: string })
+                    ?.transactionId,
+                })
+                state?.setStep(CHECKOUT_STEPS.length)
+              })
             }}
             onPaymentMethodChange={(v) => state.setPaymentData(v)}
             payment_method={state.data.payment?.payment_method}
+            isLoading={step1Loading}
           />
         )
       case 3:
-        return <PaymemtReview />
+        return (
+          <PaymemtReview
+            remainingTime={remainingTime ? formatTime(remainingTime) : ''}
+            onPaidTransaction={(v) => [
+              updateDataPayin({
+                transactionId: state.data.payment?.transactionId,
+                status: v,
+              }).then(() => {
+                state?.setStep(CHECKOUT_STEPS.length)
+                state.setPaymentData({ payment_date: new Date() })
+              }),
+            ]}
+            isLoading={step2Loading}
+          />
+        )
       case 4:
         return <OrderStatus countdown={countdown} />
       default:
@@ -93,8 +188,6 @@ export default function PayIn() {
         return () => {
           clearInterval(interval)
         }
-      } else {
-        navigate('/get-started/test-mode')
       }
     }
   }, [state?.data?.step, countdown, navigate])
@@ -107,7 +200,7 @@ export default function PayIn() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='ml-auto flex items-center space-x-4'>
+        <div className='flex items-center ml-auto space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
