@@ -34,6 +34,10 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
     mode: 'onChange',
   })
 
+  const watchField = form.watch()
+
+  console.log(watchField, 'watchField')
+
   const onSubmit = (val: z.infer<typeof payoutMethodSchema>) => {
     const payload = {
       ...val,
@@ -76,7 +80,7 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
               />
               <FormField
                 control={form.control}
-                name='channel'
+                name='channel_method'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
@@ -85,7 +89,7 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl className='font-normal text-[#777677]'>
                         <SelectTrigger>
-                          <SelectValue placeholder='Select a withdraw method channel' />
+                          <SelectValue placeholder='Select a withdraw channel method' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -99,6 +103,65 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
                   </FormItem>
                 )}
               />
+              {watchField.channel_method && (
+                <FormField
+                  control={form.control}
+                  name='channel'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className='font-normal text-[#777677]'>
+                        Channel Name
+                      </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <FormControl className='font-normal text-[#777677]'>
+                          <SelectTrigger>
+                            <SelectValue placeholder='Select a withdraw channel name' />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {watchField.channel_method === 'Bank Transfer' && (
+                            <>
+                              <SelectItem value='Bank BCA Transfer'>
+                                Bank BCA Transfer
+                              </SelectItem>
+                              <SelectItem value='Bank Mandiri Transfer'>
+                                Bank Mandiri Transfer
+                              </SelectItem>
+                              <SelectItem value='Bank BRI Transfer'>
+                                Bank BRI Transfer
+                              </SelectItem>
+                              <SelectItem value='Bank BNI Transfer'>
+                                Bank BNI Transfer
+                              </SelectItem>
+                              <SelectItem value='Bank BSI Transfer'>
+                                Bank BSI Transfer
+                              </SelectItem>
+                              <SelectItem value='Bank CIMBNiaga Transfer'>
+                                Bank CIMBNiaga Transfer
+                              </SelectItem>
+                              <SelectItem value='Bank Permata Transfer'>
+                                Bank Permata Transfer
+                              </SelectItem>
+                            </>
+                          )}
+                          {watchField.channel_method === 'e-Wallet' && (
+                            <>
+                              <SelectItem value='GoPay'>GoPay</SelectItem>
+                              <SelectItem value='DANA'>DANA</SelectItem>
+                              <SelectItem value='LinkAja'>LinkAja</SelectItem>
+                              <SelectItem value='OVO'>OVO</SelectItem>
+                            </>
+                          )}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
               <FormField
                 control={form.control}
                 name='customerName'

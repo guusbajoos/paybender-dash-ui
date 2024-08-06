@@ -74,11 +74,11 @@ export default function PayOut() {
     },
     {
       step: 2,
-      name: 'Payment Review',
+      name: 'Withdrawal Review',
     },
     {
       step: 3,
-      name: 'Order Status',
+      name: 'Withdrawal Status',
     },
   ]
 

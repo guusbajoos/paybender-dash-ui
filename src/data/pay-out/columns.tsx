@@ -67,7 +67,7 @@ export const columnsPayout: ColumnDef<any>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           className='px-0'
         >
-          Channel
+          Channel Withdraw
           <CaretSortIcon className='w-4 h-4 ml-2' />
         </Button>
       )

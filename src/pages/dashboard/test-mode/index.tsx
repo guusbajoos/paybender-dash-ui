@@ -324,10 +324,10 @@ export default function TestMode() {
                   <CardContent>
                     <div className='flex flex-col mb-6 gap-y-2'>
                       <div className='flex flex-col items-center justify-center gap-x-4'>
-                        <h4 className='text-lg font-medium text-[#464646]'>
+                        <h4 className='text-sm font-medium text-[#464646]'>
                           Transaction Created:
                         </h4>
-                        <span className='text-lg font-medium text-[#464646]'>
+                        <span className='text-sm font-medium text-[#464646]'>
                           {dayjs(trxDetail?.trx_datetime).format(
                             'dddd, MMMM DD, YYYY HH:mm:ss'
                           )}

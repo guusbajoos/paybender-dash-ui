@@ -7,10 +7,10 @@ const DetailTrxPayin = ({ data }: { data: any }) => {
     <div className='flex flex-col gap-y-2'>
       {data?.status === 'completed' && (
         <div className='flex items-center justify-between'>
-          <h4 className='text-lg font-medium text-[#464646]'>
+          <h4 className='text-sm font-medium text-[#464646]'>
             Transaction Paid:
           </h4>
-          <span className='text-lg font-medium text-[#464646]'>
+          <span className='text-sm font-medium text-[#464646]'>
             {data?.paid_datetime
               ? dayjs(data?.paid_datetime).format(
                   'dddd, MMMM DD, YYYY HH:mm:ss'
@@ -20,71 +20,71 @@ const DetailTrxPayin = ({ data }: { data: any }) => {
         </div>
       )}
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Transaction ID:</h4>
-        <span className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>Transaction ID:</h4>
+        <span className='text-sm font-medium text-[#464646]'>
           {data?.transaction_id || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Payment Method:</h4>
-        <span className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>Payment Method:</h4>
+        <span className='text-sm font-medium text-[#464646]'>
           {data?.channel || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Customer Name:</h4>
-        <span className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>Customer Name:</h4>
+        <span className='text-sm font-medium text-[#464646]'>
           {data?.customer_name || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Customer Email:</h4>
-        <span className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>Customer Email:</h4>
+        <span className='text-sm font-medium text-[#464646]'>
           {data?.customer_email || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Customer Phone:</h4>
-        <span className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>Customer Phone:</h4>
+        <span className='text-sm font-medium text-[#464646]'>
           {data?.customer_phone || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Currency:</h4>
-        <span className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>Currency:</h4>
+        <span className='text-sm font-medium text-[#464646]'>
           {data?.currency || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>
           Transaction Amount:
         </h4>
-        <span className='text-lg font-medium text-[#4B8400]'>
+        <span className='text-sm font-medium text-[#4B8400]'>
           {data?.trx_amount
             ? currencyFormatter(Number(data?.trx_amount), data?.currency)
             : '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Charged Amount:</h4>
-        <span className='text-lg font-medium text-[#4B8400]'>
+        <h4 className='text-sm font-medium text-[#464646]'>Charged Amount:</h4>
+        <span className='text-sm font-medium text-[#4B8400]'>
           {data?.fee_amount
             ? currencyFormatter(Number(data?.fee_amount), data?.currency)
             : '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>
           Settlement Amount:
         </h4>
-        <span className='text-lg font-medium text-[#4B8400]'>
+        <span className='text-sm font-medium text-[#4B8400]'>
           {data?.settlement_amount
             ? currencyFormatter(Number(data?.settlement_amount), data?.currency)
             : '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Status:</h4>
+        <h4 className='text-sm font-medium text-[#464646]'>Status:</h4>
         <span
           className={cn('rounded-md border p-1 text-sm font-normal', {
             'border-[#FFC107] bg-[#FFF3CD] text-[#FFC107]':
@@ -99,13 +99,13 @@ const DetailTrxPayin = ({ data }: { data: any }) => {
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Remarks:</h4>
-        <span className='text-lg font-medium text-[#464646]'>
+        <h4 className='text-sm font-medium text-[#464646]'>Remarks:</h4>
+        <span className='text-sm font-medium text-[#464646]'>
           {data?.remarks || '-'}
         </span>
       </div>
       <div className='flex items-center justify-between'>
-        <h4 className='text-lg font-medium text-[#464646]'>Callback Status:</h4>
+        <h4 className='text-sm font-medium text-[#464646]'>Callback Status:</h4>
         <span
           className={cn('rounded-md border p-1 text-sm font-normal', {
             'border-[#4B8400] bg-[#C8F08F] text-[#4B8400]':

@@ -99,15 +99,16 @@ function NavLink({
           size: 'sm',
           className: '!rounded-[0.625rem] px-[0.875rem] py-2.5 text-sm',
         }),
-        'h-12 justify-start text-wrap rounded-none',
-        subLink && 'h-10 w-full'
+        'h-12 justify-start text-wrap rounded-none text-[#2A8F9B] hover:text-[#2A8F9B]/90 focus:text-[#2A8F9B]/90',
+        subLink && 'h-10 w-full',
+        checkActiveNav(href) && 'text-white hover:text-white focus:text-white'
       )}
       aria-current={checkActiveNav(href) ? 'page' : undefined}
     >
       <div className='mr-2'>{icon}</div>
       {title}
       {label && (
-        <div className='rounded-lg bg-primary px-1 text-sm text-primary-foreground'>
+        <div className='px-1 text-sm rounded-lg bg-primary text-primary-foreground'>
           {label}
         </div>
       )}
@@ -207,7 +208,7 @@ function NavLinkIconDropdown({ title, icon, label, sub }: NavLinkProps) {
             <Button
               variant={isChildActive ? 'secondary' : 'ghost'}
               size='icon'
-              className='h-12 w-12'
+              className='w-12 h-12'
             >
               {icon}
             </Button>

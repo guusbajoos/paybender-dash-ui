@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { currencyFormatter } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const PaymentReviewTF = ({
@@ -20,24 +20,24 @@ const PaymentReviewTF = ({
 
   const navigate = useNavigate()
 
-  const [date] = useState<Date>(() => {
-    const futureDate = new Date()
-    futureDate.setSeconds(futureDate.getSeconds() + 600) // Add 600 seconds (10 minutes)
-    return futureDate
-  })
+  // const [date] = useState<Date>(() => {
+  //   const futureDate = new Date()
+  //   futureDate.setSeconds(futureDate.getSeconds() + 600) // Add 600 seconds (10 minutes)
+  //   return futureDate
+  // })
 
-  const datePaid = (date: Date): string => {
-    const options = {
-      year: 'numeric' as const,
-      month: 'long' as const,
-      day: 'numeric' as const,
-      hour: '2-digit' as const,
-      minute: '2-digit' as const,
-      second: '2-digit' as const,
-    }
+  // const datePaid = (date: Date): string => {
+  //   const options = {
+  //     year: 'numeric' as const,
+  //     month: 'long' as const,
+  //     day: 'numeric' as const,
+  //     hour: '2-digit' as const,
+  //     minute: '2-digit' as const,
+  //     second: '2-digit' as const,
+  //   }
 
-    return date.toLocaleDateString(undefined, options)
-  }
+  //   return date.toLocaleDateString(undefined, options)
+  // }
 
   // if remaining time is done, redirect to the test mode page
   if (remainingTime === '00:00') {
@@ -53,13 +53,13 @@ const PaymentReviewTF = ({
       <Separator className='my-4 text-[#C7C7C7]' />
 
       {/* <div className='flex flex-col gap-y-2.5'> */}
-        {/* <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'> */}
-          {/* {remainingTime} */}
-        {/* </p> */}
-        {/* <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p> */}
-        {/* <p className='text-center text-base text-[#5A5A5A] lg:text-lg'> */}
-          {/* {datePaid(date)} */}
-        {/* </p> */}
+      {/* <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'> */}
+      {/* {remainingTime} */}
+      {/* </p> */}
+      {/* <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p> */}
+      {/* <p className='text-center text-base text-[#5A5A5A] lg:text-lg'> */}
+      {/* {datePaid(date)} */}
+      {/* </p> */}
       {/* </div> */}
 
       <div className='mt-4 flex flex-col gap-y-2.5'>
@@ -74,13 +74,12 @@ const PaymentReviewTF = ({
 
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            Withdrawal amount
+            Withdrawal Amount
           </span>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {currencyFormatter(state.data.cart?.amount, 'IDR')}
           </span>
         </div>
-
       </div>
 
       <Separator className='my-4 text-[#C7C7C7]' />
