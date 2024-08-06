@@ -27,11 +27,12 @@ export default function PayIn() {
 
   const generateSecondsByPaymentType = (paymentType: string) => {
     if (paymentType === 'VA') {
-      return 3600 // 10 minutes
+      return 3600 // 1h minutes
     }
-    if (paymentType === 'QRIS') {
+    if (paymentType === 'QRIS' || paymentType === 'E-Money') {
       return 600 // 10 minutes
     }
+
     return 600
   }
 
@@ -40,39 +41,6 @@ export default function PayIn() {
   const [remainingTime, setRemainingTime] = useState(
     generateSecondsByPaymentType(state.data.payment?.payment_type)
   )
-
-  useEffect(() => {
-    if (
-      remainingTime > 0 &&
-      state?.data?.payment?.payment_type === 'QRIS' &&
-      state?.data?.payment?.payment_method === 'QRIS'
-    ) {
-      const timerId = setTimeout(
-        () => setRemainingTime(remainingTime - 1),
-        1000
-      )
-      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
-    }
-    if (
-      remainingTime > 0 &&
-      state?.data?.payment?.payment_type === 'VA' &&
-      [
-        'BCA Virtual Account',
-        'Mandiri Virtual Account',
-        'BRI Virtual Account',
-        'BNI Virtual Account',
-        'BSI Virtual Account',
-        'CIMBNiaga Virtual Account',
-        'Permata Virtual Account',
-      ].includes(state.data?.payment?.payment_method)
-    ) {
-      const timerId = setTimeout(
-        () => setRemainingTime(remainingTime - 1),
-        1000
-      )
-      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
-    }
-  }, [remainingTime, state.data?.payment])
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -190,6 +158,40 @@ export default function PayIn() {
   }
 
   useEffect(() => {
+    if (
+      remainingTime > 0 &&
+      state?.data?.step === 3 &&
+      ['QRIS', 'E-Money'].includes(state.data?.payment?.payment_type)
+    ) {
+      const timerId = setTimeout(
+        () => setRemainingTime(remainingTime - 1),
+        1000
+      )
+      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
+    }
+    if (
+      remainingTime > 0 &&
+      state?.data?.step === 3 &&
+      state?.data?.payment?.payment_type === 'VA' &&
+      [
+        'BCA Virtual Account',
+        'Mandiri Virtual Account',
+        'BRI Virtual Account',
+        'BNI Virtual Account',
+        'BSI Virtual Account',
+        'CIMBNiaga Virtual Account',
+        'Permata Virtual Account',
+      ].includes(state.data?.payment?.payment_method)
+    ) {
+      const timerId = setTimeout(
+        () => setRemainingTime(remainingTime - 1),
+        1000
+      )
+      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
+    }
+  }, [remainingTime, state.data?.step, state.data?.payment])
+
+  useEffect(() => {
     if (state?.data?.step === CHECKOUT_STEPS.length) {
       if (countdown !== 0) {
         const interval = setInterval(() => {
@@ -211,7 +213,7 @@ export default function PayIn() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='flex items-center ml-auto space-x-4'>
+        <div className='ml-auto flex items-center space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
@@ -240,7 +242,7 @@ export default function PayIn() {
           })}
         >
           <div className='w-full lg:w-1/2'>
-            <CartReview currentStep={state?.data?.step} />
+            <CartReview />
           </div>
           <div className='w-full lg:w-1/2'>{ActiveComponetn()}</div>
         </div>

@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { copyTextToClipboard } from '@/lib/utils'
 
-const CartReview = ({ currentStep }: { currentStep: number }) => {
+const CartReview = () => {
   const [message, setMessage] = useState<string>('')
 
   const handleCopy = async () => {
@@ -64,8 +64,8 @@ const CartReview = ({ currentStep }: { currentStep: number }) => {
                   type='number'
                   defaultValue={1}
                   min={1}
-                  className='w-[111px]'
-                  disabled={currentStep !== 1}
+                  className='w-[111px] disabled:bg-gray-200'
+                  disabled
                 />
               </div>
               <h3 className='text-sm'>IDR 150.000</h3>
@@ -87,8 +87,8 @@ const CartReview = ({ currentStep }: { currentStep: number }) => {
                   type='number'
                   defaultValue={1}
                   min={1}
-                  className='w-[111px]'
-                  disabled={currentStep !== 1}
+                  className='w-[111px] disabled:bg-gray-200'
+                  disabled
                 />
               </div>
               <h3 className='text-sm'>IDR 150.000</h3>

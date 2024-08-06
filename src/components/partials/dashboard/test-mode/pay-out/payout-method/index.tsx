@@ -26,6 +26,7 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
   const form = useForm<z.infer<typeof payoutMethodSchema>>({
     resolver: zodResolver(payoutMethodSchema),
     defaultValues: {
+      channel_method: '',
       channel: '',
       amount: 0,
       customerName: 'James Hetfield',
@@ -35,8 +36,6 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
   })
 
   const watchField = form.watch()
-
-  console.log(watchField, 'watchField')
 
   const onSubmit = (val: z.infer<typeof payoutMethodSchema>) => {
     const payload = {
@@ -176,6 +175,7 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
                         onChange={field.onChange}
                         value={field.value}
                         disabled
+                        className='disabled:bg-gray-200'
                       />
                     </FormControl>
                     <FormMessage />
@@ -196,6 +196,7 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
                         onChange={field.onChange}
                         value={field.value}
                         disabled
+                        className='disabled:bg-gray-200'
                       />
                     </FormControl>
                     <FormMessage />

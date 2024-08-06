@@ -31,16 +31,16 @@ const ContactInformationForm = (
   const form = useForm<z.infer<typeof contactInformationSchema>>({
     resolver: zodResolver(contactInformationSchema),
     defaultValues: {
-      first_name: '',
-      last_name: '',
-      email: '',
-      phone_number: '',
-      shipping_name: '',
-      shipping_country: '',
-      shipping_email: '',
-      shipping_phone: '',
-      shipping_method: '',
-      shipping_service: '',
+      first_name: 'Cruz',
+      last_name: 'Dale',
+      email: 'nuqiwir@mailinator.com',
+      phone_number: '089523423422',
+      shipping_name: 'Micah Nunez',
+      shipping_country: 'Indonesia',
+      shipping_email: 'rykemum@mailinator.com',
+      shipping_phone: '089523423421',
+      shipping_method: 'Bender Express',
+      shipping_service: 'Same Day Service',
     },
     mode: 'onChange',
   })
@@ -48,8 +48,8 @@ const ContactInformationForm = (
   const onSubmit = (val: z.infer<typeof contactInformationSchema>) => {
     const payload = {
       ...val,
-      shipping_method: 'Bender Express',
-      shipping_service: 'Same Day Service',
+      // shipping_method: 'Bender Express',
+      // shipping_service: 'Same Day Service',
     }
 
     if (Object.keys(form.formState.errors).length === 0) {
@@ -76,7 +76,12 @@ const ContactInformationForm = (
                       First Name
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='John' {...field} />
+                      <Input
+                        placeholder='John'
+                        {...field}
+                        disabled
+                        className='disabled:bg-gray-200'
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -91,7 +96,12 @@ const ContactInformationForm = (
                       Last Name
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='Doe' {...field} />
+                      <Input
+                        placeholder='Doe'
+                        {...field}
+                        disabled
+                        className='disabled:bg-gray-200'
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -106,7 +116,12 @@ const ContactInformationForm = (
                       Email
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='johndoe@gmail.com' {...field} />
+                      <Input
+                        placeholder='johndoe@gmail.com'
+                        {...field}
+                        disabled
+                        className='disabled:bg-gray-200'
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -121,7 +136,12 @@ const ContactInformationForm = (
                       Phone Number
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='08xxxxxxxxxx' {...field} />
+                      <Input
+                        placeholder='08xxxxxxxxxx'
+                        {...field}
+                        disabled
+                        className='disabled:bg-gray-200'
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -144,7 +164,12 @@ const ContactInformationForm = (
                       Receiver Name
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='John' {...field} />
+                      <Input
+                        placeholder='John'
+                        {...field}
+                        disabled
+                        className='disabled:bg-gray-200'
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -158,8 +183,12 @@ const ContactInformationForm = (
                     <FormLabel className='font-normal text-[#777677]'>
                       Country
                     </FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl className='font-normal text-[#777677]'>
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      disabled
+                    >
+                      <FormControl className='font-normal text-[#777677] disabled:bg-gray-200'>
                         <SelectTrigger>
                           <SelectValue placeholder='Select a country' />
                         </SelectTrigger>
@@ -183,7 +212,12 @@ const ContactInformationForm = (
                       Email
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='johndoe@gmail.com' {...field} />
+                      <Input
+                        placeholder='johndoe@gmail.com'
+                        {...field}
+                        disabled
+                        className='disabled:bg-gray-200'
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -198,7 +232,12 @@ const ContactInformationForm = (
                       Phone Number
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='08xxxxxxxxxx' {...field} />
+                      <Input
+                        placeholder='08xxxxxxxxxx'
+                        {...field}
+                        disabled
+                        className='disabled:bg-gray-200'
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -224,8 +263,10 @@ const ContactInformationForm = (
                       <Input
                         placeholder='courier'
                         disabled
-                        onChange={field.onChange}
-                        value='Bender Express'
+                        // onChange={field.onChange}
+                        // value='Bender Express'
+                        {...field}
+                        className='disabled:bg-gray-200'
                       />
                     </FormControl>
                     {/* <Select onValueChange={field.onChange} value={field.value}>
@@ -256,8 +297,10 @@ const ContactInformationForm = (
                       <Input
                         placeholder='service'
                         disabled
-                        onChange={field.onChange}
-                        value='Same Day Service'
+                        {...field}
+                        // onChange={field.onChange}
+                        // value='Same Day Service'
+                        className='disabled:bg-gray-200'
                       />
                     </FormControl>
                     {/* <Select onValueChange={field.onChange} value={field.value}>

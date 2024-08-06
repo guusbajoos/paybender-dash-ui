@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IconArrowLeft } from '@tabler/icons-react'
 
@@ -22,11 +23,11 @@ export default function PayOut() {
 
   const state = useCheckout((state) => state)
 
-  const generateSecondsByPaymentType = (paymentMethod: string) => {
-    if (paymentMethod === 'Bank Transfer') {
+  const generateSecondsByPaymentType = (payment_type: string) => {
+    if (payment_type === 'Bank Transfer') {
       return 3600
     }
-    if (paymentMethod === 'QRIS') {
+    if (payment_type === 'e-Wallet') {
       return 600
     }
     return 600
@@ -35,31 +36,8 @@ export default function PayOut() {
   const [countdown, setCountdown] = useState(5)
 
   const [remainingTime, setRemainingTime] = useState(
-    generateSecondsByPaymentType(state.data.payment?.payment_method)
+    generateSecondsByPaymentType(state.data.payment?.payment_type)
   )
-
-  useEffect(() => {
-    if (
-      remainingTime > 0 &&
-      state?.data?.payment?.payment_method === 'Bank Transfer'
-    ) {
-      const timerId = setTimeout(
-        () => setRemainingTime(remainingTime - 1),
-        1000
-      )
-      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
-    }
-    if (
-      remainingTime > 0 &&
-      state?.data?.payment?.payment_method === 'e-Wallet'
-    ) {
-      const timerId = setTimeout(
-        () => setRemainingTime(remainingTime - 1),
-        1000
-      )
-      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
-    }
-  }, [remainingTime, state.data?.payment])
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -109,6 +87,7 @@ export default function PayOut() {
         return (
           <PayoutMethod
             onNextStep={(data?: {
+              channel_method: string
               channel: string
               amount: number
               customerName: string
@@ -116,13 +95,16 @@ export default function PayOut() {
               feeAmount: number
               customerEmail: string
             }) => {
-              postDataPayout(data).then((res) => {
+              const { channel_method, ...rest } = data ?? {}
+
+              postDataPayout(rest).then((res) => {
                 state?.setStep(CHECKOUT_STEPS.length)
                 state?.setCartData({
                   amount: data?.amount,
                   feeAmount: data?.feeAmount,
                 })
                 state.setPaymentData({
+                  payment_type: data?.channel_method,
                   payment_method: data?.channel,
                   transactionId: (res as unknown as { transactionId: string })
                     ?.transactionId,
@@ -167,6 +149,34 @@ export default function PayOut() {
   }
 
   useEffect(() => {
+    if (
+      remainingTime > 0 &&
+      state.data?.step === 2 &&
+      state?.data?.payment?.payment_type === 'Bank Transfer'
+    ) {
+      console.log('jalan 1')
+      const timerId = setTimeout(
+        () => setRemainingTime(remainingTime - 1),
+        1000
+      )
+      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
+    }
+    if (
+      remainingTime > 0 &&
+      state.data?.step === 2 &&
+      state?.data?.payment?.payment_type === 'e-Wallet'
+    ) {
+      console.log('jalan 2')
+
+      const timerId = setTimeout(
+        () => setRemainingTime(remainingTime - 1),
+        1000
+      )
+      return () => clearTimeout(timerId) // Cleanup the timer on component unmount
+    }
+  }, [remainingTime, state.data?.step, state.data?.payment])
+
+  useEffect(() => {
     if (state?.data?.step === CHECKOUT_STEPS.length) {
       if (countdown !== 0) {
         const interval = setInterval(() => {
@@ -188,7 +198,7 @@ export default function PayOut() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='flex items-center ml-auto space-x-4'>
+        <div className='ml-auto flex items-center space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
@@ -198,6 +208,7 @@ export default function PayOut() {
         <Link
           to='/get-started/test-mode'
           className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
+          onClick={() => state.removeState()}
         >
           <IconArrowLeft />
           Back

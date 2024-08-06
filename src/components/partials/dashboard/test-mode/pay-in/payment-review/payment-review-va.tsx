@@ -123,12 +123,8 @@ const PaymentReviewVA = ({
 
   return (
     <Card className='p-6'>
-      {/* <h2 className='text-lg font-medium text-center text-black lg:text-2xl'> */}
-      {/* Finish the Payment Before */}
-      {/* </h2> */}
-
       <div className='flex flex-col gap-y-4'>
-        <CardTitle className='text-lg font-medium text-center text-black lg:text-2xl'>
+        <CardTitle className='text-center text-lg font-medium text-black lg:text-2xl'>
           Payment Review
         </CardTitle>
         <CardDescription className='mb-4 text-center text-base text-[rgb(90,90,90)] lg:text-lg'>
@@ -139,9 +135,14 @@ const PaymentReviewVA = ({
       <Separator className='my-4 text-[#C7C7C7]' />
 
       <div className='flex flex-col gap-y-2.5'>
-        <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
-          {remainingTime}
-        </p>
+        <div className='flex flex-col gap-y-2'>
+          <h3 className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
+            Remaining Time
+          </h3>
+          <h5 className='text-center text-lg font-bold text-black lg:text-2xl'>
+            {remainingTime}
+          </h5>
+        </div>
         <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p>
         <p className='text-center text-base text-[#5A5A5A] lg:text-lg'>
           {datePaid(date)}

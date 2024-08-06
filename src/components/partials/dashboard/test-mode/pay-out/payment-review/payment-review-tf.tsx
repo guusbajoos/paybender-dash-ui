@@ -47,20 +47,21 @@ const PaymentReviewTF = ({
 
   return (
     <Card className='p-6'>
-      <h2 className='text-lg font-medium text-center text-black lg:text-2xl'>
+      <h2 className='text-center text-lg font-medium text-black lg:text-2xl'>
         Withdrawal Review
       </h2>
       <Separator className='my-4 text-[#C7C7C7]' />
 
-      {/* <div className='flex flex-col gap-y-2.5'> */}
-      {/* <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'> */}
-      {/* {remainingTime} */}
-      {/* </p> */}
-      {/* <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p> */}
-      {/* <p className='text-center text-base text-[#5A5A5A] lg:text-lg'> */}
-      {/* {datePaid(date)} */}
-      {/* </p> */}
-      {/* </div> */}
+      <div className='flex flex-col gap-y-2.5'>
+        <div className='flex flex-col gap-y-2'>
+          <h3 className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
+            Remaining Time
+          </h3>
+          <h5 className='text-center text-lg font-bold text-black lg:text-2xl'>
+            {remainingTime}
+          </h5>
+        </div>
+      </div>
 
       <div className='mt-4 flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
@@ -90,14 +91,14 @@ const PaymentReviewTF = ({
           onClick={() => onPaidTransaction('completed')}
           disabled={isLoading}
         >
-          {isLoading ? 'Processing' : 'PAID THE TRANSACTION'}
+          {isLoading ? 'Processing' : 'PROCEED WITHDRAWAL'}
         </Button>
         <Button
           className='w-full bg-[#e85d72] font-medium text-white hover:bg-[#e85d72]/90 focus:bg-[#e85d72]/90'
           onClick={() => onPaidTransaction('failed')}
           disabled={isLoading}
         >
-          {isLoading ? 'Processing' : 'FAIL THE TRANSACTION'}
+          {isLoading ? 'Processing' : 'CANCEL WITHDRAWAL'}
         </Button>
       </div>
     </Card>
