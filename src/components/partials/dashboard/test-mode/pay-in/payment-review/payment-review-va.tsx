@@ -8,7 +8,7 @@ import Permata from '@/assets/images/Permata.png'
 import IconClipboard from '@/assets/images/icon-clipboard.png'
 import { Button } from '@/components/ui/button'
 
-import { Card } from '@/components/ui/card'
+import { Card, CardDescription, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { copyTextToClipboard, currencyFormatter } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
@@ -123,18 +123,17 @@ const PaymentReviewVA = ({
 
   return (
     <Card className='p-6'>
-
       {/* <h2 className='text-lg font-medium text-center text-black lg:text-2xl'> */}
-        {/* Finish the Payment Before */}
+      {/* Finish the Payment Before */}
       {/* </h2> */}
 
       <div className='flex flex-col gap-y-4'>
-          <CardTitle className='text-lg font-medium text-center text-black lg:text-2xl'>
-            Payment Review
-          </CardTitle>
-          <CardDescription className='mb-4 text-center text-base text-[rgb(90,90,90)] lg:text-lg'>
-            Beware of fraudulent payment requests!
-          </CardDescription>
+        <CardTitle className='text-lg font-medium text-center text-black lg:text-2xl'>
+          Payment Review
+        </CardTitle>
+        <CardDescription className='mb-4 text-center text-base text-[rgb(90,90,90)] lg:text-lg'>
+          Beware of fraudulent payment requests!
+        </CardDescription>
       </div>
 
       <Separator className='my-4 text-[#C7C7C7]' />

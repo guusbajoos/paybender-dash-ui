@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card'
 import { currencyFormatter } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const PaymentReviewQRIS = ({
@@ -26,24 +26,24 @@ const PaymentReviewQRIS = ({
   const navigate = useNavigate()
 
   const state = useCheckout((state) => state)
-  const [date] = useState<Date>(() => {
-    const futureDate = new Date()
-    futureDate.setSeconds(futureDate.getSeconds() + 600) // Add 600 seconds (10 minutes)
-    return futureDate
-  })
+  // const [date] = useState<Date>(() => {
+  //   const futureDate = new Date()
+  //   futureDate.setSeconds(futureDate.getSeconds() + 600) // Add 600 seconds (10 minutes)
+  //   return futureDate
+  // })
 
-  const datePaid = (date: Date): string => {
-    const options = {
-      year: 'numeric' as const,
-      month: 'long' as const,
-      day: 'numeric' as const,
-      hour: '2-digit' as const,
-      minute: '2-digit' as const,
-      second: '2-digit' as const,
-    }
+  // const datePaid = (date: Date): string => {
+  //   const options = {
+  //     year: 'numeric' as const,
+  //     month: 'long' as const,
+  //     day: 'numeric' as const,
+  //     hour: '2-digit' as const,
+  //     minute: '2-digit' as const,
+  //     second: '2-digit' as const,
+  //   }
 
-    return date.toLocaleDateString(undefined, options)
-  }
+  //   return date.toLocaleDateString(undefined, options)
+  // }
 
   // if remaining time is done, redirect to the test mode page
   if (remainingTime === '00:00') {
@@ -66,7 +66,7 @@ const PaymentReviewQRIS = ({
       <CardContent>
         <div className='flex flex-col gap-y-2.5'>
           <div className='flex flex-col gap-y-2'>
-            <h3 className='text-base font-medium text-center text-[#EFC100] lg:text-lg'>
+            <h3 className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
               Remaining Time
             </h3>
             <h5 className='text-lg font-bold text-center text-black lg:text-2xl'>
@@ -92,14 +92,14 @@ const PaymentReviewQRIS = ({
               {currencyFormatter(state.data.cart?.amount, 'IDR')}
             </span>
           </div>
-{/*           <div className='flex items-center justify-between'> */}
-{/*             <span className='text-sm font-normal text-[#121212] lg:text-lg'> */}
-{/*               Date Paid */}
-{/*             </span> */}
-{/*             <span className='text-sm font-normal text-[#121212] lg:text-lg'> */}
-{/*               {datePaid(date)} */}
-{/*             </span> */}
-{/*           </div> */}
+          {/*           <div className='flex items-center justify-between'> */}
+          {/*             <span className='text-sm font-normal text-[#121212] lg:text-lg'> */}
+          {/*               Date Paid */}
+          {/*             </span> */}
+          {/*             <span className='text-sm font-normal text-[#121212] lg:text-lg'> */}
+          {/*               {datePaid(date)} */}
+          {/*             </span> */}
+          {/*           </div> */}
           <div className='flex items-center justify-between'>
             <span className='text-sm font-normal text-[#121212] lg:text-lg'>
               Payment Channel
