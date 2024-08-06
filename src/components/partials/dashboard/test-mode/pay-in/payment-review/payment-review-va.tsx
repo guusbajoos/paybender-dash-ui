@@ -123,10 +123,22 @@ const PaymentReviewVA = ({
 
   return (
     <Card className='p-6'>
-      <h2 className='text-lg font-medium text-center text-black lg:text-2xl'>
-        Finish the Payment Before
-      </h2>
+
+      {/* <h2 className='text-lg font-medium text-center text-black lg:text-2xl'> */}
+        {/* Finish the Payment Before */}
+      {/* </h2> */}
+
+      <div className='flex flex-col gap-y-4'>
+          <CardTitle className='text-lg font-medium text-center text-black lg:text-2xl'>
+            Payment Review
+          </CardTitle>
+          <CardDescription className='mb-4 text-center text-base text-[rgb(90,90,90)] lg:text-lg'>
+            Beware of fraudulent payment requests!
+          </CardDescription>
+      </div>
+
       <Separator className='my-4 text-[#C7C7C7]' />
+
       <div className='flex flex-col gap-y-2.5'>
         <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
           {remainingTime}
@@ -136,6 +148,7 @@ const PaymentReviewVA = ({
           {datePaid(date)}
         </p>
       </div>
+
       <div className='mt-4 flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
@@ -164,7 +177,7 @@ const PaymentReviewVA = ({
         </div>
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            Payment amount
+            Amount to be Paid
           </span>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {currencyFormatter(state.data.cart?.amount, 'IDR')}

@@ -95,34 +95,68 @@ const PaymentReviewEMoney = ({
 
   return (
     <Card className='p-6'>
-      <h2 className='text-lg font-medium text-center text-black lg:text-2xl'>
-        Thanks for Using {state?.data?.payment?.payment_method}
-      </h2>
-      <Separator className='my-4 text-[#C7C7C7]' />
-      <div className='flex flex-col gap-y-2.5'>
-        <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
-          {remainingTime}
-        </p>
-        <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p>
-        <p className='text-center text-base text-[#5A5A5A] lg:text-lg'>
-          {datePaid(date)}
-        </p>
+      {/* <h2 className='text-lg font-medium text-center text-black lg:text-2xl'> */}
+        {/* Thanks for Using {state?.data?.payment?.payment_method} */}
+      {/* </h2> */}
+
+      <div className='flex flex-col gap-y-4'>
+        <CardTitle className='text-lg font-medium text-center text-black lg:text-2xl'>
+          Payment Review
+        </CardTitle>
+        <CardDescription className='mb-4 text-center text-base text-[rgb(90,90,90)] lg:text-lg'>
+          Beware of fraudulent payment requests!
+        </CardDescription>
       </div>
-      <div className='mt-4 flex flex-col gap-y-2.5'>
-        <div className='flex items-center justify-between'>
-          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            {state.data.payment?.payment_method} e-Money
-          </span>
-          {generateImagePaymentMethod(state.data.payment?.payment_method)}
+
+      <Separator className='my-4 text-[#C7C7C7]' />
+
+      {/* <div className='flex flex-col gap-y-2.5'> */}
+        {/* <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'> */}
+          {/* {remainingTime} */}
+        {/* </p> */}
+        {/* <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p> */}
+        {/* <p className='text-center text-base text-[#5A5A5A] lg:text-lg'> */}
+          {/* {datePaid(date)} */}
+        {/* </p> */}
+      {/* </div> */}
+
+      <div className='flex flex-col gap-y-2.5'>
+        <div className='flex flex-col gap-y-2'>
+          <h3 className='text-base font-medium text-center text-[#EFC100] lg:text-lg'>
+            Remaining Time
+          </h3>
+          <h5 className='text-lg font-bold text-center text-black lg:text-2xl'>
+            {remainingTime}
+          </h5>
         </div>
+      </div>
+
+      <div className='mt-4 flex flex-col gap-y-2.5'>
+
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            Payment amount
+            Amount to be Paid
           </span>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {currencyFormatter(state.data.cart?.amount, 'IDR')}
           </span>
         </div>
+
+        <div className='flex items-center justify-between'>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            Payment Channel
+          </span>
+          {generateImagePaymentMethod(state.data.payment?.payment_method)}
+        </div>
+
+        {/* <div className='flex items-center justify-between'> */}
+          {/* <span className='text-sm font-normal text-[#121212] lg:text-lg'> */}
+            {/* Payment amount */}
+          {/* </span> */}
+          {/* <span className='text-sm font-normal text-[#121212] lg:text-lg'> */}
+            {/* {currencyFormatter(state.data.cart?.amount, 'IDR')} */}
+          {/* </span> */}
+        {/* </div> */}
       </div>
       <Separator className='my-4 text-[#C7C7C7]' />
       <div className='flex flex-col gap-y-4'>

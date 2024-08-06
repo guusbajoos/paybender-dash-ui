@@ -20,7 +20,7 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
       <h2 className='text-lg font-medium text-center text-black lg:text-2xl'>
         {location.state?.status === 'completed'
           ? 'Thank You for Your Order!'
-          : 'Your Order is Fail'}
+          : 'Your Order is Failed'}
       </h2>
       <Separator className='my-4 text-[#C7C7C7]' />
       <p className='mb-4 text-center text-base text-[#5A5A5A] lg:text-lg'>

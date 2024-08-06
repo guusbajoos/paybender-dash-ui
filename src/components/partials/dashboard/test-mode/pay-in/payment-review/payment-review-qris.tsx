@@ -66,8 +66,8 @@ const PaymentReviewQRIS = ({
       <CardContent>
         <div className='flex flex-col gap-y-2.5'>
           <div className='flex flex-col gap-y-2'>
-            <h3 className='text-base font-medium text-center text-black lg:text-lg'>
-              Remaning Time
+            <h3 className='text-base font-medium text-center text-[#EFC100] lg:text-lg'>
+              Remaining Time
             </h3>
             <h5 className='text-lg font-bold text-center text-black lg:text-2xl'>
               {remainingTime}
@@ -86,20 +86,20 @@ const PaymentReviewQRIS = ({
           </div>
           <div className='flex items-center justify-between'>
             <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-              Amount Paid
+              Amount to be Paid
             </span>
             <span className='text-sm font-normal text-[#121212] lg:text-lg'>
               {currencyFormatter(state.data.cart?.amount, 'IDR')}
             </span>
           </div>
-          <div className='flex items-center justify-between'>
-            <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-              Date Paid
-            </span>
-            <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-              {datePaid(date)}
-            </span>
-          </div>
+{/*           <div className='flex items-center justify-between'> */}
+{/*             <span className='text-sm font-normal text-[#121212] lg:text-lg'> */}
+{/*               Date Paid */}
+{/*             </span> */}
+{/*             <span className='text-sm font-normal text-[#121212] lg:text-lg'> */}
+{/*               {datePaid(date)} */}
+{/*             </span> */}
+{/*           </div> */}
           <div className='flex items-center justify-between'>
             <span className='text-sm font-normal text-[#121212] lg:text-lg'>
               Payment Channel

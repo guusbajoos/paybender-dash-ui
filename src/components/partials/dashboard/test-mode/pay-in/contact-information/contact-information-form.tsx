@@ -141,7 +141,7 @@ const ContactInformationForm = (
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='font-normal text-[#777677]'>
-                      First Name
+                      Receiver Name
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
                       <Input placeholder='John' {...field} />

@@ -22,7 +22,7 @@ export const contactInformationSchema = z.object({
     .email('Invalid email address'),
   phone_number: z
     .string()
-    .min(12, 'Phone Number must be at least 12 digits')
+    .min(10, 'Phone Number must be at least 10 digits')
     .max(13, 'Phone Number has exceeds 13 digits')
     .regex(/^[0-9]+$/, 'Phone Number must only contain digits 0-9'),
   shipping_name: z
@@ -39,7 +39,7 @@ export const contactInformationSchema = z.object({
     .email('Invalid email address'),
   shipping_phone: z
     .string()
-    .min(12, 'Phone Number must be at least 12 digits')
+    .min(10, 'Phone Number must be at least 10 digits')
     .max(13, 'Phone Number has exceeds 13 digits')
     .regex(/^[0-9]+$/, 'Phone Number must only contain digits 0-9'),
   shipping_method: z.string({

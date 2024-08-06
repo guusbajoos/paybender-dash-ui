@@ -48,34 +48,43 @@ const PaymentReviewTF = ({
   return (
     <Card className='p-6'>
       <h2 className='text-lg font-medium text-center text-black lg:text-2xl'>
-        Finish the Payment Before
+        Withdrawal Review
       </h2>
       <Separator className='my-4 text-[#C7C7C7]' />
-      <div className='flex flex-col gap-y-2.5'>
-        <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
-          {remainingTime}
-        </p>
-        <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p>
-        <p className='text-center text-base text-[#5A5A5A] lg:text-lg'>
-          {datePaid(date)}
-        </p>
-      </div>
+
+      {/* <div className='flex flex-col gap-y-2.5'> */}
+        {/* <p className='text-center text-base font-medium text-[#EFC100] lg:text-lg'> */}
+          {/* {remainingTime} */}
+        {/* </p> */}
+        {/* <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p> */}
+        {/* <p className='text-center text-base text-[#5A5A5A] lg:text-lg'> */}
+          {/* {datePaid(date)} */}
+        {/* </p> */}
+      {/* </div> */}
+
       <div className='mt-4 flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            Withdraw Channel
+          </span>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {state.data.payment?.payment_method}
           </span>
         </div>
+
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            Payment amount
+            Withdrawal amount
           </span>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {currencyFormatter(state.data.cart?.amount, 'IDR')}
           </span>
         </div>
+
       </div>
+
       <Separator className='my-4 text-[#C7C7C7]' />
+
       <div className='flex flex-col gap-y-4'>
         <Button
           className='w-full bg-[#4ed974] font-medium text-white hover:bg-[#4ed974]/90 focus:bg-[#4ed974]/90'
