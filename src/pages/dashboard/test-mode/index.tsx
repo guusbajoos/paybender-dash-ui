@@ -98,8 +98,6 @@ export default function TestMode() {
 
   const columns = tabKey === 'pay-in' ? columnsPayin : columnsPayout
 
-  console.log(location.state, 'location.state')
-
   return (
     <Layout className='bg-[#FAFAFB]'>
       {/* ===== Top Heading ===== */}
