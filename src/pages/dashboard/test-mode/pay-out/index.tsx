@@ -17,6 +17,7 @@ import PaymentReview from '@/components/partials/dashboard/test-mode/pay-out/pay
 import { useEffect, useState } from 'react'
 import usePostData from '@/hooks/use-post-data'
 import OrderStatus from '@/components/partials/dashboard/test-mode/pay-in/order-status'
+import WithdrawLoading from '@/components/partials/dashboard/test-mode/pay-out/withdraw-loading'
 
 export default function PayOut() {
   const navigate = useNavigate()
@@ -34,10 +35,12 @@ export default function PayOut() {
   }
 
   const [countdown, setCountdown] = useState(5)
-
   const [remainingTime, setRemainingTime] = useState(
     generateSecondsByPaymentType(state.data.payment?.payment_type)
   )
+  const [isOpenProgressLoading, setIsOpenProgressLoading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [isComplete, setIsComplete] = useState(false)
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -121,24 +124,39 @@ export default function PayOut() {
         )
       case 2:
         return (
-          <PaymentReview
-            remainingTime={remainingTime ? formatTime(remainingTime) : ''}
-            onPaidTransaction={(v) => [
-              updateDataPayout({
-                transactionId: state.data.payment?.transactionId,
-                status: v,
-              }).then(() => {
+          <>
+            <PaymentReview
+              remainingTime={remainingTime ? formatTime(remainingTime) : ''}
+              onPaidTransaction={(v) => [
+                updateDataPayout({
+                  transactionId: state.data.payment?.transactionId,
+                  status: v,
+                }).then(() => {
+                  setIsOpenProgressLoading(true)
+                  state.setPaymentData({ payment_date: new Date() })
+                  navigate('/get-started/test-mode/pay-out', {
+                    state: {
+                      status: v,
+                    },
+                  })
+                }),
+              ]}
+              isLoading={step2Loading}
+            />
+            <WithdrawLoading
+              isOpen={isOpenProgressLoading}
+              onNextPage={() => {
                 state?.setStep(CHECKOUT_STEPS.length)
-                state.setPaymentData({ payment_date: new Date() })
-                navigate('/get-started/test-mode/pay-out', {
-                  state: {
-                    status: v,
-                  },
-                })
-              }),
-            ]}
-            isLoading={step2Loading}
-          />
+                setIsOpenProgressLoading(false)
+                setIsComplete(false)
+              }}
+              setProgress={setProgress}
+              progress={progress}
+              isComplete={isComplete}
+              setComplete={setIsComplete}
+              step={state.data?.step}
+            />
+          </>
         )
       case 3:
         return <OrderStatus countdown={countdown} />
@@ -154,7 +172,6 @@ export default function PayOut() {
       state.data?.step === 2 &&
       state?.data?.payment?.payment_type === 'Bank Transfer'
     ) {
-      console.log('jalan 1')
       const timerId = setTimeout(
         () => setRemainingTime(remainingTime - 1),
         1000
@@ -166,8 +183,6 @@ export default function PayOut() {
       state.data?.step === 2 &&
       state?.data?.payment?.payment_type === 'e-Wallet'
     ) {
-      console.log('jalan 2')
-
       const timerId = setTimeout(
         () => setRemainingTime(remainingTime - 1),
         1000
@@ -188,7 +203,7 @@ export default function PayOut() {
         }
       }
     }
-  }, [state?.data?.step, countdown, navigate])
+  }, [state?.data?.step, countdown])
 
   return (
     <Layout className='bg-[#FAFAFB]'>
@@ -213,6 +228,7 @@ export default function PayOut() {
           <IconArrowLeft />
           Back
         </Link>
+
         <div className='mb-10 flex w-full flex-col items-center gap-x-[6.125rem] gap-y-10 lg:flex-row'>
           <h2 className='text-lg font-medium text-black'>Pay Out Demo</h2>
           <Stepper

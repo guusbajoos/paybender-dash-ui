@@ -1,10 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  IconArrowLeft,
-  IconCash,
-  IconCircleCheck,
-  IconEye,
-} from '@tabler/icons-react'
+import { IconArrowLeft, IconCash, IconEye } from '@tabler/icons-react'
 import PaybenderLogo from '@/assets/images/paybender-logo.png'
 import IconCheck from '@/assets/images/icon-check.png'
 import IconRefresh from '@/assets/images/icon-refresh.png'
@@ -27,7 +22,6 @@ import { columnsPayin } from '@/data/pay-in/columns'
 import { columnsPayout } from '@/data/pay-out/columns'
 import { Separator } from '@/components/ui/separator'
 import TablePagination from '@/components/custom/table-pagination'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import {
   Dialog,
   DialogContent,
@@ -112,32 +106,20 @@ export default function TestMode() {
           date={dayjs().format('dddd, MMMM DD, YYYY')}
           time={dayjs().format('HH:mm A')}
         />
-        <div className='flex items-center ml-auto space-x-4'>
+        <div className='ml-auto flex items-center space-x-4'>
           <UserNav />
         </div>
       </Layout.Header>
 
       {/* ===== Main ===== */}
       <Layout.Body>
-        {location.state?.testMode === 'pay-out' ? (
-          <Alert variant='success' className='mb-10'>
-            <IconCircleCheck className='w-4 h-4' />
-            <AlertTitle className='text-[#263238]'>
-              Withdrawal Success
-            </AlertTitle>
-            <AlertDescription className='text-[#546E7A]'>
-              Funds successfully withdrawn to receiver account.
-            </AlertDescription>
-          </Alert>
-        ) : (
-          <Link
-            to='/get-started'
-            className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
-          >
-            <IconArrowLeft />
-            Back
-          </Link>
-        )}
+        <Link
+          to='/get-started'
+          className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
+        >
+          <IconArrowLeft />
+          Back
+        </Link>
         <Breadcrumb className='mb-2.5'>{breadcrumbs}</Breadcrumb>
         <h2 className='mb-10 text-3xl font-medium text-[#2A8F9B]'>Test Mode</h2>
         <Tabs
@@ -145,7 +127,7 @@ export default function TestMode() {
           defaultValue='pay-in'
           className='space-y-4'
         >
-          <div className='pb-2 overflow-x-auto w-fit'>
+          <div className='w-fit overflow-x-auto pb-2'>
             <TabsList className='flex h-auto gap-x-2.5 bg-[#EEF9FA]'>
               <Button
                 className={cn(
@@ -322,7 +304,7 @@ export default function TestMode() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className='flex flex-col mb-6 gap-y-2'>
+                    <div className='mb-6 flex flex-col gap-y-2'>
                       <div className='flex flex-col items-center justify-center gap-x-4'>
                         <h4 className='text-sm font-medium text-[#464646]'>
                           Transaction Created:

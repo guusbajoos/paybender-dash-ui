@@ -10,14 +10,20 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
   const state = useCheckout((state) => state)
   const location = useLocation()
 
+  const path = location.pathname.split('/')[3]
+
   if (countdown === 0) {
     state.removeState()
-    navigate('/get-started/test-mode')
+    navigate('/get-started/test-mode', {
+      state: {
+        testMode: path,
+      },
+    })
   }
 
   return (
     <Card className='p-6'>
-      <h2 className='text-lg font-medium text-center text-black lg:text-2xl'>
+      <h2 className='text-center text-lg font-medium text-black lg:text-2xl'>
         {location.state?.status === 'completed'
           ? 'Thank You for Your Order!'
           : 'Your Order is Failed'}
