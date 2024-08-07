@@ -98,6 +98,8 @@ export default function TestMode() {
 
   const columns = tabKey === 'pay-in' ? columnsPayin : columnsPayout
 
+  console.log(location.state, 'location.state')
+
   return (
     <Layout className='bg-[#FAFAFB]'>
       {/* ===== Top Heading ===== */}
@@ -141,6 +143,7 @@ export default function TestMode() {
                   setTabKey('pay-in')
                   setParams((prev) => ({ ...prev, page: 1 }))
                   handleParamsChange({ page: 1, limit: 10 })
+                  navigate('/get-started/test-mode')
                 }}
               >
                 Pay In
@@ -157,6 +160,7 @@ export default function TestMode() {
                   setTabKey('pay-out')
                   setParams((prev) => ({ ...prev, page: 1 }))
                   handleParamsChange({ page: 1, limit: 10 })
+                  navigate('/get-started/test-mode')
                 }}
               >
                 Pay Out
