@@ -29,9 +29,9 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
           : 'Your Order is Failed'}
       </h2>
       <Separator className='my-4 text-[#C7C7C7]' />
-      <p className='mb-4 text-center text-base text-[#5A5A5A] lg:text-lg'>
-        Beware of fraudulent payment requests!
-      </p>
+      {/* <p className='mb-4 text-center text-base text-[#5A5A5A] lg:text-lg'> */}
+        {/* Beware of fraudulent payment requests! */}
+      {/* </p> */}
       <div className='flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
@@ -51,7 +51,7 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
             <span className='text-sm font-normal text-[#121212] lg:text-lg'>
               {state.data?.payment?.payment_date
                 ? dayjs(state.data?.payment?.payment_date).format(
-                    'dddd, MMMM DD, YYYY A'
+                    'DD MMMM YYYY, hh:mm:ss A'
                   )
                 : ''}
             </span>

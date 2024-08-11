@@ -45,7 +45,7 @@ const CartReview = () => {
               Total Payment
             </h3>
             <h4 className='text-2xl font-medium text-[#121212] lg:text-3xl'>
-              IDR 250.000
+              IDR 300.000
             </h4>
           </div>
           <div className='flex gap-x-[1.125rem]'>
@@ -57,7 +57,7 @@ const CartReview = () => {
               />
             </div>
             <div className='flex h-full flex-wrap gap-x-[1.125rem] gap-y-3'>
-              <h3 className='text-sm'>Basic T-Shirt - Grey</h3>
+              <h3 className='text-sm'>Basic T-Shirt - Dark Grey</h3>
               <div className='flex flex-col gap-y-3'>
                 <h3 className='text-sm font-medium text-black/30'>Quantity</h3>
                 <Input
@@ -68,7 +68,7 @@ const CartReview = () => {
                   disabled
                 />
               </div>
-              <h3 className='text-sm'>IDR 150.000</h3>
+              <h3 className='text-sm'>IDR 125.000</h3>
             </div>
           </div>
           <div className='flex gap-x-[1.125rem]'>
@@ -80,7 +80,7 @@ const CartReview = () => {
               />
             </div>
             <div className='flex h-full flex-wrap gap-x-[1.125rem] gap-y-3'>
-              <h3 className='text-sm'>Basic T-Shirt - Grey</h3>
+              <h3 className='text-sm'>Basic T-Shirt - Black</h3>
               <div className='flex flex-col gap-y-3'>
                 <h3 className='text-sm font-medium text-black/30'>Quantity</h3>
                 <Input
@@ -91,7 +91,7 @@ const CartReview = () => {
                   disabled
                 />
               </div>
-              <h3 className='text-sm'>IDR 150.000</h3>
+              <h3 className='text-sm'>IDR 125.000</h3>
             </div>
           </div>
           <div className='flex flex-col gap-y-1'>

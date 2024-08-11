@@ -59,25 +59,25 @@ const WithdrawLoading = (props: IWithdrawLoading) => {
           {props.isComplete ? (
             <DialogTitle className='text-center'>
               {location.state?.status === 'completed'
-                ? 'Balance Withdraw Success'
-                : 'Balance Withdraw Failed'}
+                ? 'Withdrawal Success'
+                : 'Withdrawal Failed'}
             </DialogTitle>
           ) : (
             <DialogTitle className='text-center'>
-              Withdraw Your Balance
+              Withdrawing Your Balance
             </DialogTitle>
           )}
           <Separator className='!my-4' />
           {props.isComplete ? (
             <DialogDescription className='!mb-4 !mt-0 text-center'>
               {location.state?.status === 'completed'
-                ? `Your balance withdrawal is successful! We will direct you back to the order status page in ${countdown} seconds.`
-                : `Your balance withdrawal is failed! We will direct you back to the order status page in ${countdown} seconds and try again.`}
+                ? `Your withdrawal is success! We will direct you to the withdrawal status page in ${countdown} seconds.`
+                : `Your withdrawal is failed! We will direct you to the withdrawal status page in ${countdown} seconds.`}
             </DialogDescription>
           ) : (
             <DialogDescription className='!mb-4 !mt-0 text-center'>
-              You’re about to withdraw your balance to your bank account. This
-              following processing fee will include
+              You’re about to withdraw your balance to receiver account. This
+              following processing fee will include.
             </DialogDescription>
           )}
 
