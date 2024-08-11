@@ -17,8 +17,9 @@ import { cn } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
 import PaymemtReview from '@/components/partials/dashboard/test-mode/pay-in/payment-review'
 import usePostData from '@/hooks/use-post-data'
-
-// import OrderStatusPaid from '@/components/partials/dashboard/test-mode/pay-in/order-status/order-status-paid'
+import MemoizedWithdrawPayinLoading from '@/components/partials/dashboard/test-mode/pay-in/withdraw-loading'
+import MemoizedPaymentReviewDialog from '@/components/partials/dashboard/test-mode/pay-in/payment-review-dialog'
+import MemoizedWithdrawConfirmPayin from '@/components/partials/dashboard/test-mode/pay-in/withdraw-confirm'
 
 export default function PayIn() {
   const navigate = useNavigate()
@@ -41,6 +42,15 @@ export default function PayIn() {
   const [remainingTime, setRemainingTime] = useState(
     generateSecondsByPaymentType(state.data.payment?.payment_type)
   )
+  const [isOpenProgressLoading, setIsOpenProgressLoading] = useState(false)
+  const [isOpenWithdrawStatus, setIsOpenWithdrawStatus] = useState(false)
+  const [isOpenPaymentReviewDialog, setIsOpenPaymentReviewDialog] =
+    useState(false)
+  const [progress, setProgress] = useState(0)
+  const [isComplete, setIsComplete] = useState(false)
+  const [progressConfirmPayment, setProgressConfirmPayment] = useState(0)
+  const [isCompleteConfirmPayment, setIsCompleteConfirmPayment] =
+    useState(false)
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -131,24 +141,73 @@ export default function PayIn() {
         )
       case 3:
         return (
-          <PaymemtReview
-            remainingTime={remainingTime ? formatTime(remainingTime) : ''}
-            onPaidTransaction={(v) => [
-              updateDataPayin({
-                transactionId: state.data.payment?.transactionId,
-                status: v,
-              }).then(() => {
-                state?.setStep(CHECKOUT_STEPS.length)
-                state.setPaymentData({ payment_date: new Date() })
-                navigate('/get-started/test-mode/pay-in', {
-                  state: {
-                    status: v,
-                  },
-                })
-              }),
-            ]}
-            isLoading={step2Loading}
-          />
+          <>
+            <PaymemtReview
+              remainingTime={remainingTime ? formatTime(remainingTime) : ''}
+              onPaidTransaction={(v) => [
+                updateDataPayin({
+                  transactionId: state.data.payment?.transactionId,
+                  status: v,
+                }).then(() => {
+                  if (
+                    state.data?.payment?.payment_type === 'E-Money' &&
+                    ['DANA', 'LinkAja', 'OVO'].includes(
+                      state.data?.payment?.payment_method
+                    ) &&
+                    v === 'completed'
+                  ) {
+                    setIsOpenProgressLoading(true)
+                  } else {
+                    state.setStep(CHECKOUT_STEPS.length)
+                  }
+                  state.setPaymentData({ payment_date: new Date() })
+                  navigate('/get-started/test-mode/pay-in', {
+                    state: {
+                      status: v,
+                    },
+                  })
+                }),
+              ]}
+              isLoading={step2Loading}
+            />
+            <MemoizedWithdrawPayinLoading
+              isOpen={isOpenProgressLoading}
+              onNextPage={() => {
+                setIsOpenProgressLoading(false)
+                setIsComplete(false)
+                setIsOpenPaymentReviewDialog(true)
+              }}
+              setProgress={setProgress}
+              progress={progress}
+              isComplete={isComplete}
+              setComplete={setIsComplete}
+              step={state.data?.step}
+            />
+            <MemoizedPaymentReviewDialog
+              step={state.data?.stepWallet}
+              isOpen={isOpenPaymentReviewDialog}
+              onNextStepWallet={() => {
+                state.setStepWallet()
+                if (state.data?.stepWallet === 2) {
+                  setIsOpenPaymentReviewDialog(false)
+                  setIsOpenWithdrawStatus(true)
+                }
+              }}
+            />
+            <MemoizedWithdrawConfirmPayin
+              isOpen={isOpenWithdrawStatus}
+              onNextPage={() => {
+                setIsOpenWithdrawStatus(false)
+                setIsCompleteConfirmPayment(false)
+                state.setStep(CHECKOUT_STEPS.length)
+              }}
+              setProgress={setProgressConfirmPayment}
+              progress={progressConfirmPayment}
+              isComplete={isCompleteConfirmPayment}
+              setComplete={setIsCompleteConfirmPayment}
+              step={state.data?.stepWallet}
+            />
+          </>
         )
       case 4:
         return <OrderStatus countdown={countdown} />
@@ -161,7 +220,7 @@ export default function PayIn() {
     if (
       remainingTime > 0 &&
       state?.data?.step === 3 &&
-      ['QRIS', 'E-Money'].includes(state.data?.payment?.payment_type)
+      ['QRIS'].includes(state.data?.payment?.payment_type)
     ) {
       const timerId = setTimeout(
         () => setRemainingTime(remainingTime - 1),

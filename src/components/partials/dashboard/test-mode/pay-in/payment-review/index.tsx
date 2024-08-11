@@ -26,7 +26,7 @@ const PaymemtReview = ({
         )}
       {state.payment?.payment_type === 'E-Money' && (
         <PaymentReviewEMoney
-          remainingTime={remainingTime}
+          // remainingTime={remainingTime}
           onPaidTransaction={onPaidTransaction}
           isLoading={isLoading}
         />

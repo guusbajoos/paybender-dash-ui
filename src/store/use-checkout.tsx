@@ -5,6 +5,7 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 interface ICheckoutState {
   data: {
     step: number
+    stepWallet: number
     isComplete: boolean
     cart: any
     shipping: any
@@ -14,6 +15,7 @@ interface ICheckoutState {
   setShippingData: (item: any) => void
   setPaymentData: (item: any) => void
   setStep: (step: number) => void
+  setStepWallet: () => void
   removeState: () => void
 }
 
@@ -22,6 +24,7 @@ const useCheckout = create<ICheckoutState>()(
     (set) => ({
       data: {
         step: 1,
+        stepWallet: 1,
         isComplete: false,
         cart: {},
         shipping: {},
@@ -50,10 +53,20 @@ const useCheckout = create<ICheckoutState>()(
             },
           }
         }),
+      setStepWallet: () =>
+        set((state) => {
+          return {
+            data: {
+              ...state.data,
+              stepWallet: state.data.stepWallet + 1,
+            },
+          }
+        }),
       removeState: () =>
         set(() => ({
           data: {
             step: 1,
+            stepWallet: 1,
             isComplete: false,
             cart: {},
             shipping: {},

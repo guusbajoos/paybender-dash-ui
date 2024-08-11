@@ -9,20 +9,20 @@ import { Card, CardDescription, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 // import { Progress } from '@/components/ui/progress'
 import useCheckout from '@/store/use-checkout'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { currencyFormatter } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
 const PaymentReviewEMoney = ({
-  remainingTime,
+  // remainingTime,
   onPaidTransaction,
   isLoading,
 }: {
-  remainingTime: string
+  // remainingTime: string
   onPaidTransaction: (v: 'failed' | 'completed') => void
   isLoading?: boolean
 }) => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const state = useCheckout((state) => state)
   // const [progress, setProgress] = useState(13)
 
@@ -76,10 +76,10 @@ const PaymentReviewEMoney = ({
   }
 
   // if remaining time is done, redirect to the test mode page
-  if (remainingTime === '00:00') {
-    navigate('/get-started/test-mode')
-    state.removeState()
-  }
+  // if (remainingTime === '00:00') {
+  //   navigate('/get-started/test-mode')
+  //   state.removeState()
+  // }
 
   // useEffect(() => {
   //   const timer = setTimeout(() => setProgress(66), 500)
@@ -120,16 +120,16 @@ const PaymentReviewEMoney = ({
       {/* </p> */}
       {/* </div> */}
 
-      <div className='flex flex-col gap-y-2.5'>
+      {/* <div className='flex flex-col gap-y-2.5'>
         <div className='flex flex-col gap-y-2'>
           <h3 className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
             Remaining Time
           </h3>
-          <h5 className='text-center text-lg font-bold text-black lg:text-2xl'>
+          <h5 className='text-lg font-bold text-center text-black lg:text-2xl'>
             {remainingTime}
           </h5>
         </div>
-      </div>
+      </div> */}
 
       <div className='mt-4 flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
