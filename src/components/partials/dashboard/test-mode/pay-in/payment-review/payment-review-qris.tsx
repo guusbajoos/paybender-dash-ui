@@ -81,7 +81,7 @@ const PaymentReviewQRIS = ({
               Payment Reference No.
             </span>
             <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-              {state.data?.payment?.payment_reference_no || '-'}
+              {state.data?.payment?.transactionId || '-'}
             </span>
           </div>
           <div className='flex items-center justify-between'>

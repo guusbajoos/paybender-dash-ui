@@ -128,12 +128,6 @@ export default function PayIn() {
                 shippingService: state.data.shipping?.shipping_service,
               }).then((res) => {
                 state.setPaymentData({
-                  payment_reference_no:
-                    (
-                      res as unknown as {
-                        payment_reference_no: string
-                      }
-                    )?.payment_reference_no || '',
                   transactionId:
                     (res as unknown as { transactionId: string })
                       ?.transactionId || '',
