@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 // import { Progress } from '@/components/ui/progress'
 import useCheckout from '@/store/use-checkout'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { currencyFormatter } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
@@ -18,7 +18,7 @@ const PaymentReviewEWallet = ({
   onPaidTransaction: (v: 'failed' | 'completed') => void
   isLoading?: boolean
 }) => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const state = useCheckout((state) => state)
   // const [progress, setProgress] = useState(13)
 
@@ -42,10 +42,10 @@ const PaymentReviewEWallet = ({
   }
 
   // if remaining time is done, redirect to the test mode page
-  if (remainingTime === '00:00') {
-    navigate('/get-started/test-mode')
-    state.removeState()
-  }
+  // if (remainingTime === '00:00') {
+  //   navigate('/get-started/test-mode')
+  //   state.removeState()
+  // }
 
   // useEffect(() => {
   //   const timer = setTimeout(() => setProgress(66), 500)
@@ -82,15 +82,35 @@ const PaymentReviewEWallet = ({
       <div className='mt-4 flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            Withdrawal Channel
+          </span>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {state.data.payment?.payment_method}
           </span>
         </div>
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            Payment amount
+            Withdrawal amount
           </span>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {currencyFormatter(state.data.cart?.amount, 'IDR')}
+          </span>
+        </div>
+        <div className='flex items-center justify-between'>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            Receiver Account Name
+          </span>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            {state.data.shipping?.customer_name}
+          </span>
+        </div>
+
+        <div className='flex items-center justify-between'>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            Receiver Account Number
+          </span>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            {state.data.shipping?.customer_phone}
           </span>
         </div>
       </div>

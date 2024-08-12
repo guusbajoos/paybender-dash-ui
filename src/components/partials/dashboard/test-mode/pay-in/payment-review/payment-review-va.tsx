@@ -1,10 +1,10 @@
-import BCA from '@/assets/images/BCA.png'
-import BNI from '@/assets/images/BNI.png'
-import BRI from '@/assets/images/BRI.png'
-import BSI from '@/assets/images/BSI.png'
-import CIMBNiaga from '@/assets/images/CIMB Niaga.png'
-import MANDIRI from '@/assets/images/MANDIRI.png'
-import Permata from '@/assets/images/Permata.png'
+// import BCA from '@/assets/images/BCA.png'
+// import BNI from '@/assets/images/BNI.png'
+// import BRI from '@/assets/images/BRI.png'
+// import BSI from '@/assets/images/BSI.png'
+// import CIMBNiaga from '@/assets/images/CIMB Niaga.png'
+// import MANDIRI from '@/assets/images/MANDIRI.png'
+// import Permata from '@/assets/images/Permata.png'
 import IconClipboard from '@/assets/images/icon-clipboard.png'
 import { Button } from '@/components/ui/button'
 
@@ -53,59 +53,59 @@ const PaymentReviewVA = ({
     setMessage(text)
   }
 
-  const generateImagePaymentMethod = (paymentMethod: string) => {
-    switch (paymentMethod) {
-      case 'BCA':
-        return (
-          <img src={BCA} alt='BCA' className='h-auto w-[94px] object-contain' />
-        )
+  // const generateImagePaymentMethod = (paymentMethod: string) => {
+  //   switch (paymentMethod) {
+  //     case 'BCA Virtual Account':
+  //       return (
+  //         <img src={BCA} alt='BCA' className='h-auto w-[94px] object-contain' />
+  //       )
 
-      case 'BNI':
-        return (
-          <img src={BNI} alt='BNI' className='h-auto w-[94px] object-contain' />
-        )
+  //     case 'BNI Virtual Account':
+  //       return (
+  //         <img src={BNI} alt='BNI' className='h-auto w-[94px] object-contain' />
+  //       )
 
-      case 'BRI':
-        return (
-          <img src={BRI} alt='BRI' className='h-auto w-[94px] object-contain' />
-        )
+  //     case 'BRI Virtual Account':
+  //       return (
+  //         <img src={BRI} alt='BRI' className='h-auto w-[94px] object-contain' />
+  //       )
 
-      case 'BSI':
-        return (
-          <img src={BSI} alt='BSI' className='h-auto w-[94px] object-contain' />
-        )
+  //     case 'BSI Virtual Account':
+  //       return (
+  //         <img src={BSI} alt='BSI' className='h-auto w-[94px] object-contain' />
+  //       )
 
-      case 'CIMBNiaga':
-        return (
-          <img
-            src={CIMBNiaga}
-            alt='BCA'
-            className='h-auto w-[94px] object-contain'
-          />
-        )
+  //     case 'CIMBNiaga Virtual Account':
+  //       return (
+  //         <img
+  //           src={CIMBNiaga}
+  //           alt='BCA'
+  //           className='h-auto w-[94px] object-contain'
+  //         />
+  //       )
 
-      case 'MANDIRI':
-        return (
-          <img
-            src={MANDIRI}
-            alt='BCA'
-            className='h-auto w-[94px] object-contain'
-          />
-        )
+  //     case 'Mandiri Virtual Account':
+  //       return (
+  //         <img
+  //           src={MANDIRI}
+  //           alt='BCA'
+  //           className='h-auto w-[94px] object-contain'
+  //         />
+  //       )
 
-      case 'Permata':
-        return (
-          <img
-            src={Permata}
-            alt='BCA'
-            className='h-auto w-[94px] object-contain'
-          />
-        )
+  //     case 'Permata Virtual Account':
+  //       return (
+  //         <img
+  //           src={Permata}
+  //           alt='BCA'
+  //           className='h-auto w-[94px] object-contain'
+  //         />
+  //       )
 
-      default:
-        return <></>
-    }
-  }
+  //     default:
+  //       return <></>
+  //   }
+  // }
 
   // if remaining time is done, redirect to the test mode page
   if (remainingTime === '00:00') {
@@ -144,7 +144,7 @@ const PaymentReviewVA = ({
           </h5>
         </div>
         <p className='text-center text-sm text-[#5A5A5A]'>Payment due to</p>
-        <p className='text-center text-base text-[#5A5A5A] lg:text-lg'>
+        <p className='text-center text-base font-bold text-[#5A5A5A] lg:text-lg'>
           {datePaid(date)}
         </p>
       </div>
@@ -152,9 +152,12 @@ const PaymentReviewVA = ({
       <div className='mt-4 flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            Payment Method
+          </span>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {state.data.payment?.payment_method}
           </span>
-          {generateImagePaymentMethod(state.data.payment?.payment_method)}
+          {/* {generateImagePaymentMethod(state.data.payment?.payment_method)} */}
         </div>
         {message && (
           <span className='w-full rounded-sm bg-[#3cc1d1] px-2 py-1 text-xs text-white'>
@@ -163,10 +166,10 @@ const PaymentReviewVA = ({
         )}
         <div className='flex items-center justify-between'>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
-            927472426665658265
+            VA Number
           </span>
           <span className='flex items-center gap-2 text-sm font-normal text-[#121212] lg:text-lg'>
-            Copy
+            927472426665658265
             <img
               src={IconClipboard}
               alt='Copy'

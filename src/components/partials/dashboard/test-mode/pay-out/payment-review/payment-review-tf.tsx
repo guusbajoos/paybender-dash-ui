@@ -5,20 +5,20 @@ import { Separator } from '@/components/ui/separator'
 import { currencyFormatter } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
 // import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 const PaymentReviewTF = ({
-  remainingTime,
+  // remainingTime,
   onPaidTransaction,
   isLoading,
 }: {
-  remainingTime: string
+  // remainingTime: string
   onPaidTransaction: (v: 'failed' | 'completed') => void
   isLoading?: boolean
 }) => {
   const state = useCheckout((state) => state)
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   // const [date] = useState<Date>(() => {
   //   const futureDate = new Date()
@@ -40,10 +40,10 @@ const PaymentReviewTF = ({
   // }
 
   // if remaining time is done, redirect to the test mode page
-  if (remainingTime === '00:00') {
-    navigate('/get-started/test-mode')
-    state.removeState()
-  }
+  // if (remainingTime === '00:00') {
+  //   navigate('/get-started/test-mode')
+  //   state.removeState()
+  // }
 
   return (
     <Card className='p-6'>
@@ -52,16 +52,16 @@ const PaymentReviewTF = ({
       </h2>
       <Separator className='my-4 text-[#C7C7C7]' />
 
-      <div className='flex flex-col gap-y-2.5'>
+      {/* <div className='flex flex-col gap-y-2.5'>
         <div className='flex flex-col gap-y-2'>
           <h3 className='text-center text-base font-medium text-[#EFC100] lg:text-lg'>
             Remaining Time
           </h3>
-          <h5 className='text-center text-lg font-bold text-black lg:text-2xl'>
+          <h5 className='text-lg font-bold text-center text-black lg:text-2xl'>
             {remainingTime}
           </h5>
         </div>
-      </div>
+      </div> */}
 
       <div className='mt-4 flex flex-col gap-y-2.5'>
         <div className='flex items-center justify-between'>
@@ -79,6 +79,23 @@ const PaymentReviewTF = ({
           </span>
           <span className='text-sm font-normal text-[#121212] lg:text-lg'>
             {currencyFormatter(state.data.cart?.amount, 'IDR')}
+          </span>
+        </div>
+        <div className='flex items-center justify-between'>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            Receiver Account Name
+          </span>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            {state.data.shipping?.customer_name}
+          </span>
+        </div>
+
+        <div className='flex items-center justify-between'>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            Receiver Account Number
+          </span>
+          <span className='text-sm font-normal text-[#121212] lg:text-lg'>
+            {state.data.shipping?.customer_phone}
           </span>
         </div>
       </div>

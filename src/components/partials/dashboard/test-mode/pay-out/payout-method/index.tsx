@@ -28,7 +28,7 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
     defaultValues: {
       channel_method: '',
       channel: '',
-      amount: 0,
+      amount: 300000,
       customerName: 'James Hetfield',
       customerPhone: '08112003003',
     },
@@ -71,7 +71,13 @@ const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
                       Transaction Amount
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
-                      <Input placeholder='0' {...field} type='number' />
+                      <Input
+                        placeholder='0'
+                        {...field}
+                        type='number'
+                        disabled
+                        className='disabled:bg-gray-200'
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

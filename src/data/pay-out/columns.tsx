@@ -17,7 +17,7 @@ export const columnsPayout: ColumnDef<any>[] = [
           className='px-0'
         >
           Transaction Date
-          <CaretSortIcon className='w-4 h-4 ml-2' />
+          <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       )
     },
@@ -36,7 +36,7 @@ export const columnsPayout: ColumnDef<any>[] = [
           className='px-0'
         >
           Transaction ID
-          <CaretSortIcon className='w-4 h-4 ml-2' />
+          <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       )
     },
@@ -52,7 +52,7 @@ export const columnsPayout: ColumnDef<any>[] = [
           className='px-0'
         >
           Merchant Ref No
-          <CaretSortIcon className='w-4 h-4 ml-2' />
+          <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       )
     },
@@ -68,7 +68,7 @@ export const columnsPayout: ColumnDef<any>[] = [
           className='px-0'
         >
           Channel Withdraw
-          <CaretSortIcon className='w-4 h-4 ml-2' />
+          <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       )
     },
@@ -89,7 +89,7 @@ export const columnsPayout: ColumnDef<any>[] = [
           className='px-0'
         >
           Receiver Acct No
-          <CaretSortIcon className='w-4 h-4 ml-2' />
+          <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       )
     },
@@ -105,7 +105,7 @@ export const columnsPayout: ColumnDef<any>[] = [
           className='px-0'
         >
           Receiver Acct Name
-          <CaretSortIcon className='w-4 h-4 ml-2' />
+          <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       )
     },

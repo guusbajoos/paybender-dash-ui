@@ -26,7 +26,7 @@ const PaymentReview = ({
           'Bank Permata Transfer',
         ].includes(state.payment?.payment_method) && (
           <PaymentReviewTF
-            remainingTime={remainingTime}
+            // remainingTime={remainingTime}
             onPaidTransaction={onPaidTransaction}
             isLoading-={isLoading}
           />

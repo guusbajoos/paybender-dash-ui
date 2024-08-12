@@ -245,6 +245,12 @@ export default function TestMode() {
           <DataTable
             isLoading={isLoading}
             columns={[
+              {
+                accessorKey: 'id',
+                header: () => 'No',
+                cell: ({ row }) =>
+                  params.page * params.limit - params.limit + row.index + 1,
+              },
               ...columns,
               {
                 id: 'actions',

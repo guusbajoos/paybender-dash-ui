@@ -106,7 +106,7 @@ export default function PayIn() {
             onNextStep={(v) => {
               state?.setStep(CHECKOUT_STEPS.length)
               state?.setCartData({
-                amount: 250000,
+                amount: 300000,
                 feeAmount: 22500,
               })
               state?.setShippingData(v)
@@ -128,8 +128,15 @@ export default function PayIn() {
                 shippingService: state.data.shipping?.shipping_service,
               }).then((res) => {
                 state.setPaymentData({
-                  transactionId: (res as unknown as { transactionId: string })
-                    ?.transactionId,
+                  payment_reference_no:
+                    (
+                      res as unknown as {
+                        payment_reference_no: string
+                      }
+                    )?.payment_reference_no || '',
+                  transactionId:
+                    (res as unknown as { transactionId: string })
+                      ?.transactionId || '',
                 })
                 state?.setStep(CHECKOUT_STEPS.length)
               })

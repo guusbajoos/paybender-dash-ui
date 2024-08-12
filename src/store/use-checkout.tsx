@@ -31,9 +31,25 @@ const useCheckout = create<ICheckoutState>()(
         payment: {},
       },
       setCartData: (item) =>
-        set((state) => ({ data: { ...state.data, cart: item } })),
+        set((state) => ({
+          data: {
+            ...state.data,
+            cart: {
+              ...state.data.cart,
+              ...item,
+            },
+          },
+        })),
       setShippingData: (item) =>
-        set((state) => ({ data: { ...state.data, shipping: item } })),
+        set((state) => ({
+          data: {
+            ...state.data,
+            shipping: {
+              ...state.data.shipping,
+              ...item,
+            },
+          },
+        })),
       setPaymentData: (item) =>
         set((state) => ({
           data: { ...state.data, payment: { ...state.data.payment, ...item } },

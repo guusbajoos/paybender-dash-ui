@@ -16,7 +16,7 @@ import Stepper from '@/components/custom/stepper'
 import PaymentReview from '@/components/partials/dashboard/test-mode/pay-out/payment-review'
 import { useEffect, useState } from 'react'
 import usePostData from '@/hooks/use-post-data'
-import OrderStatus from '@/components/partials/dashboard/test-mode/pay-in/order-status'
+import OrderStatus from '@/components/partials/dashboard/test-mode/pay-out/order-status'
 import WithdrawLoading from '@/components/partials/dashboard/test-mode/pay-out/withdraw-loading'
 
 export default function PayOut() {
