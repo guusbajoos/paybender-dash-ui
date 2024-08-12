@@ -70,7 +70,7 @@ const PaymentReviewDialogPayin = ({
             </span>
           </DialogTitle>
         </DialogHeader>
-        <Separator className='!my-4' />
+        <Separator className='!my-0' />
         <DialogDescription className='!mt-0' asChild>
           <div className='flex flex-col gap-y-7'>
             <div className='flex w-fit flex-col gap-y-2'>

@@ -27,16 +27,17 @@ const WithdrawLoading = (props: IWithdrawLoading) => {
   const [countdown, setCountdown] = useState(5)
 
   useEffect(() => {
-    if (props.progress < 100) {
+    if (props.isOpen && props.progress < 100) {
       const timer = setTimeout(
         () => props.setProgress((prev: number) => prev + 5),
         500
       )
       return () => clearTimeout(timer)
-    } else {
-      props.setComplete && props.setComplete(true)
     }
-  }, [props.progress])
+    if (props.isOpen && props.progress === 100) {
+      props.setComplete(true)
+    }
+  }, [props.isOpen, props.progress])
 
   useEffect(() => {
     if (props.step === 2 && props.isComplete && countdown !== 0) {
@@ -50,7 +51,8 @@ const WithdrawLoading = (props: IWithdrawLoading) => {
     }
   }, [props.step, props.isComplete, countdown])
 
-  if (countdown === 0) props.onNextPage && props.onNextPage()
+  if (props.step === 2 && props.isComplete && countdown === 0)
+    props.onNextPage && props.onNextPage()
 
   return (
     <Dialog open={props.isOpen} onOpenChange={() => {}}>

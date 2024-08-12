@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import DANA from '@/assets/images/DANA.png'
-import LinkAja from '@/assets/images/LinkAja.png'
-import OVO from '@/assets/images/OVO.png'
+// import DANA from '@/assets/images/DANA.png'
+// import LinkAja from '@/assets/images/LinkAja.png'
+// import OVO from '@/assets/images/OVO.png'
+import QRIS from '@/assets/images/paybender-qris.png'
 
 import {
   Dialog,
@@ -36,39 +37,39 @@ const PaymentOrderStatusPayin = ({
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
   }
 
-  const generateImagePaymentMethod = (paymentMethod: string) => {
-    switch (paymentMethod) {
-      case 'DANA':
-        return (
-          <img
-            src={DANA}
-            alt='DANA'
-            className='mx-auto h-auto w-[94px] object-contain'
-          />
-        )
+  // const generateImagePaymentMethod = (paymentMethod: string) => {
+  //   switch (paymentMethod) {
+  //     case 'DANA':
+  //       return (
+  //         <img
+  //           src={DANA}
+  //           alt='DANA'
+  //           className='mx-auto h-auto w-[94px] object-contain'
+  //         />
+  //       )
 
-      case 'LinkAja':
-        return (
-          <img
-            src={LinkAja}
-            alt='LinkAja'
-            className='mx-auto h-auto w-[94px] object-contain'
-          />
-        )
+  //     case 'LinkAja':
+  //       return (
+  //         <img
+  //           src={LinkAja}
+  //           alt='LinkAja'
+  //           className='mx-auto h-auto w-[94px] object-contain'
+  //         />
+  //       )
 
-      case 'OVO':
-        return (
-          <img
-            src={OVO}
-            alt='OVO'
-            className='mx-auto h-auto w-[94px] object-contain'
-          />
-        )
+  //     case 'OVO':
+  //       return (
+  //         <img
+  //           src={OVO}
+  //           alt='OVO'
+  //           className='mx-auto h-auto w-[94px] object-contain'
+  //         />
+  //       )
 
-      default:
-        return <></>
-    }
-  }
+  //     default:
+  //       return <></>
+  //   }
+  // }
 
   useEffect(() => {
     if (remainingTime > 0 && state?.data?.stepWallet === 2) {
@@ -111,7 +112,8 @@ const PaymentOrderStatusPayin = ({
             <div className='bg-gray-300 p-2 text-center font-bold text-black'>
               COMPLETE YOUR PAYMENT IN {formatTime(remainingTime)}
             </div>
-            {generateImagePaymentMethod(state.data?.payment?.payment_method)}
+            {/* {generateImagePaymentMethod(state.data?.payment?.payment_method)} */}
+            <img src={QRIS} alt='qris' className='size-full object-cover' />
             <div className='flex w-fit flex-col gap-y-2'>
               <h3 className='text-base font-bold text-black'>
                 How to Pay with {state.data?.payment?.payment_method} :

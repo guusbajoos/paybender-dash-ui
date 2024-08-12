@@ -29,16 +29,17 @@ const WithdrawPayinLoading = (props: IWithdrawPayinLoading) => {
   const [countdown, setCountdown] = useState(5)
 
   useEffect(() => {
-    if (props.step === 3 && props.progress < 100) {
+    if (props.step === 3 && props.isOpen && props.progress < 100) {
       const timer = setTimeout(
         () => props.setProgress((prev: number) => prev + 5),
         500
       )
       return () => clearTimeout(timer)
-    } else {
+    }
+    if (props.step === 3 && props.isOpen && props.progress === 100) {
       props.setComplete && props.setComplete(true)
     }
-  }, [props.step, props.progress])
+  }, [props.step, props.isOpen, props.progress])
 
   useEffect(() => {
     if (props.step === 3 && props.isComplete && countdown !== 0) {
@@ -52,7 +53,8 @@ const WithdrawPayinLoading = (props: IWithdrawPayinLoading) => {
     }
   }, [props.step, props.isComplete, countdown])
 
-  if (countdown === 0) props.onNextPage && props.onNextPage()
+  if (props.step === 3 && props.isComplete && countdown === 0)
+    props.onNextPage && props.onNextPage()
 
   return (
     <Dialog open={props.isOpen} onOpenChange={() => {}}>

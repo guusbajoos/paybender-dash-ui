@@ -35,7 +35,8 @@ const WithdrawConfirmPayin = (props: IWithdrawConfirm) => {
         500
       )
       return () => clearTimeout(timer)
-    } else {
+    }
+    if (props.step === 3 && props.isOpen && props.progress === 100) {
       props.setComplete && props.setComplete(true)
     }
   }, [props.step, props.isOpen, props.progress])
@@ -57,7 +58,8 @@ const WithdrawConfirmPayin = (props: IWithdrawConfirm) => {
     }
   }, [props.step, props.isOpen, props.isComplete, countdown])
 
-  if (countdown === 0) props.onNextPage && props.onNextPage()
+  if (props.step === 3 && props.isOpen && props.isComplete && countdown === 0)
+    props.onNextPage && props.onNextPage()
 
   return (
     <Dialog open={props.isOpen} onOpenChange={() => {}}>
