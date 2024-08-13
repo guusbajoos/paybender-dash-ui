@@ -49,7 +49,7 @@ const PaymentReviewVA = ({
   }
 
   const handleCopy = async () => {
-    const text = await copyTextToClipboard('#Sample-Store-123121')
+    const text = await copyTextToClipboard('927472426665658265')
     setMessage(text)
   }
 
