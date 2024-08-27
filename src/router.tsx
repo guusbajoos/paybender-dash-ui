@@ -1,17 +1,43 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom'
 import GeneralError from '@/pages/errors/general-error'
 import NotFoundError from '@/pages/errors/not-found-error'
 import MaintenanceError from '@/pages/errors/maintenance-error'
 import UnauthorisedError from '@/pages/errors/unauthorised-error.tsx'
+import AuthLayout from './components/partials/auth/auth-layout'
 
 const router = createBrowserRouter([
+  {
+    index: true,
+    element: <Navigate to='/auth/login' />,
+  },
+  {
+    path: 'auth',
+    element: (
+      <AuthLayout>
+        <Outlet />
+      </AuthLayout>
+    ),
+    children: [
+      {
+        path: 'login',
+        lazy: async () => ({
+          Component: (await import('@/pages/auth/login')).default,
+        }),
+      },
+      {
+        path: 'register',
+        lazy: async () => ({
+          Component: (await import('@/pages/auth/register')).default,
+        }),
+      },
+    ],
+  },
   {
     path: '/',
     lazy: async () => {
       const AppShell = await import('@/components/app-shell')
       return { Component: AppShell.default }
     },
-    errorElement: <GeneralError />,
     children: [
       {
         path: 'get-started',

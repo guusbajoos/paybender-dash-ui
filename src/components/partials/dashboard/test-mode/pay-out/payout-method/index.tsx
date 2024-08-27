@@ -1,3 +1,10 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+
+import { IStepperNextProps } from '@/schemas'
+import { payoutMethodSchema } from '@/schemas/pay-out/payout-method.schema'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -16,11 +23,6 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select'
-import { IStepperNextProps } from '@/data/pay-in/contact-information.schema'
-import { payoutMethodSchema } from '@/data/pay-out/payout-method.schema'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 
 const PayoutMethod = <T,>(props: IStepperNextProps<T>) => {
   const form = useForm<z.infer<typeof payoutMethodSchema>>({

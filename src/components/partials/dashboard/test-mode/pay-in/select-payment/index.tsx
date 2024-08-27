@@ -1,17 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react'
+
+import { cn } from '@/lib/utils'
+import { IStepperNextProps } from '@/schemas'
+import { IPaymentMethodChange } from '@/schemas'
+import useCheckout from '@/store/use-checkout'
+
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsList } from '@/components/ui/tabs'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+
 import PaymentQRIS from './payment-qris'
 import PaymentEMoney from './payment-emoney'
 import PaymentVA from './payment-va'
-
-import { cn } from '@/lib/utils'
-import { IStepperNextProps } from '@/data/pay-in/contact-information.schema'
-import { IPaymentMethodChange } from '@/data/schemas'
-import useCheckout from '@/store/use-checkout'
 
 export type TSelectPaymentProps = IStepperNextProps<any> &
   IPaymentMethodChange & {

@@ -20,7 +20,3 @@ export const payoutMethodSchema = z.object({
     .max(13, 'Receiver Account Number has exceeds 20 digits')
     .optional(),
 })
-
-export interface IStepperNextProps {
-  onNextStep?: () => void
-}

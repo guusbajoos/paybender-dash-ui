@@ -1,9 +1,8 @@
 import * as z from 'zod'
 
-import {
-  contactInformationSchema,
-  IStepperNextProps,
-} from '@/data/pay-in/contact-information.schema'
+import { IStepperNextProps } from '@/schemas'
+import { contactInformationSchema } from '@/schemas/pay-in/contact-information.schema'
+
 import ContactInformationForm from './contact-information-form'
 
 const ContactInformation = (

@@ -10,11 +10,7 @@ import { Separator } from '@/components/ui/separator'
 import { useState } from 'react'
 // import { IconChevronRight } from '@tabler/icons-react'
 import { cn } from '@/lib/utils'
-import {
-  IPaymentMethodChange,
-  TPaymentMethod,
-  TPaymentType,
-} from '@/data/schemas'
+import { IPaymentMethodChange, TPaymentMethod, TPaymentType } from '@/schemas'
 
 const PaymentVA = (props: IPaymentMethodChange) => {
   const [paymentMethod, setPaymentMethod] = useState<{

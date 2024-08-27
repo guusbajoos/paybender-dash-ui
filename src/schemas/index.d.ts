@@ -17,3 +17,8 @@ export interface IPaymentMethodChange {
     payment_method: TPaymentMethod,
   }) => void
 }
+
+export interface IStepperNextProps<T> {
+  onNextStep?: (data?: T) => void
+  isLoading?: boolean
+}

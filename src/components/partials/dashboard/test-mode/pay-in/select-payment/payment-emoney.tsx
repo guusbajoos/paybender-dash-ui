@@ -5,11 +5,7 @@ import OVO from '@/assets/images/OVO.png'
 
 // import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import {
-  IPaymentMethodChange,
-  TPaymentMethod,
-  TPaymentType,
-} from '@/data/schemas'
+import { IPaymentMethodChange, TPaymentMethod, TPaymentType } from '@/schemas'
 import { cn } from '@/lib/utils'
 import useCheckout from '@/store/use-checkout'
 import { useState } from 'react'
