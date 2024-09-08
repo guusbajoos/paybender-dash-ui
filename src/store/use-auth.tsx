@@ -3,43 +3,44 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
 interface ICheckoutState {
-  data: {
-    step: number
-  }
+  step: number
+  user: any
   setStep: (direction: 'prev' | 'next') => void
+  setUserData: (data: any) => void
   removeState: () => void
+  removeStep: () => void
 }
 
 const useAuth = create<ICheckoutState>()(
   persist(
     (set) => ({
-      data: {
-        step: 1,
-      },
+      step: 1,
+      user: {},
       setStep: (direction: 'prev' | 'next') =>
         set((state) => {
           if (direction === 'prev') {
             return {
-              data: {
-                ...state.data,
-                step: state.data.step - 1,
-              },
+              ...state,
+              step: state.step - 1,
             }
           }
 
           return {
-            data: {
-              ...state.data,
-              step: state.data.step + 1,
-            },
+            ...state,
+            step: state.step + 1,
           }
         }),
+      setUserData: (data) =>
+        set((state) => ({
+          ...state,
+          user: data,
+        })),
       removeState: () =>
         set(() => ({
-          data: {
-            step: 1,
-          },
+          step: 1,
+          user: {},
         })),
+      removeStep: () => set((state) => ({ ...state, step: 1 })),
     }),
     {
       name: 'auth',

@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react'
+
 import { IStepperNextProps } from '@/schemas'
 
 import {
@@ -13,6 +15,8 @@ import AuthCard from './auth-card'
 const AuthVerifyOTP = (
   props: IStepperNextProps<{ otp: string; direction: string }>
 ) => {
+  const [otp, setOTP] = useState('')
+
   return (
     <div className='relative'>
       <div className='flex items-center justify-center min-h-screen'>
@@ -23,7 +27,7 @@ const AuthVerifyOTP = (
               your Paybender account
             </p>
 
-            <InputOTP maxLength={6}>
+            <InputOTP maxLength={6} onChange={(val) => setOTP(val)}>
               <InputOTPGroup className='mx-auto gap-x-1'>
                 <InputOTPSlot
                   index={0}
@@ -58,7 +62,7 @@ const AuthVerifyOTP = (
                 disabled={props.isLoading}
                 onClick={() =>
                   props.onNextStep &&
-                  props.onNextStep({ otp: '123', direction: 'next' })
+                  props.onNextStep({ otp, direction: 'next' })
                 }
               >
                 {props.isLoading ? 'VERIFYING...' : 'VERIFY & CONTINUE'}

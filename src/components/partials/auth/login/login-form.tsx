@@ -6,7 +6,7 @@ import * as z from 'zod'
 
 import ImagePath from '@/assets/images/auth-bg-left.png'
 
-import { authCredentialsSchema } from '@/schemas/auth/auth.schema'
+import { loginSchema } from '@/schemas/auth/login.schema'
 import { IStepperNextProps } from '@/schemas'
 
 import {
@@ -23,10 +23,10 @@ import { Button } from '@/components/ui/button'
 import AuthCard from '@/components/partials/auth/auth-card'
 
 const LoginForm = (
-  props: IStepperNextProps<z.infer<typeof authCredentialsSchema>>
+  props: IStepperNextProps<z.infer<typeof loginSchema>>
 ) => {
-  const form = useForm<z.infer<typeof authCredentialsSchema>>({
-    resolver: zodResolver(authCredentialsSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -34,7 +34,7 @@ const LoginForm = (
     mode: 'onChange',
   })
 
-  const onSubmit = (val: z.infer<typeof authCredentialsSchema>) => {
+  const onSubmit = (val: z.infer<typeof loginSchema>) => {
     if (Object.keys(form.formState.errors).length === 0) {
       props.onNextStep && props.onNextStep(val)
     }
@@ -114,6 +114,14 @@ const LoginForm = (
               </Button>
             </form>
           </Form>
+
+          <div className='mt-6 text-center'>
+            <Button variant='link' asChild>
+              <Link to='/auth/register' className='text-sm font-normal'>
+                Don't have an account?
+              </Link>
+            </Button>
+          </div>
         </AuthCard>
       </div>
     </div>
