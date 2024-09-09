@@ -2,11 +2,15 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
+import { IUser } from '@/schemas/auth/login.schema'
+
 interface ICheckoutState {
   step: number
-  user: any
+  isAuthenticated: boolean
+  isAuthReady: boolean
+  user: Partial<IUser>
   setStep: (direction: 'prev' | 'next') => void
-  setUserData: (data: any) => void
+  setUserData: (val: IUser) => void
   removeState: () => void
   removeStep: () => void
 }
@@ -16,6 +20,8 @@ const useAuth = create<ICheckoutState>()(
     (set) => ({
       step: 1,
       user: {},
+      isAuthenticated: false,
+      isAuthReady: false,
       setStep: (direction: 'prev' | 'next') =>
         set((state) => {
           if (direction === 'prev') {
@@ -30,17 +36,27 @@ const useAuth = create<ICheckoutState>()(
             step: state.step + 1,
           }
         }),
-      setUserData: (data) =>
+      setUserData: (val: IUser) =>
         set((state) => ({
           ...state,
-          user: data,
+          isAuthenticated: true,
+          isAuthReady: true,
+          user: val,
         })),
       removeState: () =>
         set(() => ({
           step: 1,
           user: {},
         })),
-      removeStep: () => set((state) => ({ ...state, step: 1 })),
+      removeStep: () =>
+        set((state) => ({
+          ...state,
+          step: 1,
+          user: {
+            ...state.user,
+            qrCodeUrl: '',
+          },
+        })),
     }),
     {
       name: 'auth',

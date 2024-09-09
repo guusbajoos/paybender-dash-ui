@@ -1,5 +1,18 @@
 import * as z from 'zod'
 
+export interface IUser {
+  userId: number
+  username: string
+  email: string
+  fullname: string
+  is_active: number
+  lastlogin: string
+  roleId: number
+  roleName: string
+  gaValidationFlag: number
+  qrCodeUrl: string
+}
+
 export const loginSchema = z.object({
   email: z
     .string({ required_error: 'Email is required' })

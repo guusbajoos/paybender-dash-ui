@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import useAuth from '@/store/use-auth'
 
 import usePostData from '@/hooks/use-post-data'
@@ -9,6 +11,7 @@ import AuthVerifyOTP from '@/components/partials/auth/auth-verify-otp'
 
 const AuthRegisterPage = () => {
   const { toast } = useToast()
+  const navigate = useNavigate()
 
   const state = useAuth((state) => state)
 
@@ -46,14 +49,17 @@ const AuthRegisterPage = () => {
       token: '',
       onSuccess: () => {
         toast({
-          description: 'Account verified successfully',
+          description: 'Account activated successfully',
           variant: 'success',
           className: cn(
             'top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4'
           ),
           duration: 3000,
         })
-        state.removeStep()
+        setTimeout(() => {
+          navigate('/auth/login')
+          state.removeStep()
+        }, 3000)
       },
       onError: (error) => {
         toast({
@@ -78,15 +84,19 @@ const AuthRegisterPage = () => {
           />
         )
       case 2:
-        return <AuthVerifyOTP
-          onNextStep={(val) => {
-            if (val?.direction === 'prev')
-              state.setStep('prev')
-            if (val?.direction === 'next')
-              verifyOTP(val?.otp)
-          }}
-          isLoading={isLoadingVerifyOTP}
-        />
+        return (
+          <AuthVerifyOTP
+            onNextStep={(val) => {
+              if (val?.direction === 'prev') state.setStep('prev')
+              if (val?.direction === 'next')
+                verifyOTP({
+                  email: val.email,
+                  validation_code: val.otp,
+                })
+            }}
+            isLoading={isLoadingVerifyOTP}
+          />
+        )
       default:
         return <></>
     }
