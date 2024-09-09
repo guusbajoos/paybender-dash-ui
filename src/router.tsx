@@ -3,7 +3,9 @@ import GeneralError from '@/pages/errors/general-error'
 import NotFoundError from '@/pages/errors/not-found-error'
 import MaintenanceError from '@/pages/errors/maintenance-error'
 import UnauthorisedError from '@/pages/errors/unauthorised-error.tsx'
-import AuthLayout from './components/partials/auth/auth-layout'
+
+import AuthLayout from '@/components/partials/auth/auth-layout'
+import AuthGate from '@/components/partials/auth/auth-gate'
 
 const router = createBrowserRouter([
   {
@@ -33,37 +35,45 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/',
-    lazy: async () => {
-      const AppShell = await import('@/components/app-shell')
-      return { Component: AppShell.default }
-    },
+    path: 'app',
+    element: (
+      <AuthGate>
+        <Outlet />
+      </AuthGate>
+    ),
+    // lazy: async () => {
+    //   const AppShell = await import('@/components/app-shell')
+    //   return { Component: AppShell.default }
+    // },
     children: [
       {
+        index: true,
         path: 'get-started',
         lazy: async () => ({
           Component: (await import('@/pages/dashboard')).default,
         }),
-      },
-      {
-        path: 'get-started/test-mode',
-        lazy: async () => ({
-          Component: (await import('@/pages/dashboard/test-mode')).default,
-        }),
-      },
-      {
-        path: 'get-started/test-mode/pay-in',
-        lazy: async () => ({
-          Component: (await import('@/pages/dashboard/test-mode/pay-in'))
-            .default,
-        }),
-      },
-      {
-        path: 'get-started/test-mode/pay-out',
-        lazy: async () => ({
-          Component: (await import('@/pages/dashboard/test-mode/pay-out'))
-            .default,
-        }),
+        children: [
+          {
+            path: 'get-started/test-mode',
+            lazy: async () => ({
+              Component: (await import('@/pages/dashboard/test-mode')).default,
+            }),
+          },
+          {
+            path: 'get-started/test-mode/pay-in',
+            lazy: async () => ({
+              Component: (await import('@/pages/dashboard/test-mode/pay-in'))
+                .default,
+            }),
+          },
+          {
+            path: 'get-started/test-mode/pay-out',
+            lazy: async () => ({
+              Component: (await import('@/pages/dashboard/test-mode/pay-out'))
+                .default,
+            }),
+          },
+        ],
       },
     ],
   },
