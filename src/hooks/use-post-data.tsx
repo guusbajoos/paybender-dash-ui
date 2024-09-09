@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosResponse, } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { useState } from 'react'
 
 type Options<T> = {
@@ -23,16 +23,13 @@ const usePostData = <TRequest, TResponse>(
         postData,
         {
           headers: {
-            ...(token && {
-              Authorization: `Bearer ${token}`,
-            }),
+            Authorization: `Bearer ${token}`,
             'Content-Type': isFormData
               ? 'multipart/form-data'
               : 'application/json',
           },
         }
       )
-
       onSuccess && onSuccess(response.data)
       return response.data
     } catch (error) {
