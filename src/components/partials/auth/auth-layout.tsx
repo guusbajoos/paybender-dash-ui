@@ -8,7 +8,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       <div className='flex size-full'>
         <div className='w-3/5'>{children}</div>
         <div className='w-2/5 bg-[#EEF9FA]'>
-          <div className='relative flex flex-col items-center justify-center h-screen px-6 gap-y-12'>
+          <div className='relative flex h-screen flex-col items-center justify-center gap-y-12 px-6'>
             <div className='flex flex-col gap-y-2.5'>
               <h1 className='text-5xl font-bold text-[#000202]'>
                 Welcome to Paybender
@@ -19,7 +19,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
             <div className=''>
               <img
-                className='object-contain w-full max-w-xl'
+                className='w-full max-w-xl object-contain'
                 src={Growth}
                 alt='Growth'
               />

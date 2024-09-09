@@ -1,11 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IconArrowLeft } from '@tabler/icons-react'
 
-import dayjs from 'dayjs'
-
-import { Layout } from '@/components/custom/layout'
-import { UserNav } from '@/components/user-nav'
-import Timestamp from '@/components/timestamp'
 import { Link, useNavigate } from 'react-router-dom'
 import CartReview from '@/components/partials/dashboard/test-mode/pay-in/cart'
 import ContactInformation from '@/components/partials/dashboard/test-mode/pay-in/contact-information'
@@ -266,47 +261,33 @@ export default function PayIn() {
   }, [state?.data?.step, countdown, navigate])
 
   return (
-    <Layout>
-      {/* ===== Top Heading ===== */}
-      <Layout.Header className='shadow-sm'>
-        <Timestamp
-          date={dayjs().format('dddd, MMMM DD, YYYY')}
-          time={dayjs().format('HH:mm A')}
+    <>
+      <Link
+        to='/app/get-started/test-mode'
+        className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
+        onClick={() => state.removeState()}
+      >
+        <IconArrowLeft />
+        Back
+      </Link>
+      <div className='mb-10 flex w-full flex-col items-center gap-x-[6.125rem] gap-y-10 lg:flex-row'>
+        <h2 className='text-lg font-medium text-black'>Pay In Demo</h2>
+        <Stepper
+          stepsConfig={CHECKOUT_STEPS}
+          currentStep={state?.data?.step}
+          isComplete={state?.data?.isComplete}
         />
-        <div className='ml-auto flex items-center space-x-4'>
-          <UserNav />
+      </div>
+      <div
+        className={cn('flex flex-col gap-5 lg:flex-row', {
+          'items-center': state?.data?.step === CHECKOUT_STEPS.length,
+        })}
+      >
+        <div className='w-full lg:w-1/2'>
+          <CartReview />
         </div>
-      </Layout.Header>
-
-      {/* ===== Main ===== */}
-      <Layout.Body>
-        <Link
-          to='/app/get-started/test-mode'
-          className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
-          onClick={() => state.removeState()}
-        >
-          <IconArrowLeft />
-          Back
-        </Link>
-        <div className='mb-10 flex w-full flex-col items-center gap-x-[6.125rem] gap-y-10 lg:flex-row'>
-          <h2 className='text-lg font-medium text-black'>Pay In Demo</h2>
-          <Stepper
-            stepsConfig={CHECKOUT_STEPS}
-            currentStep={state?.data?.step}
-            isComplete={state?.data?.isComplete}
-          />
-        </div>
-        <div
-          className={cn('flex flex-col gap-5 lg:flex-row', {
-            'items-center': state?.data?.step === CHECKOUT_STEPS.length,
-          })}
-        >
-          <div className='w-full lg:w-1/2'>
-            <CartReview />
-          </div>
-          <div className='w-full lg:w-1/2'>{ActiveComponetn()}</div>
-        </div>
-      </Layout.Body>
-    </Layout>
+        <div className='w-full lg:w-1/2'>{ActiveComponetn()}</div>
+      </div>
+    </>
   )
 }

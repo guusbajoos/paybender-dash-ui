@@ -12,6 +12,7 @@ interface ICheckoutState {
   setStep: (direction: 'prev' | 'next') => void
   setUserData: (val: IUser) => void
   removeState: () => void
+  removeStep: () => void
 }
 
 const useAuth = create<ICheckoutState>()(

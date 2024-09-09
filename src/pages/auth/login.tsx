@@ -82,13 +82,12 @@ const AuthLoginPage = () => {
   )
 
   const ActiveComponent = () => {
-    switch (state.data.step) {
+    switch (state.step) {
       case 1:
         return (
           <LoginForm
-            onNextStep={() => {
-              state.setStep('next')
-            }}
+            onNextStep={(val) => login(val)}
+            isLoading={isLoadingLogin}
           />
         )
       case 2:
@@ -99,6 +98,7 @@ const AuthLoginPage = () => {
               if (val?.direction === 'next')
                 verifyOTP({ email: val.email, validation_code: val.otp })
             }}
+            isLoading={isLoadingVerifyOTP}
           />
         )
       default:

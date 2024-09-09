@@ -2,11 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IconArrowLeft } from '@tabler/icons-react'
 
-import dayjs from 'dayjs'
-
-import { Layout } from '@/components/custom/layout'
-import { UserNav } from '@/components/user-nav'
-import Timestamp from '@/components/timestamp'
 import { Link, useNavigate } from 'react-router-dom'
 import PayoutMethod from '@/components/partials/dashboard/test-mode/pay-out/payout-method'
 import WithdrawInformation from '@/components/partials/dashboard/test-mode/pay-out/withdraw-information'
@@ -206,52 +201,38 @@ export default function PayOut() {
   }, [state?.data?.step, countdown])
 
   return (
-    <Layout className='bg-[#FAFAFB]'>
-      {/* ===== Top Heading ===== */}
-      <Layout.Header className='shadow-sm'>
-        <Timestamp
-          date={dayjs().format('dddd, MMMM DD, YYYY')}
-          time={dayjs().format('HH:mm A')}
+    <>
+      <Link
+        to='/app/get-started/test-mode'
+        className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
+        onClick={() => state.removeState()}
+      >
+        <IconArrowLeft />
+        Back
+      </Link>
+
+      <div className='mb-10 flex w-full flex-col items-center gap-x-[6.125rem] gap-y-10 lg:flex-row'>
+        <h2 className='text-lg font-medium text-black'>Pay Out Demo</h2>
+        <Stepper
+          stepsConfig={CHECKOUT_STEPS}
+          currentStep={state?.data?.step}
+          isComplete={state?.data?.isComplete}
         />
-        <div className='ml-auto flex items-center space-x-4'>
-          <UserNav />
-        </div>
-      </Layout.Header>
-
-      {/* ===== Main ===== */}
-      <Layout.Body>
-        <Link
-          to='/app/get-started/test-mode'
-          className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
-          onClick={() => state.removeState()}
+      </div>
+      <div className='flex gap-5'>
+        <div
+          className={cn('w-full', {
+            'w-1/2': state?.data?.step === 1,
+          })}
         >
-          <IconArrowLeft />
-          Back
-        </Link>
-
-        <div className='mb-10 flex w-full flex-col items-center gap-x-[6.125rem] gap-y-10 lg:flex-row'>
-          <h2 className='text-lg font-medium text-black'>Pay Out Demo</h2>
-          <Stepper
-            stepsConfig={CHECKOUT_STEPS}
-            currentStep={state?.data?.step}
-            isComplete={state?.data?.isComplete}
-          />
+          {ActiveComponent()}
         </div>
-        <div className='flex gap-5'>
-          <div
-            className={cn('w-full', {
-              'w-1/2': state?.data?.step === 1,
-            })}
-          >
-            {ActiveComponent()}
+        {state?.data?.step === 1 && (
+          <div className='w-1/2'>
+            <WithdrawInformation />
           </div>
-          {state?.data?.step === 1 && (
-            <div className='w-1/2'>
-              <WithdrawInformation />
-            </div>
-          )}
-        </div>
-      </Layout.Body>
-    </Layout>
+        )}
+      </div>
+    </>
   )
 }

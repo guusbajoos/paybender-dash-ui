@@ -6,7 +6,10 @@ import UnauthorisedError from '@/pages/errors/unauthorised-error.tsx'
 
 import AuthLayout from '@/components/partials/auth/auth-layout'
 import AuthGate from '@/components/partials/auth/auth-gate'
+import AuthLoginPage from '@/pages/auth/login'
+import AuthRegisterPage from '@/pages/auth/register'
 import AppShell from '@/components/app-shell'
+import getStartedRoutes from './get-started/get-started.routes'
 
 const routesConfig: RouteObject[] = [
   {
@@ -23,15 +26,11 @@ const routesConfig: RouteObject[] = [
     children: [
       {
         path: 'login',
-        lazy: async () => ({
-          Component: (await import('@/pages/auth/login')).default,
-        }),
+        Component: AuthLoginPage,
       },
       {
         path: 'register',
-        lazy: async () => ({
-          Component: (await import('@/pages/auth/register')).default,
-        }),
+        Component: AuthRegisterPage,
       },
     ],
   },
@@ -51,34 +50,8 @@ const routesConfig: RouteObject[] = [
       },
       {
         path: 'get-started',
-        element: (
-          <div>
-            <h1>Get Started Page</h1>
-            <p>Some introductory content for the Get Started page.</p>
-            <Outlet /> {/* This will render the child routes like test-mode */}
-          </div>
-        ),
-        children: [
-          {
-            path: 'test-mode',
-            element: (
-              <div>
-                <h2>Test Mode</h2>
-                <Outlet /> {/* This renders the children like pay-in/pay-out */}
-              </div>
-            ),
-            children: [
-              {
-                path: 'pay-in',
-                element: <p>pay-in</p>,
-              },
-              {
-                path: 'pay-out',
-                element: <p>pay-out</p>,
-              },
-            ],
-          },
-        ],
+        element: <Outlet />,
+        children: getStartedRoutes,
       },
     ],
   },
