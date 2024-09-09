@@ -1,16 +1,25 @@
 import * as z from 'zod'
 
 export interface IUser {
-  userId: number
+  user_id: number
   username: string
   email: string
-  fullname: string
+  full_name: string
   is_active: number
-  lastlogin: string
-  roleId: number
-  roleName: string
-  gaValidationFlag: number
-  qrCodeUrl: string
+  last_login: string
+  role_id: number
+  role_name: string
+  ga_validation_flag: number
+  ga_secret: string
+  ga_secret_url: string
+  token: string
+  qr_code_url: string
+  created_date: string
+  validation_code: string
+  validation_expired_datetime: string
+  is_validated: number
+  validated_at: string
+  password: string
 }
 
 export const loginSchema = z.object({

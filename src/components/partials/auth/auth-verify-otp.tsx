@@ -26,7 +26,7 @@ const AuthVerifyOTP = (
       <div className='flex min-h-screen items-center justify-center'>
         <AuthCard title='Please verify your account' hasSeparator>
           <div className='flex flex-col gap-y-6'>
-            {!user.lastlogin && (
+            {!user?.last_login && (
               <>
                 <p className='text-sm font-medium text-[#777677]'>
                   Please scan the QR code below with your authentication app to
@@ -36,7 +36,7 @@ const AuthVerifyOTP = (
                   <img
                     alt='QR Code'
                     className='h-full w-full object-cover'
-                    src={user.qrCodeUrl}
+                    src={user?.qr_code_url}
                   />
                 </div>
               </>
@@ -83,7 +83,7 @@ const AuthVerifyOTP = (
                 onClick={() =>
                   props.onNextStep &&
                   props.onNextStep({
-                    email: user.email,
+                    email: user?.email,
                     otp,
                     direction: 'next',
                   })

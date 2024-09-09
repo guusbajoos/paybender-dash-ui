@@ -6,7 +6,7 @@ import * as z from 'zod'
 
 import ImagePath from '@/assets/images/auth-bg-left.png'
 
-import { authCredentialsSchema } from '@/schemas/auth/auth.schema'
+import { loginSchema } from '@/schemas/auth/login.schema'
 import { IStepperNextProps } from '@/schemas'
 
 import {
@@ -22,11 +22,9 @@ import { Button } from '@/components/ui/button'
 
 import AuthCard from '@/components/partials/auth/auth-card'
 
-const LoginForm = (
-  props: IStepperNextProps<z.infer<typeof authCredentialsSchema>>
-) => {
-  const form = useForm<z.infer<typeof authCredentialsSchema>>({
-    resolver: zodResolver(authCredentialsSchema),
+const LoginForm = (props: IStepperNextProps<z.infer<typeof loginSchema>>) => {
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -34,7 +32,7 @@ const LoginForm = (
     mode: 'onChange',
   })
 
-  const onSubmit = (val: z.infer<typeof authCredentialsSchema>) => {
+  const onSubmit = (val: z.infer<typeof loginSchema>) => {
     if (Object.keys(form.formState.errors).length === 0) {
       props.onNextStep && props.onNextStep(val)
     }
@@ -50,15 +48,18 @@ const LoginForm = (
         backgroundPosition: 'top center',
       }}
     >
-      <div className='flex items-center justify-center min-h-screen'>
+      <div className='flex min-h-screen items-center justify-center'>
         <AuthCard title='Enter Credentials' hasSeparator>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className='flex flex-col gap-y-3'
+            >
               <FormField
                 control={form.control}
                 name='email'
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className='!mt-0'>
                     <FormLabel className='font-normal text-[#777677]'>
                       Email
                     </FormLabel>
@@ -78,13 +79,13 @@ const LoginForm = (
                 control={form.control}
                 name='password'
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className='!mt-0'>
                     <FormLabel className='font-normal text-[#777677]'>
                       Password
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
                       <Input
-                        placeholder='******'
+                        placeholder='********'
                         {...field}
                         disabled={props.isLoading}
                         className='disabled:bg-gray-200'
@@ -114,6 +115,14 @@ const LoginForm = (
               </Button>
             </form>
           </Form>
+
+          <div className='mt-6 text-center'>
+            <Button variant='link' asChild>
+              <Link to='/auth/register' className='text-sm font-normal'>
+                Don't have an account?
+              </Link>
+            </Button>
+          </div>
         </AuthCard>
       </div>
     </div>

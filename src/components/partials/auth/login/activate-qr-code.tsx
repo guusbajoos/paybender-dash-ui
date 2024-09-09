@@ -21,7 +21,7 @@ const ActiveQRCode = (
             <img
               alt='QR Code'
               className='h-full w-full object-cover'
-              src={user.qrCodeUrl}
+              src={user?.qr_code_url}
             />
           </div>
           <div className='flex flex-col gap-y-2'>

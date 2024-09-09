@@ -62,9 +62,20 @@ const AuthLoginPage = () => {
           ),
           duration: 3000,
         })
-        state.setUserData(result)
+        state.setUserData({
+          email: result.email,
+          full_name: result.full_name,
+          is_active: result.is_active,
+          last_login: result.last_login,
+          ga_validation_flag: result.ga_validation_flag,
+          role_id: result.role_id,
+          role_name: result.role_name,
+          token: result.token,
+          user_id: result.user_id,
+          created_date: result.created_date,
+        })
         setTimeout(() => {
-          navigate('/get-started')
+          navigate('/app/get-started')
           state.removeStep()
         }, 3000)
       },

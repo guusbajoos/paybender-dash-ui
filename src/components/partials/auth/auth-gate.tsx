@@ -13,7 +13,7 @@ const AuthGate = (props: PropsWithChildren) => {
     }
   }, [auth.isAuthenticated])
 
-  return auth.isAuthenticated ? props.children : null
+  return auth.isAuthReady ? props.children : null
 }
 
 export default AuthGate

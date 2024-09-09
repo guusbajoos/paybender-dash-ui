@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 
-import { authCredentialsSchema } from '@/schemas/auth/auth.schema'
+import { registerSchema } from '@/schemas/auth/register.schema'
 import { IStepperNextProps } from '@/schemas'
 
 import {
@@ -21,18 +21,21 @@ import { Button } from '@/components/ui/button'
 import AuthCard from '@/components/partials/auth/auth-card'
 
 const RegisterForm = (
-  props: IStepperNextProps<z.infer<typeof authCredentialsSchema>>
+  props: IStepperNextProps<z.infer<typeof registerSchema>>
 ) => {
-  const form = useForm<z.infer<typeof authCredentialsSchema>>({
-    resolver: zodResolver(authCredentialsSchema),
+  const form = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
+      fullname: '',
       email: '',
       password: '',
+      repassword: '',
+      role_id: 0,
     },
     mode: 'onChange',
   })
 
-  const onSubmit = (val: z.infer<typeof authCredentialsSchema>) => {
+  const onSubmit = (val: z.infer<typeof registerSchema>) => {
     if (Object.keys(form.formState.errors).length === 0) {
       props.onNextStep && props.onNextStep(val)
     }
@@ -40,15 +43,38 @@ const RegisterForm = (
 
   return (
     <div className='relative z-0'>
-      <div className='flex items-center justify-center min-h-screen'>
+      <div className='flex min-h-screen items-center justify-center'>
         <AuthCard title='Enter Credentials' hasSeparator>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className='flex flex-col gap-y-3'
+            >
+              <FormField
+                control={form.control}
+                name='fullname'
+                render={({ field }) => (
+                  <FormItem className='!mt-0'>
+                    <FormLabel className='font-normal text-[#777677]'>
+                      Full Name
+                    </FormLabel>
+                    <FormControl className='font-normal text-[#777677]'>
+                      <Input
+                        placeholder='John Doe'
+                        {...field}
+                        disabled={props.isLoading}
+                        className='disabled:bg-gray-200'
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name='email'
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className='!mt-0'>
                     <FormLabel className='font-normal text-[#777677]'>
                       Email
                     </FormLabel>
@@ -68,13 +94,34 @@ const RegisterForm = (
                 control={form.control}
                 name='password'
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className='!mt-0'>
                     <FormLabel className='font-normal text-[#777677]'>
                       Password
                     </FormLabel>
                     <FormControl className='font-normal text-[#777677]'>
                       <Input
-                        placeholder='******'
+                        placeholder='********'
+                        {...field}
+                        disabled={props.isLoading}
+                        className='disabled:bg-gray-200'
+                        type='password'
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='repassword'
+                render={({ field }) => (
+                  <FormItem className='!mt-0'>
+                    <FormLabel className='font-normal text-[#777677]'>
+                      Confirm Password
+                    </FormLabel>
+                    <FormControl className='font-normal text-[#777677]'>
+                      <Input
+                        placeholder='********'
                         {...field}
                         disabled={props.isLoading}
                         className='disabled:bg-gray-200'
@@ -104,6 +151,14 @@ const RegisterForm = (
               </Button>
             </form>
           </Form>
+
+          <div className='mt-6 text-center'>
+            <Button variant='link' asChild>
+              <Link to='/auth/login' className='text-sm font-normal'>
+                Already have an account?
+              </Link>
+            </Button>
+          </div>
         </AuthCard>
       </div>
     </div>

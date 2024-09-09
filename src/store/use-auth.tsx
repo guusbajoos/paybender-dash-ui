@@ -10,7 +10,7 @@ interface ICheckoutState {
   isAuthReady: boolean
   user: Partial<IUser>
   setStep: (direction: 'prev' | 'next') => void
-  setUserData: (val: IUser) => void
+  setUserData: (val: Partial<IUser>) => void
   removeState: () => void
   removeStep: () => void
 }
@@ -21,7 +21,7 @@ const useAuth = create<ICheckoutState>()(
       step: 1,
       user: {},
       isAuthenticated: false,
-      isAuthReady: false,
+      isAuthReady: true,
       setStep: (direction: 'prev' | 'next') =>
         set((state) => {
           if (direction === 'prev') {
@@ -36,7 +36,7 @@ const useAuth = create<ICheckoutState>()(
             step: state.step + 1,
           }
         }),
-      setUserData: (val: IUser) =>
+      setUserData: (val: Partial<IUser>) =>
         set((state) => ({
           ...state,
           isAuthenticated: true,
@@ -52,10 +52,6 @@ const useAuth = create<ICheckoutState>()(
         set((state) => ({
           ...state,
           step: 1,
-          user: {
-            ...state.user,
-            qrCodeUrl: '',
-          },
         })),
     }),
     {
