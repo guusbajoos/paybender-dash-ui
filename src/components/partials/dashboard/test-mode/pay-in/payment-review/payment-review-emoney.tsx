@@ -77,7 +77,7 @@ const PaymentReviewEMoney = ({
 
   // if remaining time is done, redirect to the test mode page
   // if (remainingTime === '00:00') {
-  //   navigate('/get-started/test-mode')
+  //   navigate('/app/get-started/test-mode')
   //   state.removeState()
   // }
 
@@ -88,7 +88,7 @@ const PaymentReviewEMoney = ({
 
   // useEffect(() => {
   //   if (countdown === 0) {
-  //     navigate('/get-started/test-mode')
+  //     navigate('/app/get-started/test-mode')
   //     state.removeState()
   //   }
   // }, [countdown, navigate])

@@ -21,7 +21,7 @@ export const sidelinks: SideLink[] = [
       {
         title: 'Get started',
         label: '',
-        href: '/get-started',
+        href: '/app/app/get-started',
         icon: <></>,
       },
     ],

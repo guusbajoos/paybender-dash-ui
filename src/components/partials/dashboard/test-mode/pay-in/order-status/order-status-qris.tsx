@@ -41,7 +41,7 @@ const OrderStatusQRIS = ({ countdown }: { countdown: number }) => {
       <Separator className='my-4 text-[#C7C7C7]' />
       <p className='text-center text-sm font-normal text-[#5A5A5A] lg:text-lg'>
         Redirect in {countdown} seconds or{' '}
-        <Link className='font-medium' to='/get-started/test-mode'>
+        <Link className='font-medium' to='/app/get-started/test-mode'>
           click here
         </Link>
       </p>

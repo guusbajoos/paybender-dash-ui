@@ -14,7 +14,7 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
 
   if (countdown === 0) {
     state.removeState()
-    navigate('/get-started/test-mode', {
+    navigate('/app/get-started/test-mode', {
       state: {
         testMode: path,
       },
@@ -69,7 +69,7 @@ const OrderStatus = ({ countdown }: { countdown: number }) => {
       <Separator className='my-4 text-[#C7C7C7]' />
       <p className='text-center text-sm font-normal text-[#5A5A5A] lg:text-lg'>
         Redirect in {countdown} seconds or{' '}
-        <Link className='font-medium' to='/get-started/test-mode'>
+        <Link className='font-medium' to='/app/get-started/test-mode'>
           click here
         </Link>
       </p>

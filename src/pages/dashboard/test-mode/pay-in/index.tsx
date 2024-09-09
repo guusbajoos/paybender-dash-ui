@@ -162,7 +162,7 @@ export default function PayIn() {
                     state.setStep(CHECKOUT_STEPS.length)
                   }
                   state.setPaymentData({ payment_date: new Date() })
-                  navigate('/get-started/test-mode/pay-in', {
+                  navigate('/app/get-started/test-mode/pay-in', {
                     state: {
                       status: v,
                     },
@@ -281,7 +281,7 @@ export default function PayIn() {
       {/* ===== Main ===== */}
       <Layout.Body>
         <Link
-          to='/get-started/test-mode'
+          to='/app/get-started/test-mode'
           className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
           onClick={() => state.removeState()}
         >

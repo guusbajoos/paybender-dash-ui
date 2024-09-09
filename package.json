@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://demo.paybender.com/get-started",
+  "homepage": "https://demo.paybender.com/app/get-started",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

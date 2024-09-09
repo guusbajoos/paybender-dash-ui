@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router-dom'
+import { PropsWithChildren } from 'react'
 import Sidebar from '@/components/sidebar'
 import useIsCollapsed from '@/hooks/use-is-collapsed'
 
-export default function AppShell() {
+export default function AppShell(props: PropsWithChildren) {
   const [isCollapsed, setIsCollapsed] = useIsCollapsed()
   return (
     <div className='relative h-full overflow-hidden'>
@@ -11,7 +11,7 @@ export default function AppShell() {
         id='content'
         className={`overflow-x-hidden pt-24 transition-[margin] lg:overflow-y-hidden lg:pt-0 ${isCollapsed ? 'lg:ml-14' : 'lg:ml-64'} h-full`}
       >
-        <Outlet />
+        {props.children}
       </main>
     </div>
   )

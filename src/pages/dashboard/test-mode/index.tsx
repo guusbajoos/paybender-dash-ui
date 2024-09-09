@@ -65,7 +65,7 @@ export default function TestMode() {
 
   const breadcrumbs = [
     { title: 'Home', href: '/' },
-    { title: 'Get Started', href: '/get-started' },
+    { title: 'Get Started', href: '/app/get-started' },
     { title: 'Test Mode' },
   ].map(({ href, title }) => (
     <BreadcrumbItem key={title}>
@@ -114,7 +114,7 @@ export default function TestMode() {
       {/* ===== Main ===== */}
       <Layout.Body>
         <Link
-          to='/get-started'
+          to='/app/get-started'
           className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
         >
           <IconArrowLeft />
@@ -141,7 +141,7 @@ export default function TestMode() {
                   setTabKey('pay-in')
                   setParams((prev) => ({ ...prev, page: 1 }))
                   handleParamsChange({ page: 1, limit: 10 })
-                  navigate('/get-started/test-mode')
+                  navigate('/app/get-started/test-mode')
                 }}
               >
                 Pay In
@@ -158,7 +158,7 @@ export default function TestMode() {
                   setTabKey('pay-out')
                   setParams((prev) => ({ ...prev, page: 1 }))
                   handleParamsChange({ page: 1, limit: 10 })
-                  navigate('/get-started/test-mode')
+                  navigate('/app/get-started/test-mode')
                 }}
               >
                 Pay Out
@@ -228,9 +228,9 @@ export default function TestMode() {
                   className='bg-[#3CC1D1] text-white shadow-none hover:bg-[#3CC1D1] focus:bg-[#3CC1D1]'
                   onClick={() => {
                     if (tabKey === 'pay-in')
-                      navigate('/get-started/test-mode/pay-in')
+                      navigate('/app/get-started/test-mode/pay-in')
                     if (tabKey === 'pay-out')
-                      navigate('/get-started/test-mode/pay-out')
+                      navigate('/app/get-started/test-mode/pay-out')
                   }}
                 >
                   {tabKey === 'pay-in' ? 'TRY PAYMENT' : 'TRY WITHDRAW'}

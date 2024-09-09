@@ -134,7 +134,7 @@ export default function PayOut() {
                 }).then(() => {
                   setIsOpenProgressLoading(true)
                   state.setPaymentData({ payment_date: new Date() })
-                  navigate('/get-started/test-mode/pay-out', {
+                  navigate('/app/get-started/test-mode/pay-out', {
                     state: {
                       status: v,
                     },
@@ -221,7 +221,7 @@ export default function PayOut() {
       {/* ===== Main ===== */}
       <Layout.Body>
         <Link
-          to='/get-started/test-mode'
+          to='/app/get-started/test-mode'
           className='mb-10 flex items-center gap-x-2 text-sm font-medium text-[#3CC1D1]'
           onClick={() => state.removeState()}
         >

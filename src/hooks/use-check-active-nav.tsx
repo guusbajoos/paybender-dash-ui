@@ -3,12 +3,18 @@ import { useLocation } from 'react-router-dom'
 export default function useCheckActiveNav() {
   const { pathname } = useLocation()
 
+  // Normalize and remove any leading slashes for comparison
+  const getPathSegments = () =>
+    pathname.replace('/app', '').split('/').filter(Boolean)
+
   const checkActiveNav = (nav: string) => {
-    const pathArray = pathname.split('/').filter((item) => item !== '')
+    const pathSegments = getPathSegments()
 
-    if (nav === '/' && pathArray.length < 1) return true
+    if (nav === '/app' && pathSegments.length === 0) return true // Active if root
 
-    return pathArray.includes(nav.replace(/^\//, ''))
+    // Check if the path segment matches the nav without leading slashes
+    const cleanNav = nav.replace('/app', '').replace(/^\//, '')
+    return pathSegments.includes(cleanNav)
   }
 
   return { checkActiveNav }

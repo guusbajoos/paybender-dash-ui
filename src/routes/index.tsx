@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, RouteObject } from 'react-router-dom'
 import GeneralError from '@/pages/errors/general-error'
 import NotFoundError from '@/pages/errors/not-found-error'
 import MaintenanceError from '@/pages/errors/maintenance-error'
@@ -6,9 +6,9 @@ import UnauthorisedError from '@/pages/errors/unauthorised-error.tsx'
 
 import AuthLayout from '@/components/partials/auth/auth-layout'
 import AuthGate from '@/components/partials/auth/auth-gate'
-import AppShell from './components/app-shell'
+import AppShell from '@/components/app-shell'
 
-const router = createBrowserRouter([
+const routesConfig: RouteObject[] = [
   {
     index: true,
     element: <Navigate to='/auth/login' />,
@@ -91,6 +91,6 @@ const router = createBrowserRouter([
 
   // Fallback 404 route
   { path: '*', Component: NotFoundError },
-])
+]
 
-export default router
+export default routesConfig

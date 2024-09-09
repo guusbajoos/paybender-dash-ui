@@ -82,7 +82,7 @@ const PaymentOrderStatusPayin = ({
   }, [remainingTime, state.data?.stepWallet])
 
   if (remainingTime === 0) {
-    navigate('/get-started/test-mode')
+    navigate('/app/get-started/test-mode')
     state.removeState()
   }
 

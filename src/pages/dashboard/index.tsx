@@ -124,7 +124,7 @@ export default function Dashboard() {
                     </h3>
                     <Button
                       className='w-full bg-[#3CC1D1] text-xs text-white hover:bg-[#3CC1D1]/90 focus:bg-[#3CC1D1]/90'
-                      onClick={() => navigate('/get-started/test-mode')}
+                      onClick={() => navigate('/app/get-started/test-mode')}
                     >
                       Try
                     </Button>
