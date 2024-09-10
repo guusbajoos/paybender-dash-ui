@@ -10,6 +10,7 @@ import AuthLoginPage from '@/pages/auth/login'
 import AuthRegisterPage from '@/pages/auth/register'
 import AppShell from '@/components/app-shell'
 import getStartedRoutes from './get-started/get-started.routes'
+import AuthenticatedGate from '@/components/partials/auth/authenticated-gate'
 
 const routesConfig: RouteObject[] = [
   {
@@ -19,9 +20,11 @@ const routesConfig: RouteObject[] = [
   {
     path: 'auth',
     element: (
-      <AuthLayout>
-        <Outlet />
-      </AuthLayout>
+      <AuthGate>
+        <AuthLayout>
+          <Outlet />
+        </AuthLayout>
+      </AuthGate>
     ),
     children: [
       {
@@ -37,11 +40,11 @@ const routesConfig: RouteObject[] = [
   {
     path: 'app',
     element: (
-      <AuthGate>
+      <AuthenticatedGate>
         <AppShell>
           <Outlet />
         </AppShell>
-      </AuthGate>
+      </AuthenticatedGate>
     ),
     children: [
       {

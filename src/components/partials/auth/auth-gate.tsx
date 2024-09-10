@@ -8,8 +8,8 @@ const AuthGate = (props: PropsWithChildren) => {
   const auth = useAuth((state) => state)
 
   useEffect(() => {
-    if (!auth.isAuthenticated) {
-      navigate('/auth/login')
+    if (auth.isAuthenticated) {
+      navigate('/app/get-started')
     }
   }, [auth.isAuthenticated])
 
