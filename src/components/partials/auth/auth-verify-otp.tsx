@@ -47,7 +47,11 @@ const AuthVerifyOTP = (
               your Paybender account
             </p>
 
-            <InputOTP maxLength={6} onChange={(val) => setOTP(val)}>
+            <InputOTP
+              maxLength={6}
+              onChange={(val) => setOTP(val)}
+              disabled={props.isLoading}
+            >
               <InputOTPGroup className='mx-auto gap-x-1'>
                 <InputOTPSlot
                   index={0}

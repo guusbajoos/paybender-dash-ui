@@ -4,13 +4,15 @@ import NotFoundError from '@/pages/errors/not-found-error'
 import MaintenanceError from '@/pages/errors/maintenance-error'
 import UnauthorisedError from '@/pages/errors/unauthorised-error.tsx'
 
+import AppShell from '@/components/app-shell'
 import AuthLayout from '@/components/partials/auth/auth-layout'
 import AuthGate from '@/components/partials/auth/auth-gate'
 import AuthLoginPage from '@/pages/auth/login'
 import AuthRegisterPage from '@/pages/auth/register'
-import AppShell from '@/components/app-shell'
-import getStartedRoutes from './get-started/get-started.routes'
+import AuthForgotPasswordPage from '@/pages/auth/forgot-password'
 import AuthenticatedGate from '@/components/partials/auth/authenticated-gate'
+
+import getStartedRoutes from './get-started/get-started.routes'
 
 const routesConfig: RouteObject[] = [
   {
@@ -34,6 +36,10 @@ const routesConfig: RouteObject[] = [
       {
         path: 'register',
         Component: AuthRegisterPage,
+      },
+      {
+        path: 'forgot-password',
+        Component: AuthForgotPasswordPage,
       },
     ],
   },

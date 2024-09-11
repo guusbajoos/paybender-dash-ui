@@ -19,7 +19,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
             <div className=''>
               <img
-                className='w-full max-w-xl object-contain'
+                className='w-full max-w-md object-contain'
                 src={Growth}
                 alt='Growth'
               />
