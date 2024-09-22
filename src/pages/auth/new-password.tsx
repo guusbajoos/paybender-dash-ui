@@ -17,11 +17,9 @@ const AuthNewPasswordPage = () => {
   const state = useAuth((state) => state)
 
   const { isLoading: isLoadingGetUser } = useGetList(
-    `${import.meta.env.VITE_APP_API_URL}/get-user-token`,
+    `${import.meta.env.VITE_APP_API_URL}/get-user-token/${token}`,
     {
-      initialParams: {
-        token,
-      },
+      initialParams: {},
       token: '',
       onSuccess: (data) => {
         const result = (
