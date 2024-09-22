@@ -10,6 +10,7 @@ import AuthGate from '@/components/partials/auth/auth-gate'
 import AuthLoginPage from '@/pages/auth/login'
 import AuthRegisterPage from '@/pages/auth/register'
 import AuthForgotPasswordPage from '@/pages/auth/forgot-password'
+import AuthNewPasswordPage from '@/pages/auth/new-password'
 import AuthenticatedGate from '@/components/partials/auth/authenticated-gate'
 
 import getStartedRoutes from './get-started/get-started.routes'
@@ -40,6 +41,10 @@ const routesConfig: RouteObject[] = [
       {
         path: 'forgot-password',
         Component: AuthForgotPasswordPage,
+      },
+      {
+        path: 'new-password/:token',
+        Component: AuthNewPasswordPage,
       },
     ],
   },

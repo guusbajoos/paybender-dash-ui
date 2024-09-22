@@ -1,3 +1,6 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { useToast } from '@/components/ui/use-toast'
 
 import usePostData from '@/hooks/use-post-data'
@@ -10,6 +13,8 @@ import VerificationSent from '@/components/partials/auth/forgot-password/verific
 
 const AuthForgotPasswordPage = () => {
   const { toast } = useToast()
+  const navigate = useNavigate()
+
   const state = useAuth((state) => state)
 
   const {
@@ -58,6 +63,15 @@ const AuthForgotPasswordPage = () => {
         return <></>
     }
   }
+
+  useEffect(() => {
+    if (state.step === 2) {
+      setTimeout(() => {
+        state.removeStep()
+        navigate('/auth/login')
+      }, 3000)
+    }
+  }, [state.step])
 
   return <>{ActiveComponent()}</>
 }

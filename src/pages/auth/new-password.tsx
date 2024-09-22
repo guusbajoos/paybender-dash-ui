@@ -4,13 +4,12 @@ import { useToast } from '@/components/ui/use-toast'
 
 import usePostData from '@/hooks/use-post-data'
 import useAuth from '@/store/use-auth'
+import useGetList from '@/hooks/use-get-data'
 
 import { cn } from '@/lib/utils'
 
 import AuthVerifyOTP from '@/components/partials/auth/auth-verify-otp'
 import NewPasswordForm from '@/components/partials/auth/new-password/new-password-form'
-import useGetList from '@/hooks/use-get-data'
-import { IUser } from '@/schemas/auth/login.schema'
 
 const AuthNewPasswordPage = () => {
   const { toast } = useToast()
@@ -25,8 +24,16 @@ const AuthNewPasswordPage = () => {
       },
       token: '',
       onSuccess: (data) => {
-        const result = (data as { data: IUser })?.data
-        state.setUserData(result)
+        const result = (
+          data as {
+            data: {
+              id: number
+              email: string
+              modulee: string
+            }
+          }
+        )?.data
+        state.setUserData({ email: result.email })
       },
       onError: (err) => console.log({ err }),
       isDisable: !!token || state.step === 1,
@@ -46,7 +53,7 @@ const AuthNewPasswordPage = () => {
           ),
           duration: 3000,
         })
-        state.removeStep()
+        state.setStep('next')
       },
       onError: (error) => {
         toast({
@@ -101,8 +108,11 @@ const AuthNewPasswordPage = () => {
       case 2:
         return (
           <NewPasswordForm
-            onNextStep={(val) => newPassword(val)}
+            onNextStep={(val) =>
+              newPassword({ ...val, email: state.user?.email })
+            }
             isLoading={isLoadingNewPassword}
+            email={state.user?.email || ''}
           />
         )
       default:

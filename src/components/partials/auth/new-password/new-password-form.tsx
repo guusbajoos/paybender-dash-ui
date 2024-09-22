@@ -21,11 +21,14 @@ import { Button } from '@/components/ui/button'
 import AuthCard from '@/components/partials/auth/auth-card'
 
 const NewPasswordForm = (
-  props: IStepperNextProps<z.infer<typeof newPasswordSchema>>
+  props: IStepperNextProps<z.infer<typeof newPasswordSchema>> & {
+    email: string
+  }
 ) => {
   const form = useForm<z.infer<typeof newPasswordSchema>>({
     resolver: zodResolver(newPasswordSchema),
     defaultValues: {
+      email: '',
       password: '',
       repassword: '',
     },
@@ -40,13 +43,34 @@ const NewPasswordForm = (
 
   return (
     <div className='relative'>
-      <div className='flex min-h-screen items-center justify-center'>
+      <div className='flex items-center justify-center min-h-screen'>
         <AuthCard title='Please Input Your Email' hasSeparator>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className='flex flex-col gap-y-3'
             >
+              <FormField
+                control={form.control}
+                name='email'
+                render={({ field }) => (
+                  <FormItem className='!mt-0'>
+                    <FormLabel className='font-normal text-[#777677]'>
+                      Email
+                    </FormLabel>
+                    <FormControl className='font-normal text-[#777677]'>
+                      <Input
+                        placeholder='johndoe@gmail.com'
+                        {...field}
+                        disabled
+                        className='disabled:bg-gray-200'
+                        value={props.email}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name='password'

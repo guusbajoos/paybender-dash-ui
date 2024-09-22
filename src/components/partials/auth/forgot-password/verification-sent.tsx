@@ -1,20 +1,9 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-
 import AuthCard from '@/components/partials/auth/auth-card'
 
 const VerificationSent = () => {
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    setTimeout(() => {
-      navigate('/auth/login')
-    }, 3000)
-  }, [])
-
   return (
     <div className='relative'>
-      <div className='flex min-h-screen items-center justify-center'>
+      <div className='flex items-center justify-center min-h-screen'>
         <AuthCard title='Verification Sent' hasSeparator>
           <div className='flex flex-col gap-y-8'>
             <p className='font-medium text-[#777677]'>
